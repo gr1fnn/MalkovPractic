@@ -1,0 +1,61 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using MLAlgorithms.Core;
+
+namespace MLAlgorithms.Algorithms
+{
+    public class WeightedKNN : KNN
+    {
+        public WeightedKNN(int k = 3, DistanceMetric distanceMetric = DistanceMetric.Euclidean)
+            : base(k, distanceMetric) { }
+
+        protected override double PredictInternal(double[] features)
+        {
+            var distances = new List<(double distance, double label)>();
+
+            for (int i = 0; i < TrainingFeatures.Length; i++)
+            {
+                double distance = CalculateDistance(features, TrainingFeatures[i], _distanceMetric);
+                distances.Add((distance, TrainingLabels[i]));
+            }
+
+            var nearestNeighbors = distances
+                .OrderBy(d => d.distance)
+                .Take(_k)
+                .ToList();
+
+            if (ProblemType == ProblemType.Classification)
+            {
+                // Взвешенное голосование для классификации
+                var weightedVotes = new Dictionary<double, double>();
+
+                foreach (var neighbor in nearestNeighbors)
+                {
+                    double weight = 1.0 / (neighbor.distance + 1e-8); // избегаем деления на 0
+                    if (weightedVotes.ContainsKey(neighbor.label))
+                        weightedVotes[neighbor.label] += weight;
+                    else
+                        weightedVotes[neighbor.label] = weight;
+                }
+
+                return weightedVotes.OrderByDescending(v => v.Value).First().Key;
+            }
+            else
+            {
+                // Взвешенное среднее для регрессии
+                double weightedSum = 0;
+                double weightSum = 0;
+
+                foreach (var neighbor in nearestNeighbors)
+                {
+                    double weight = 1.0 / (neighbor.distance + 1e-8);
+                    weightedSum += neighbor.label * weight;
+                    weightSum += weight;
+                }
+
+                return weightSum == 0 ? 0 : weightedSum / weightSum;
+            }
+        }
+    }
+}
