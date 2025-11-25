@@ -33,11 +33,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\grish\\OneDrive\\Рабочий стол\\учба\\7 семестр\\Мальков\\MalkovPractic\\MalkovPractic\\MalkovPractic\\MalkovPractic.csproj",
+      "projectUniqueName": "C:\\Users\\grish\\Desktop\\учеба\\7 семестр\\Мальков Александр Анатольевич\\MalkovPractic\\MalkovPractic\\MalkovPractic\\MalkovPractic.csproj",
       "projectName": "MalkovPractic",
-      "projectPath": "C:\\Users\\grish\\OneDrive\\Рабочий стол\\учба\\7 семестр\\Мальков\\MalkovPractic\\MalkovPractic\\MalkovPractic\\MalkovPractic.csproj",
+      "projectPath": "C:\\Users\\grish\\Desktop\\учеба\\7 семестр\\Мальков Александр Анатольевич\\MalkovPractic\\MalkovPractic\\MalkovPractic\\MalkovPractic.csproj",
       "packagesPath": "C:\\Users\\grish\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\grish\\OneDrive\\Рабочий стол\\учба\\7 семестр\\Мальков\\MalkovPractic\\MalkovPractic\\MalkovPractic\\obj\\",
+      "outputPath": "C:\\Users\\grish\\Desktop\\учеба\\7 семестр\\Мальков Александр Анатольевич\\MalkovPractic\\MalkovPractic\\MalkovPractic\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -52,15 +52,14 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\grish\\OneDrive\\Рабочий стол\\учба\\7 семестр\\Мальков\\MalkovPractic\\MalkovPractic\\ClassLib\\ClassLib.csproj": {
-              "projectPath": "C:\\Users\\grish\\OneDrive\\Рабочий стол\\учба\\7 семестр\\Мальков\\MalkovPractic\\MalkovPractic\\ClassLib\\ClassLib.csproj"
+            "C:\\Users\\grish\\Desktop\\учеба\\7 семестр\\Мальков Александр Анатольевич\\MalkovPractic\\MalkovPractic\\ClassLib\\ClassLib.csproj": {
+              "projectPath": "C:\\Users\\grish\\Desktop\\учеба\\7 семестр\\Мальков Александр Анатольевич\\MalkovPractic\\MalkovPractic\\ClassLib\\ClassLib.csproj"
             }
           }
         }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace MLAlgorithms.Preprocessing
+namespace Algorithms.Preprocessing
 {
     public class DataScaler
     {

@@ -5,9 +5,9 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Data;
-using MLAlgorithms.Pipelines;
-using MLAlgorithms.Core;
-using MLAlgorithms.Preprocessing;
+using Algorithms.Pipelines;
+using Algorithms.Core;
+using Algorithms.Preprocessing;
 
 namespace MyForm
 {
@@ -26,7 +26,6 @@ namespace MyForm
 
         private void InitializeComboBoxes()
         {
-            // Заполняем комбобоксы значениями
             TypeCombobox.Items.AddRange(new string[] { "Классификация", "Регрессия" });
             TypeCombobox.SelectedIndex = 0;
 
@@ -39,7 +38,6 @@ namespace MyForm
             TypeKermel.Items.AddRange(new string[] { "Гауссово", "Линейное", "Епанечникова" });
             TypeKermel.SelectedIndex = 0;
 
-            // Устанавливаем значения по умолчанию
             numK.Value = 3;
             numBandwidth.Value = 1.0m;
             numLearningRate.Value = 0.001m;
@@ -166,11 +164,11 @@ namespace MyForm
             string algorithm = algorytmComboBox.SelectedItem?.ToString() ?? "KNN";
             config.AlgorithmType = algorithm switch
             {
-                "KNN" => typeof(MLAlgorithms.Algorithms.KNN),
-                "Взвешенный KNN" => typeof(MLAlgorithms.Algorithms.WeightedKNN),
-                "Надарая-Ватсон" => typeof(MLAlgorithms.Algorithms.NadarayaWatson),
-                "SVM" => typeof(MLAlgorithms.Algorithms.SVM),
-                _ => typeof(MLAlgorithms.Algorithms.KNN)
+                "KNN" => typeof(Algorithms.Algorithms.KNN),
+                "Взвешенный KNN" => typeof(Algorithms.Algorithms.WeightedKNN),
+                "Надарая-Ватсон" => typeof(Algorithms.Algorithms.NadarayaWatson),
+                "SVM" => typeof(Algorithms.Algorithms.SVM),
+                _ => typeof(Algorithms.Algorithms.KNN)
             };
 
             // Параметры алгоритма

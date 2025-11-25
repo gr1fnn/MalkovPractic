@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MLAlgorithms.Core
+namespace Algorithms.Core
 {
     public class Dataset
     {

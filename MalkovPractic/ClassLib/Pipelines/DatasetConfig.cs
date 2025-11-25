@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MLAlgorithms.Core;
-using MLAlgorithms.Algorithms;
+using Algorithms.Core;
+using Algorithms.Algorithms;
 
-namespace MLAlgorithms.Pipelines
+namespace Algorithms.Pipelines
 {
     public class DatasetConfig
     {

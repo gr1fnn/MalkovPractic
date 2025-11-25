@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MLAlgorithms.Core
+namespace Algorithms.Core
 {
     public interface IAlgorithm
     {

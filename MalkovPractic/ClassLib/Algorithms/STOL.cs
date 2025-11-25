@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using MLAlgorithms.Core;
+using Algorithms.Core;
 
-namespace MLAlgorithms.Algorithms
+namespace Algorithms.Algorithms
 {
     public class STOL : BaseAlgorithm
     {

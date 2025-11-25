@@ -1,4 +1,4 @@
-﻿namespace MLAlgorithms.Core
+﻿namespace Algorithms.Core
 {
     public enum KernelType
     {

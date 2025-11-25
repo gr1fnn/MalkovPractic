@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Linq;
-using MLAlgorithms.Core;
-using MLAlgorithms.Preprocessing;
-using MLAlgorithms.Algorithms;
+using Algorithms.Core;
+using Algorithms.Preprocessing;
+using Algorithms.Algorithms;
 
-namespace MLAlgorithms.Pipelines
+namespace Algorithms.Pipelines
 {
     public class MLPipeline
     {

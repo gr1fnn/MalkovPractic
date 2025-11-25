@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MLAlgorithms.Utilities
+namespace Algorithms.Utilities
 {
     public static class Validators
     {

@@ -1,9 +1,9 @@
 ﻿using ClassLib;
-using MLAlgorithms.Preprocessing;
+using Algorithms.Preprocessing;
 using System;
 using System.Linq;
 
-namespace MLAlgorithms.Core
+namespace Algorithms.Core
 {
     public abstract class BaseAlgorithm : IAlgorithm
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace MLAlgorithms.Utilities
+namespace Algorithms.Utilities
 {
     public static class Metrics
     {
