@@ -13,15 +13,28 @@ namespace MyForm
 {
     public partial class MainForm : Form
     {
-        private MLPipeline currentPipeline;
+        private Pipeline currentPipeline;
         private string currentFilePath;
         private List<TextBox> inputFields = new List<TextBox>();
+
+        private string originalNumBandwidthLabelText;
+        private string originalNumLearningRateLabelText;
+        private string originalNumEpochsLabelText;
 
         public MainForm()
         {
             InitializeComponent();
             ViewAllElements(false);
             InitializeComboBoxes();
+            SaveOriginalLabels();
+            UpdateAlgorithmParametersVisibility();
+        }
+
+        private void SaveOriginalLabels()
+        {
+            originalNumBandwidthLabelText = numBandwidthLabel.Text;
+            originalNumLearningRateLabelText = numLearningRateLabel.Text;
+            originalNumEpochsLabelText = numEpochsLabel.Text;
         }
 
         private void InitializeComboBoxes()
@@ -29,8 +42,9 @@ namespace MyForm
             TypeCombobox.Items.AddRange(new string[] { "Классификация", "Регрессия" });
             TypeCombobox.SelectedIndex = 0;
 
-            algorytmComboBox.Items.AddRange(new string[] { "KNN", "Взвешенный KNN", "Надарая-Ватсон", "SVM" });
+            algorytmComboBox.Items.AddRange(new string[] { "KNN", "Взвешенный KNN", "Надарая-Ватсон", "SVM", "STOL" });
             algorytmComboBox.SelectedIndex = 0;
+            algorytmComboBox.SelectedIndexChanged += AlgorytmComboBox_SelectedIndexChanged;
 
             MetricCombobox.Items.AddRange(new string[] { "Евклидова", "Манхэттен", "Косинусная" });
             MetricCombobox.SelectedIndex = 0;
@@ -42,6 +56,188 @@ namespace MyForm
             numBandwidth.Value = 1.0m;
             numLearningRate.Value = 0.001m;
             numEpochs.Value = 1000;
+        }
+
+        private void AlgorytmComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(currentFilePath))
+            {
+                UpdateAlgorithmParametersVisibility();
+            }
+        }
+
+        private void UpdateAlgorithmParametersVisibility()
+        {
+            string algorithm = algorytmComboBox.SelectedItem?.ToString() ?? "KNN";
+
+            RestoreOriginalLabels();
+            ResetParameterValues();
+
+            switch (algorithm)
+            {
+                case "KNN":
+                    ShowKNNParameters();
+                    break;
+                case "Взвешенный KNN":
+                    ShowKNNParameters();
+                    break;
+                case "Надарая-Ватсон":
+                    ShowNadarayaWatsonParameters();
+                    break;
+                case "SVM":
+                    ShowSVMParameters();
+                    break;
+                case "STOL":
+                    ShowSTOLParameters();
+                    break;
+            }
+        }
+
+        private void RestoreOriginalLabels()
+        {
+            numBandwidthLabel.Text = originalNumBandwidthLabelText;
+            numLearningRateLabel.Text = originalNumLearningRateLabelText;
+            numEpochsLabel.Text = originalNumEpochsLabelText;
+        }
+
+        private void ResetParameterValues()
+        {
+            numK.Minimum = 1;
+            numK.Maximum = 50;
+            numK.DecimalPlaces = 0;
+
+            numBandwidth.Minimum = 0;
+            numBandwidth.Maximum = 10;
+            numBandwidth.DecimalPlaces = 4;
+
+            numLearningRate.Minimum = 0.0001m;
+            numLearningRate.Maximum = 1;
+            numLearningRate.DecimalPlaces = 4;
+
+            numEpochs.Minimum = 100;
+            numEpochs.Maximum = 10000;
+            numEpochs.DecimalPlaces = 0;
+
+            numK.Value = 3;
+            numBandwidth.Value = 1.0m;
+            numLearningRate.Value = 0.001m;
+            numEpochs.Value = 1000;
+        }
+
+        private void ShowKNNParameters()
+        {
+            // Показываем только необходимые параметры для KNN
+            numKLabel.Visible = true;
+            numKLabel.Text = "Количество соседей";
+            numK.Visible = true;
+            MetricComboboxLabel.Visible = true;
+            MetricCombobox.Visible = true;
+
+            // Скрываем остальные
+            numBandwidthLabel.Visible = false;
+            numBandwidth.Visible = false;
+            numLearningRateLabel.Visible = false;
+            numLearningRate.Visible = false;
+            numEpochsLabel.Visible = false;
+            numEpochs.Visible = false;
+            TypeKermelLabel.Visible = false;
+            TypeKermel.Visible = false;
+        }
+
+        private void ShowNadarayaWatsonParameters()
+        {
+            // Показываем параметры для Надарая-Ватсон
+            TypeKermelLabel.Visible = true;
+            TypeKermel.Visible = true;
+            numBandwidthLabel.Visible = true;
+            numBandwidth.Visible = true;
+
+            // Скрываем остальные
+            numKLabel.Visible = false;
+            numK.Visible = false;
+            MetricComboboxLabel.Visible = false;
+            MetricCombobox.Visible = false;
+            numLearningRateLabel.Visible = false;
+            numLearningRate.Visible = false;
+            numEpochsLabel.Visible = false;
+            numEpochs.Visible = false;
+        }
+
+        private void ShowSVMParameters()
+        {
+            // Показываем все параметры SVM
+            numKLabel.Visible = true;
+            numKLabel.Text = "Параметр штрафа ";
+            numK.Visible = true;
+            numK.Minimum = 1;
+            numK.Maximum = 50;
+            numK.DecimalPlaces = 0;
+            numK.Value = 1;
+
+            numBandwidthLabel.Text = "Лямбда ";
+            numBandwidthLabel.Visible = true;
+            numBandwidth.Visible = true;
+            numBandwidth.Minimum = 0.01m;
+            numBandwidth.Maximum = 100;
+            numBandwidth.DecimalPlaces = 2;
+            numBandwidth.Value = 1.0m;
+
+            numLearningRateLabel.Text = "Скорость обучения:";
+            numLearningRateLabel.Visible = true;
+            numLearningRate.Visible = true;
+            numLearningRate.Minimum = 0.0001m;
+            numLearningRate.Maximum = 1;
+            numLearningRate.DecimalPlaces = 4;
+            numLearningRate.Value = 0.001m;
+
+            numEpochsLabel.Text = "Количество эпох:";
+            numEpochsLabel.Visible = true;
+            numEpochs.Visible = true;
+            numEpochs.Minimum = 100;
+            numEpochs.Maximum = 10000;
+            numEpochs.DecimalPlaces = 0;
+            numEpochs.Value = 1000;
+
+            // Скрываем ненужные
+            MetricComboboxLabel.Visible = false;
+            MetricCombobox.Visible = false;
+            TypeKermelLabel.Visible = false;
+            TypeKermel.Visible = false;
+        }
+
+        private void ShowSTOLParameters()
+        {
+            // Показываем параметры для STOL
+            numKLabel.Visible = true;
+            numK.Visible = true;
+            numK.Minimum = 1;
+            numK.Maximum = 50;
+            numK.DecimalPlaces = 0;
+            numK.Value = 3;
+
+            numBandwidthLabel.Text = "Порог уверенности:";
+            numBandwidthLabel.Visible = true;
+            numBandwidth.Visible = true;
+            numBandwidth.Minimum = 0;
+            numBandwidth.Maximum = 1;
+            numBandwidth.DecimalPlaces = 2;
+            numBandwidth.Value = 0.7m;
+
+            numLearningRateLabel.Text = "Макс. samples:";
+            numLearningRateLabel.Visible = true;
+            numLearningRate.Visible = true;
+            numLearningRate.Minimum = 100;
+            numLearningRate.Maximum = 10000;
+            numLearningRate.DecimalPlaces = 0;
+            numLearningRate.Value = 1000;
+
+            MetricComboboxLabel.Visible = true;
+            MetricCombobox.Visible = true;
+
+            numEpochsLabel.Visible = false;
+            numEpochs.Visible = false;
+            TypeKermelLabel.Visible = false;
+            TypeKermel.Visible = false;
         }
 
         private void chosefileButton_Click(object sender, EventArgs e)
@@ -71,6 +267,7 @@ namespace MyForm
                         }
 
                         ViewAllElements(true);
+                        UpdateAlgorithmParametersVisibility();
 
                         UpdateStatus($"Файл загружен: {Path.GetFileName(currentFilePath)} | Строк: {rawData.Length}, Колонок: {columnNames.Length}");
 
@@ -107,7 +304,9 @@ namespace MyForm
                 progressBar1.Visible = true;
                 UpdateStatus("Обучение модели...");
 
-                var task = System.Threading.Tasks.Task.Run(() => TrainModel());
+                var config = CreateDatasetConfig();
+
+                var task = System.Threading.Tasks.Task.Run(() => TrainModel(config));
                 task.ContinueWith(t =>
                 {
                     this.Invoke(new Action(() =>
@@ -139,11 +338,9 @@ namespace MyForm
             }
         }
 
-        private void TrainModel()
+        private void TrainModel(DatasetConfig config)
         {
-            var config = CreateDatasetConfig();
-
-            currentPipeline = new MLPipeline(config);
+            currentPipeline = new Pipeline(config);
             currentPipeline.LoadAndTrain(currentFilePath);
 
             this.Invoke(new Action(UpdateTrainingResults));
@@ -160,7 +357,6 @@ namespace MyForm
                 ProblemType = TypeCombobox.SelectedIndex == 0 ? ProblemType.Classification : ProblemType.Regression
             };
 
-            // Настройка алгоритма
             string algorithm = algorytmComboBox.SelectedItem?.ToString() ?? "KNN";
             config.AlgorithmType = algorithm switch
             {
@@ -168,10 +364,10 @@ namespace MyForm
                 "Взвешенный KNN" => typeof(Algorithms.Algorithms.WeightedKNN),
                 "Надарая-Ватсон" => typeof(Algorithms.Algorithms.NadarayaWatson),
                 "SVM" => typeof(Algorithms.Algorithms.SVM),
+                "STOL" => typeof(Algorithms.Algorithms.STOL),
                 _ => typeof(Algorithms.Algorithms.KNN)
             };
 
-            // Параметры алгоритма
             config.AlgorithmParameters = new Dictionary<string, object>();
 
             if (algorithm.Contains("KNN"))
@@ -188,6 +384,15 @@ namespace MyForm
             {
                 config.AlgorithmParameters["LearningRate"] = (double)numLearningRate.Value;
                 config.AlgorithmParameters["Epochs"] = (int)numEpochs.Value;
+                config.AlgorithmParameters["Lambda"] = (double)numBandwidth.Value; // фиксированное значение
+                config.AlgorithmParameters["C"] = (double)numK.Value; // используем numBandwidth для параметра C
+            }
+            else if (algorithm == "STOL")
+            {
+                config.AlgorithmParameters["K"] = (int)numK.Value;
+                config.AlgorithmParameters["DistanceMetric"] = (DistanceMetric)MetricCombobox.SelectedIndex;
+                config.AlgorithmParameters["ConfidenceThreshold"] = (double)numBandwidth.Value;
+                config.AlgorithmParameters["MaxSamples"] = (int)numLearningRate.Value;
             }
 
             return config;
@@ -217,6 +422,8 @@ namespace MyForm
             }
         }
 
+        // Остальные методы (CreateTestInputs, PredictButton_Click, UpdateStatus, ConvertToDataTable, ViewAllElements) 
+        // остаются без изменений, так как они уже корректно работают
         private void CreateTestInputs()
         {
             // Очищаем предыдущие поля
@@ -358,16 +565,15 @@ namespace MyForm
 
         private void UpdateStatus(string message)
         {
-            if (label9 != null)
+            if (progressBar1Label != null)
             {
-                label9.Text = message;
+                progressBar1Label.Text = message;
             }
         }
 
         private DataTable ConvertToDataTable(string[][] data, string[] columnNames)
         {
             var table = new DataTable();
-
 
             foreach (string columnName in columnNames)
             {
@@ -400,18 +606,18 @@ namespace MyForm
                 numEpochs.Visible = false;
                 numBandwidth.Visible = false;
                 numLearningRate.Visible = false;
-                label1.Visible = false;
-                label2.Visible = false;
-                label3.Visible = false;
-                label4.Visible = false;
-                label5.Visible = false;
-                label6.Visible = false;
-                label7.Visible = false;
-                label8.Visible = false;
-                label9.Visible = false;
-                label10.Visible = false;
-                label11.Visible = false;
-                label12.Visible = false;
+                TypeCombobxLabel.Visible = false;
+                algorytmComboBoxlabel.Visible = false;
+                MetricComboboxLabel.Visible = false;
+                numKLabel.Visible = false;
+                numBandwidthLabel.Visible = false;
+                numLearningRateLabel.Visible = false;
+                numEpochsLabel.Visible = false;
+                dataGridView1Label.Visible = false;
+                progressBar1Label.Visible = false;
+                TypeKermelLabel.Visible = false;
+                ResultTextBoxLabel.Visible = false;
+                checkedListBox1Label.Visible = false;
                 StudyModelButton.Visible = false;
             }
             else
@@ -428,19 +634,20 @@ namespace MyForm
                 numEpochs.Visible = true;
                 numBandwidth.Visible = true;
                 numLearningRate.Visible = true;
-                label1.Visible = true;
-                label2.Visible = true;
-                label3.Visible = true;
-                label4.Visible = true;
-                label5.Visible = true;
-                label6.Visible = true;
-                label7.Visible = true;
-                label8.Visible = true;
-                label9.Visible = true;
-                label10.Visible = true;
-                label11.Visible = true;
-                label12.Visible = true;
+                TypeCombobxLabel.Visible = true;
+                algorytmComboBoxlabel.Visible = true;
+                MetricComboboxLabel.Visible = true;
+                numKLabel.Visible = true;
+                numBandwidthLabel.Visible = true;
+                numLearningRateLabel.Visible = true;
+                numEpochsLabel.Visible = true;
+                dataGridView1Label.Visible = true;
+                progressBar1Label.Visible = true;
+                TypeKermelLabel.Visible = true;
+                ResultTextBoxLabel.Visible = true;
+                checkedListBox1Label.Visible = true;
                 StudyModelButton.Visible = true;
+
             }
         }
     }

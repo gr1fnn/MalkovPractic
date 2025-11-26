@@ -30,29 +30,29 @@
         {
             tabData = new TabPage();
             checkedListBox1 = new CheckedListBox();
-            label12 = new Label();
-            label11 = new Label();
+            checkedListBox1Label = new Label();
+            ResultTextBoxLabel = new Label();
             ResultTextBox = new TextBox();
             TypeKermel = new ComboBox();
-            label10 = new Label();
-            label9 = new Label();
-            label8 = new Label();
+            TypeKermelLabel = new Label();
+            progressBar1Label = new Label();
+            dataGridView1Label = new Label();
             progressBar1 = new ProgressBar();
             dataGridView1 = new DataGridView();
             StudyModelButton = new Button();
-            label7 = new Label();
+            numEpochsLabel = new Label();
             numEpochs = new NumericUpDown();
-            label6 = new Label();
+            numLearningRateLabel = new Label();
             numLearningRate = new NumericUpDown();
-            label5 = new Label();
+            numBandwidthLabel = new Label();
             numBandwidth = new NumericUpDown();
-            label4 = new Label();
+            numKLabel = new Label();
             numK = new NumericUpDown();
             MetricCombobox = new ComboBox();
-            label3 = new Label();
+            MetricComboboxLabel = new Label();
             algorytmComboBox = new ComboBox();
-            label2 = new Label();
-            label1 = new Label();
+            algorytmComboBoxlabel = new Label();
+            TypeCombobxLabel = new Label();
             TypeCombobox = new ComboBox();
             chosefileButton = new Button();
             tab = new TabControl();
@@ -68,29 +68,29 @@
             // tabData
             // 
             tabData.Controls.Add(checkedListBox1);
-            tabData.Controls.Add(label12);
-            tabData.Controls.Add(label11);
+            tabData.Controls.Add(checkedListBox1Label);
+            tabData.Controls.Add(ResultTextBoxLabel);
             tabData.Controls.Add(ResultTextBox);
             tabData.Controls.Add(TypeKermel);
-            tabData.Controls.Add(label10);
-            tabData.Controls.Add(label9);
-            tabData.Controls.Add(label8);
+            tabData.Controls.Add(TypeKermelLabel);
+            tabData.Controls.Add(progressBar1Label);
+            tabData.Controls.Add(dataGridView1Label);
             tabData.Controls.Add(progressBar1);
             tabData.Controls.Add(dataGridView1);
             tabData.Controls.Add(StudyModelButton);
-            tabData.Controls.Add(label7);
+            tabData.Controls.Add(numEpochsLabel);
             tabData.Controls.Add(numEpochs);
-            tabData.Controls.Add(label6);
+            tabData.Controls.Add(numLearningRateLabel);
             tabData.Controls.Add(numLearningRate);
-            tabData.Controls.Add(label5);
+            tabData.Controls.Add(numBandwidthLabel);
             tabData.Controls.Add(numBandwidth);
-            tabData.Controls.Add(label4);
+            tabData.Controls.Add(numKLabel);
             tabData.Controls.Add(numK);
             tabData.Controls.Add(MetricCombobox);
-            tabData.Controls.Add(label3);
+            tabData.Controls.Add(MetricComboboxLabel);
             tabData.Controls.Add(algorytmComboBox);
-            tabData.Controls.Add(label2);
-            tabData.Controls.Add(label1);
+            tabData.Controls.Add(algorytmComboBoxlabel);
+            tabData.Controls.Add(TypeCombobxLabel);
             tabData.Controls.Add(TypeCombobox);
             tabData.Controls.Add(chosefileButton);
             tabData.Location = new Point(4, 24);
@@ -109,25 +109,25 @@
             checkedListBox1.Size = new Size(202, 40);
             checkedListBox1.TabIndex = 26;
             // 
-            // label12
+            // checkedListBox1Label
             // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label12.Location = new Point(30, 297);
-            label12.Name = "label12";
-            label12.Size = new Size(155, 21);
-            label12.TabIndex = 25;
-            label12.Text = "Выберите признаки:";
+            checkedListBox1Label.AutoSize = true;
+            checkedListBox1Label.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            checkedListBox1Label.Location = new Point(30, 297);
+            checkedListBox1Label.Name = "checkedListBox1Label";
+            checkedListBox1Label.Size = new Size(155, 21);
+            checkedListBox1Label.TabIndex = 25;
+            checkedListBox1Label.Text = "Выберите признаки:";
             // 
-            // label11
+            // ResultTextBoxLabel
             // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label11.Location = new Point(688, 507);
-            label11.Name = "label11";
-            label11.Size = new Size(186, 21);
-            label11.TabIndex = 24;
-            label11.Text = "Результат предсказания:";
+            ResultTextBoxLabel.AutoSize = true;
+            ResultTextBoxLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            ResultTextBoxLabel.Location = new Point(688, 507);
+            ResultTextBoxLabel.Name = "ResultTextBoxLabel";
+            ResultTextBoxLabel.Size = new Size(186, 21);
+            ResultTextBoxLabel.TabIndex = 24;
+            ResultTextBoxLabel.Text = "Результат предсказания:";
             // 
             // ResultTextBox
             // 
@@ -147,35 +147,35 @@
             TypeKermel.Size = new Size(202, 23);
             TypeKermel.TabIndex = 22;
             // 
-            // label10
+            // TypeKermelLabel
             // 
-            label10.AutoSize = true;
-            label10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label10.Location = new Point(69, 247);
-            label10.Name = "label10";
-            label10.Size = new Size(77, 21);
-            label10.TabIndex = 21;
-            label10.Text = "Тип ядра:";
+            TypeKermelLabel.AutoSize = true;
+            TypeKermelLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            TypeKermelLabel.Location = new Point(69, 247);
+            TypeKermelLabel.Name = "TypeKermelLabel";
+            TypeKermelLabel.Size = new Size(77, 21);
+            TypeKermelLabel.TabIndex = 21;
+            TypeKermelLabel.Text = "Тип ядра:";
             // 
-            // label9
+            // progressBar1Label
             // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label9.Location = new Point(468, 297);
-            label9.Name = "label9";
-            label9.Size = new Size(64, 21);
-            label9.TabIndex = 20;
-            label9.Text = "Статус: ";
+            progressBar1Label.AutoSize = true;
+            progressBar1Label.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            progressBar1Label.Location = new Point(468, 297);
+            progressBar1Label.Name = "progressBar1Label";
+            progressBar1Label.Size = new Size(64, 21);
+            progressBar1Label.TabIndex = 20;
+            progressBar1Label.Text = "Статус: ";
             // 
-            // label8
+            // dataGridView1Label
             // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label8.Location = new Point(716, 6);
-            label8.Name = "label8";
-            label8.Size = new Size(139, 21);
-            label8.TabIndex = 19;
-            label8.Text = "Просмотр данных";
+            dataGridView1Label.AutoSize = true;
+            dataGridView1Label.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            dataGridView1Label.Location = new Point(716, 6);
+            dataGridView1Label.Name = "dataGridView1Label";
+            dataGridView1Label.Size = new Size(139, 21);
+            dataGridView1Label.TabIndex = 19;
+            dataGridView1Label.Text = "Просмотр данных";
             // 
             // progressBar1
             // 
@@ -204,15 +204,15 @@
             StudyModelButton.UseVisualStyleBackColor = false;
             StudyModelButton.Click += StudyModel_Click;
             // 
-            // label7
+            // numEpochsLabel
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label7.Location = new Point(78, 546);
-            label7.Name = "label7";
-            label7.Size = new Size(57, 21);
-            label7.TabIndex = 15;
-            label7.Text = "Эпохи:";
+            numEpochsLabel.AutoSize = true;
+            numEpochsLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            numEpochsLabel.Location = new Point(78, 546);
+            numEpochsLabel.Name = "numEpochsLabel";
+            numEpochsLabel.Size = new Size(57, 21);
+            numEpochsLabel.TabIndex = 15;
+            numEpochsLabel.Text = "Эпохи:";
             // 
             // numEpochs
             // 
@@ -225,15 +225,15 @@
             numEpochs.TabIndex = 14;
             numEpochs.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
-            // label6
+            // numLearningRateLabel
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label6.Location = new Point(30, 489);
-            label6.Name = "label6";
-            label6.Size = new Size(153, 21);
-            label6.TabIndex = 13;
-            label6.Text = "Скорость обучения:";
+            numLearningRateLabel.AutoSize = true;
+            numLearningRateLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            numLearningRateLabel.Location = new Point(30, 489);
+            numLearningRateLabel.Name = "numLearningRateLabel";
+            numLearningRateLabel.Size = new Size(153, 21);
+            numLearningRateLabel.TabIndex = 13;
+            numLearningRateLabel.Text = "Скорость обучения:";
             // 
             // numLearningRate
             // 
@@ -246,15 +246,15 @@
             numLearningRate.TabIndex = 12;
             numLearningRate.Value = new decimal(new int[] { 1, 0, 0, 196608 });
             // 
-            // label5
+            // numBandwidthLabel
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label5.Location = new Point(24, 428);
-            label5.Name = "label5";
-            label5.Size = new Size(190, 21);
-            label5.TabIndex = 11;
-            label5.Text = "Пропускная способность";
+            numBandwidthLabel.AutoSize = true;
+            numBandwidthLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            numBandwidthLabel.Location = new Point(24, 428);
+            numBandwidthLabel.Name = "numBandwidthLabel";
+            numBandwidthLabel.Size = new Size(190, 21);
+            numBandwidthLabel.TabIndex = 11;
+            numBandwidthLabel.Text = "Пропускная способность";
             // 
             // numBandwidth
             // 
@@ -267,15 +267,15 @@
             numBandwidth.TabIndex = 10;
             numBandwidth.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
-            // label4
+            // numKLabel
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label4.Location = new Point(30, 366);
-            label4.Name = "label4";
-            label4.Size = new Size(157, 21);
-            label4.TabIndex = 9;
-            label4.Text = "Количество соседей:";
+            numKLabel.AutoSize = true;
+            numKLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            numKLabel.Location = new Point(30, 366);
+            numKLabel.Name = "numKLabel";
+            numKLabel.Size = new Size(157, 21);
+            numKLabel.TabIndex = 9;
+            numKLabel.Text = "Количество соседей:";
             // 
             // numK
             // 
@@ -295,15 +295,15 @@
             MetricCombobox.Size = new Size(202, 23);
             MetricCombobox.TabIndex = 7;
             // 
-            // label3
+            // MetricComboboxLabel
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label3.Location = new Point(30, 189);
-            label3.Name = "label3";
-            label3.Size = new Size(147, 21);
-            label3.TabIndex = 6;
-            label3.Text = "Выберите метрику:";
+            MetricComboboxLabel.AutoSize = true;
+            MetricComboboxLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            MetricComboboxLabel.Location = new Point(30, 189);
+            MetricComboboxLabel.Name = "MetricComboboxLabel";
+            MetricComboboxLabel.Size = new Size(147, 21);
+            MetricComboboxLabel.TabIndex = 6;
+            MetricComboboxLabel.Text = "Выберите метрику:";
             // 
             // algorytmComboBox
             // 
@@ -313,25 +313,25 @@
             algorytmComboBox.Size = new Size(202, 23);
             algorytmComboBox.TabIndex = 5;
             // 
-            // label2
+            // algorytmComboBoxlabel
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label2.Location = new Point(30, 135);
-            label2.Name = "label2";
-            label2.Size = new Size(154, 21);
-            label2.TabIndex = 4;
-            label2.Text = "Выберите алгоритм:";
+            algorytmComboBoxlabel.AutoSize = true;
+            algorytmComboBoxlabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            algorytmComboBoxlabel.Location = new Point(30, 135);
+            algorytmComboBoxlabel.Name = "algorytmComboBoxlabel";
+            algorytmComboBoxlabel.Size = new Size(154, 21);
+            algorytmComboBoxlabel.TabIndex = 4;
+            algorytmComboBoxlabel.Text = "Выберите алгоритм:";
             // 
-            // label1
+            // TypeCombobxLabel
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label1.Location = new Point(30, 77);
-            label1.Name = "label1";
-            label1.Size = new Size(166, 21);
-            label1.TabIndex = 3;
-            label1.Text = "Выберите тип задачи:\r\n";
+            TypeCombobxLabel.AutoSize = true;
+            TypeCombobxLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            TypeCombobxLabel.Location = new Point(30, 77);
+            TypeCombobxLabel.Name = "TypeCombobxLabel";
+            TypeCombobxLabel.Size = new Size(166, 21);
+            TypeCombobxLabel.TabIndex = 3;
+            TypeCombobxLabel.Text = "Выберите тип задачи:\r\n";
             // 
             // TypeCombobox
             // 
@@ -386,29 +386,29 @@
 
         private TabPage tabData;
         private CheckedListBox checkedListBox1;
-        private Label label12;
-        private Label label11;
+        private Label checkedListBox1Label;
+        private Label ResultTextBoxLabel;
         private TextBox ResultTextBox;
         private ComboBox TypeKermel;
-        private Label label10;
-        private Label label9;
-        private Label label8;
+        private Label TypeKermelLabel;
+        private Label progressBar1Label;
+        private Label dataGridView1Label;
         private ProgressBar progressBar1;
         private DataGridView dataGridView1;
         private Button StudyModelButton;
-        private Label label7;
+        private Label numEpochsLabel;
         private NumericUpDown numEpochs;
-        private Label label6;
+        private Label numLearningRateLabel;
         private NumericUpDown numLearningRate;
-        private Label label5;
+        private Label numBandwidthLabel;
         private NumericUpDown numBandwidth;
-        private Label label4;
+        private Label numKLabel;
         private NumericUpDown numK;
         private ComboBox MetricCombobox;
-        private Label label3;
+        private Label MetricComboboxLabel;
         private ComboBox algorytmComboBox;
-        private Label label2;
-        private Label label1;
+        private Label algorytmComboBoxlabel;
+        private Label TypeCombobxLabel;
         private ComboBox TypeCombobox;
         private Button chosefileButton;
         private TabControl tab;

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MalkovPractic")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+01d22daf8555e180e3e0ed01a08d5c632492d07e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7a0b4bccb9eea2b49fea84072b322d87662b13c2")]
 [assembly: System.Reflection.AssemblyProductAttribute("MalkovPractic")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MalkovPractic")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
