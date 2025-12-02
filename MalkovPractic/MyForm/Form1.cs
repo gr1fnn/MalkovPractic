@@ -39,7 +39,7 @@ namespace MyForm
 
         private void InitializeComboBoxes()
         {
-            TypeCombobox.Items.AddRange(new string[] { "Классификация", "Регрессия" });
+            TypeCombobox.Items.AddRange(new string[] { "Классификация" });
             TypeCombobox.SelectedIndex = 0;
 
             algorytmComboBox.Items.AddRange(new string[] { "KNN", "Взвешенный KNN", "Надарая-Ватсон", "SVM", "STOL" });

@@ -33,7 +33,6 @@ namespace Algorithms.Algorithms
 
             if (ProblemType == ProblemType.Classification)
             {
-                // Классификация - голосование большинства
                 return nearestNeighbors
                     .GroupBy(n => n.label)
                     .OrderByDescending(g => g.Count())
@@ -42,7 +41,6 @@ namespace Algorithms.Algorithms
             }
             else
             {
-                // Регрессия - среднее значение
                 return nearestNeighbors.Average(n => n.label);
             }
         }
