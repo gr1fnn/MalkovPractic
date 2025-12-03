@@ -1,82 +1,86 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\",
+  "WorkspaceRootPath": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5397B96B-1FC8-434F-A8DA-30632CD566D2}|MyForm\\MyForm.csproj|c:\\users\\grish\\desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432 \u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0430\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\malkovpractic\\malkovpractic\\myform\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{5397B96B-1FC8-434F-A8DA-30632CD566D2}|MyForm\\MyForm.csproj|c:\\users\\grish\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432\\malkovpractic\\malkovpractic\\myform\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{5397B96B-1FC8-434F-A8DA-30632CD566D2}|MyForm\\MyForm.csproj|solutionrelative:myform\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5397B96B-1FC8-434F-A8DA-30632CD566D2}|MyForm\\MyForm.csproj|C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\myform\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{5397B96B-1FC8-434F-A8DA-30632CD566D2}|MyForm\\MyForm.csproj|c:\\users\\grish\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432\\malkovpractic\\malkovpractic\\myform\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5397B96B-1FC8-434F-A8DA-30632CD566D2}|MyForm\\MyForm.csproj|solutionrelative:myform\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5397B96B-1FC8-434F-A8DA-30632CD566D2}|MyForm\\MyForm.csproj|c:\\users\\grish\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432\\malkovpractic\\malkovpractic\\myform\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{5397B96B-1FC8-434F-A8DA-30632CD566D2}|MyForm\\MyForm.csproj|solutionrelative:myform\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5397B96B-1FC8-434F-A8DA-30632CD566D2}|MyForm\\MyForm.csproj|c:\\users\\grish\\desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432 \u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0430\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\malkovpractic\\malkovpractic\\myform\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5397B96B-1FC8-434F-A8DA-30632CD566D2}|MyForm\\MyForm.csproj|solutionrelative:myform\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432 \u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0430\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\malkovpractic\\malkovpractic\\classlib\\algorithms\\svm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\algorithms\\svm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432 \u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0430\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\malkovpractic\\malkovpractic\\classlib\\pipelines\\mlpipeline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432\\malkovpractic\\malkovpractic\\classlib\\pipelines\\mlpipeline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\pipelines\\mlpipeline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432 \u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0430\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\malkovpractic\\malkovpractic\\classlib\\algorithms\\weightedknn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\algorithms\\weightedknn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432 \u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0430\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\malkovpractic\\malkovpractic\\classlib\\algorithms\\stol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\algorithms\\stol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432 \u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0430\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\malkovpractic\\malkovpractic\\classlib\\algorithms\\nadarayawatson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\algorithms\\nadarayawatson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432 \u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0430\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\malkovpractic\\malkovpractic\\classlib\\algorithms\\knn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432\\malkovpractic\\malkovpractic\\classlib\\algorithms\\knn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\algorithms\\knn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432 \u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0430\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\malkovpractic\\malkovpractic\\classlib\\core\\interfaces.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\core\\interfaces.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432\\malkovpractic\\malkovpractic\\classlib\\algorithms\\weightedknn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\algorithms\\weightedknn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432 \u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0430\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\malkovpractic\\malkovpractic\\classlib\\core\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\core\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432 \u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0430\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\malkovpractic\\malkovpractic\\classlib\\core\\datastructures.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\core\\datastructures.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432 \u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0430\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\malkovpractic\\malkovpractic\\classlib\\pipelines\\datasetconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\pipelines\\datasetconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432 \u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0430\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\malkovpractic\\malkovpractic\\classlib\\utilities\\validators.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\utilities\\validators.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432 \u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0430\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\malkovpractic\\malkovpractic\\classlib\\utilities\\metrics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\utilities\\metrics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432 \u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0430\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\malkovpractic\\malkovpractic\\classlib\\preprocessing\\datascaler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\preprocessing\\datascaler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432 \u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0430\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\malkovpractic\\malkovpractic\\classlib\\preprocessing\\datapreprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432\\malkovpractic\\malkovpractic\\classlib\\preprocessing\\datapreprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\preprocessing\\datapreprocessor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432 \u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0430\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\malkovpractic\\malkovpractic\\classlib\\preprocessing\\dataloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432\\malkovpractic\\malkovpractic\\classlib\\core\\basealgorithm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\core\\basealgorithm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432\\malkovpractic\\malkovpractic\\classlib\\utilities\\validators.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\utilities\\validators.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432\\malkovpractic\\malkovpractic\\classlib\\utilities\\metrics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\utilities\\metrics.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432\\malkovpractic\\malkovpractic\\classlib\\preprocessing\\datascaler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\preprocessing\\datascaler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432\\malkovpractic\\malkovpractic\\classlib\\preprocessing\\dataloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\preprocessing\\dataloader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5397B96B-1FC8-434F-A8DA-30632CD566D2}|MyForm\\MyForm.csproj|c:\\users\\grish\\desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432 \u0430\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0430\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\malkovpractic\\malkovpractic\\myform\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5397B96B-1FC8-434F-A8DA-30632CD566D2}|MyForm\\MyForm.csproj|solutionrelative:myform\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432\\malkovpractic\\malkovpractic\\classlib\\pipelines\\datasetconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\pipelines\\datasetconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432\\malkovpractic\\malkovpractic\\classlib\\core\\interfaces.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\core\\interfaces.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432\\malkovpractic\\malkovpractic\\classlib\\core\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\core\\enums.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432\\malkovpractic\\malkovpractic\\classlib\\core\\datastructures.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\core\\datastructures.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432\\malkovpractic\\malkovpractic\\classlib\\algorithms\\svm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\algorithms\\svm.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432\\malkovpractic\\malkovpractic\\classlib\\algorithms\\stol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\algorithms\\stol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|c:\\users\\grish\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432\\malkovpractic\\malkovpractic\\classlib\\algorithms\\nadarayawatson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{49CB55F7-450D-4241-866B-764E63721CA2}|ClassLib\\ClassLib.csproj|solutionrelative:classlib\\algorithms\\nadarayawatson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5397B96B-1FC8-434F-A8DA-30632CD566D2}|MyForm\\MyForm.csproj|c:\\users\\grish\\onedrive\\\u0440\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u043C\u0430\u043B\u044C\u043A\u043E\u0432\\malkovpractic\\malkovpractic\\myform\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5397B96B-1FC8-434F-A8DA-30632CD566D2}|MyForm\\MyForm.csproj|solutionrelative:myform\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -92,11 +96,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\MyForm\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\MyForm\\Form1.cs",
               "RelativeDocumentMoniker": "MyForm\\Form1.cs",
-              "ToolTip": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\MyForm\\Form1.cs",
-              "RelativeToolTip": "MyForm\\Form1.cs",
-              "ViewState": "AgIAAGoCAAAAAAAAAAAswI0CAAABAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\MyForm\\Form1.cs*",
+              "RelativeToolTip": "MyForm\\Form1.cs*",
+              "ViewState": "AgIAAKQAAAAAAAAAAAAAALoAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-12T09:07:20.104Z",
               "IsPinned": true,
@@ -104,218 +108,248 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Interfaces.cs",
-              "DocumentMoniker": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Core\\Interfaces.cs",
-              "RelativeDocumentMoniker": "ClassLib\\Core\\Interfaces.cs",
-              "ToolTip": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Core\\Interfaces.cs",
-              "RelativeToolTip": "ClassLib\\Core\\Interfaces.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAKAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "MLPipeline.cs",
+              "DocumentMoniker": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Pipelines\\MLPipeline.cs",
+              "RelativeDocumentMoniker": "ClassLib\\Pipelines\\MLPipeline.cs",
+              "ToolTip": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Pipelines\\MLPipeline.cs",
+              "RelativeToolTip": "ClassLib\\Pipelines\\MLPipeline.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAIAywCIAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T07:44:31.229Z"
+              "WhenOpened": "2025-11-25T07:45:39.995Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "DataStructures.cs",
-              "DocumentMoniker": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Core\\DataStructures.cs",
-              "RelativeDocumentMoniker": "ClassLib\\Core\\DataStructures.cs",
-              "ToolTip": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Core\\DataStructures.cs",
-              "RelativeToolTip": "ClassLib\\Core\\DataStructures.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAA9wAcAAAArAAAAAAAAAA==",
+              "DocumentIndex": 6,
+              "Title": "DataPreprocessor.cs",
+              "DocumentMoniker": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Preprocessing\\DataPreprocessor.cs",
+              "RelativeDocumentMoniker": "ClassLib\\Preprocessing\\DataPreprocessor.cs",
+              "ToolTip": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Preprocessing\\DataPreprocessor.cs",
+              "RelativeToolTip": "ClassLib\\Preprocessing\\DataPreprocessor.cs",
+              "ViewState": "AgIAAP0AAAAAAAAAAAAUwCUBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T07:43:47.222Z"
+              "WhenOpened": "2025-11-25T07:46:03.255Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Validators.cs",
+              "DocumentMoniker": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Utilities\\Validators.cs",
+              "RelativeDocumentMoniker": "ClassLib\\Utilities\\Validators.cs",
+              "ToolTip": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Utilities\\Validators.cs",
+              "RelativeToolTip": "ClassLib\\Utilities\\Validators.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAswDEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T07:46:26.937Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "BaseAlgorithm.cs",
+              "DocumentMoniker": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Core\\BaseAlgorithm.cs",
+              "RelativeDocumentMoniker": "ClassLib\\Core\\BaseAlgorithm.cs",
+              "ToolTip": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Core\\BaseAlgorithm.cs",
+              "RelativeToolTip": "ClassLib\\Core\\BaseAlgorithm.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-02T21:50:32.501Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "KNN.cs",
+              "DocumentMoniker": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Algorithms\\KNN.cs",
+              "RelativeDocumentMoniker": "ClassLib\\Algorithms\\KNN.cs",
+              "ToolTip": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Algorithms\\KNN.cs",
+              "RelativeToolTip": "ClassLib\\Algorithms\\KNN.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T09:34:19.577Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "WeightedKNN.cs",
-              "DocumentMoniker": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Algorithms\\WeightedKNN.cs",
+              "DocumentMoniker": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Algorithms\\WeightedKNN.cs",
               "RelativeDocumentMoniker": "ClassLib\\Algorithms\\WeightedKNN.cs",
-              "ToolTip": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Algorithms\\WeightedKNN.cs",
+              "ToolTip": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Algorithms\\WeightedKNN.cs",
               "RelativeToolTip": "ClassLib\\Algorithms\\WeightedKNN.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAAADwAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T07:43:36.952Z"
+              "WhenOpened": "2025-11-25T07:43:36.952Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Enums.cs",
-              "DocumentMoniker": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Core\\Enums.cs",
-              "RelativeDocumentMoniker": "ClassLib\\Core\\Enums.cs",
-              "ToolTip": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Core\\Enums.cs",
-              "RelativeToolTip": "ClassLib\\Core\\Enums.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "DocumentMoniker": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\MyForm\\Form1.cs",
+              "RelativeDocumentMoniker": "MyForm\\Form1.cs",
+              "ToolTip": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\MyForm\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]*",
+              "RelativeToolTip": "MyForm\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T07:43:50.639Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "KNN.cs",
-              "DocumentMoniker": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Algorithms\\KNN.cs",
-              "RelativeDocumentMoniker": "ClassLib\\Algorithms\\KNN.cs",
-              "ToolTip": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Algorithms\\KNN.cs",
-              "RelativeToolTip": "ClassLib\\Algorithms\\KNN.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAqwEYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T09:34:19.577Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "NadarayaWatson.cs",
-              "DocumentMoniker": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Algorithms\\NadarayaWatson.cs",
-              "RelativeDocumentMoniker": "ClassLib\\Algorithms\\NadarayaWatson.cs",
-              "ToolTip": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Algorithms\\NadarayaWatson.cs",
-              "RelativeToolTip": "ClassLib\\Algorithms\\NadarayaWatson.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAkwD8AAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T09:34:26.589Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "STOL.cs",
-              "DocumentMoniker": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Algorithms\\STOL.cs",
-              "RelativeDocumentMoniker": "ClassLib\\Algorithms\\STOL.cs",
-              "ToolTip": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Algorithms\\STOL.cs",
-              "RelativeToolTip": "ClassLib\\Algorithms\\STOL.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAADwv2cAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T09:34:30.755Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SVM.cs",
-              "DocumentMoniker": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Algorithms\\SVM.cs",
-              "RelativeDocumentMoniker": "ClassLib\\Algorithms\\SVM.cs",
-              "ToolTip": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Algorithms\\SVM.cs",
-              "RelativeToolTip": "ClassLib\\Algorithms\\SVM.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T09:34:37.264Z"
+              "WhenOpened": "2025-12-02T21:41:30.579Z",
+              "EditorCaption": " [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "DocumentMoniker": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\MyForm\\Form1.cs",
-              "RelativeDocumentMoniker": "MyForm\\Form1.cs",
-              "ToolTip": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\MyForm\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
-              "RelativeToolTip": "..\\..\\..\\..\\..\\..\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\MyForm\\Form1.cs [\u041A\u043E\u043D\u0441\u0442\u0440\u0443\u043A\u0442\u043E\u0440]",
+              "Title": "Form1.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\MyForm\\Form1.Designer.cs",
+              "RelativeDocumentMoniker": "MyForm\\Form1.Designer.cs",
+              "ToolTip": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\MyForm\\Form1.Designer.cs*",
+              "RelativeToolTip": "MyForm\\Form1.Designer.cs*",
+              "ViewState": "AgIAAHcDAAAAAAAAAAAAAI4DAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T10:26:06.196Z"
+              "WhenOpened": "2025-12-02T21:43:42.535Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Metrics.cs",
+              "DocumentMoniker": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Utilities\\Metrics.cs",
+              "RelativeDocumentMoniker": "ClassLib\\Utilities\\Metrics.cs",
+              "ToolTip": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Utilities\\Metrics.cs",
+              "RelativeToolTip": "ClassLib\\Utilities\\Metrics.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAADwv1AAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T07:46:21.189Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "DataScaler.cs",
+              "DocumentMoniker": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Preprocessing\\DataScaler.cs",
+              "RelativeDocumentMoniker": "ClassLib\\Preprocessing\\DataScaler.cs",
+              "ToolTip": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Preprocessing\\DataScaler.cs",
+              "RelativeToolTip": "ClassLib\\Preprocessing\\DataScaler.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAiwF8AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T07:46:14.574Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "DataLoader.cs",
+              "DocumentMoniker": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Preprocessing\\DataLoader.cs",
+              "RelativeDocumentMoniker": "ClassLib\\Preprocessing\\DataLoader.cs",
+              "ToolTip": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Preprocessing\\DataLoader.cs",
+              "RelativeToolTip": "ClassLib\\Preprocessing\\DataLoader.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAiwDsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T07:45:54.088Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
               "Title": "DatasetConfig.cs",
-              "DocumentMoniker": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Pipelines\\DatasetConfig.cs",
+              "DocumentMoniker": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Pipelines\\DatasetConfig.cs",
               "RelativeDocumentMoniker": "ClassLib\\Pipelines\\DatasetConfig.cs",
-              "ToolTip": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Pipelines\\DatasetConfig.cs",
+              "ToolTip": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Pipelines\\DatasetConfig.cs",
               "RelativeToolTip": "ClassLib\\Pipelines\\DatasetConfig.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAIAxwBsAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAmwCkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T07:45:27.551Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\MyForm\\Program.cs",
-              "RelativeDocumentMoniker": "MyForm\\Program.cs",
-              "ToolTip": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\MyForm\\Program.cs",
-              "RelativeToolTip": "MyForm\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T10:13:20.124Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MLPipeline.cs",
-              "DocumentMoniker": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Pipelines\\MLPipeline.cs",
-              "RelativeDocumentMoniker": "ClassLib\\Pipelines\\MLPipeline.cs",
-              "ToolTip": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Pipelines\\MLPipeline.cs",
-              "RelativeToolTip": "ClassLib\\Pipelines\\MLPipeline.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAoAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T07:45:39.995Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "DataLoader.cs",
-              "DocumentMoniker": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Preprocessing\\DataLoader.cs",
-              "RelativeDocumentMoniker": "ClassLib\\Preprocessing\\DataLoader.cs",
-              "ToolTip": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Preprocessing\\DataLoader.cs",
-              "RelativeToolTip": "ClassLib\\Preprocessing\\DataLoader.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T07:45:54.088Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
-              "Title": "DataPreprocessor.cs",
-              "DocumentMoniker": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Preprocessing\\DataPreprocessor.cs",
-              "RelativeDocumentMoniker": "ClassLib\\Preprocessing\\DataPreprocessor.cs",
-              "ToolTip": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Preprocessing\\DataPreprocessor.cs",
-              "RelativeToolTip": "ClassLib\\Preprocessing\\DataPreprocessor.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T07:46:03.255Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "DataScaler.cs",
-              "DocumentMoniker": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Preprocessing\\DataScaler.cs",
-              "RelativeDocumentMoniker": "ClassLib\\Preprocessing\\DataScaler.cs",
-              "ToolTip": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Preprocessing\\DataScaler.cs",
-              "RelativeToolTip": "ClassLib\\Preprocessing\\DataScaler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T07:46:14.574Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "Metrics.cs",
-              "DocumentMoniker": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Utilities\\Metrics.cs",
-              "RelativeDocumentMoniker": "ClassLib\\Utilities\\Metrics.cs",
-              "ToolTip": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Utilities\\Metrics.cs",
-              "RelativeToolTip": "ClassLib\\Utilities\\Metrics.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T07:46:21.189Z"
+              "WhenOpened": "2025-11-25T07:45:27.551Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
-              "Title": "Validators.cs",
-              "DocumentMoniker": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Utilities\\Validators.cs",
-              "RelativeDocumentMoniker": "ClassLib\\Utilities\\Validators.cs",
-              "ToolTip": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\ClassLib\\Utilities\\Validators.cs",
-              "RelativeToolTip": "ClassLib\\Utilities\\Validators.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAKAAAAAAAAAA==",
+              "Title": "Interfaces.cs",
+              "DocumentMoniker": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Core\\Interfaces.cs",
+              "RelativeDocumentMoniker": "ClassLib\\Core\\Interfaces.cs",
+              "ToolTip": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Core\\Interfaces.cs",
+              "RelativeToolTip": "ClassLib\\Core\\Interfaces.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T07:46:26.937Z"
+              "WhenOpened": "2025-11-25T07:44:31.229Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Enums.cs",
+              "DocumentMoniker": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Core\\Enums.cs",
+              "RelativeDocumentMoniker": "ClassLib\\Core\\Enums.cs",
+              "ToolTip": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Core\\Enums.cs",
+              "RelativeToolTip": "ClassLib\\Core\\Enums.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T07:43:50.639Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "DataStructures.cs",
+              "DocumentMoniker": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Core\\DataStructures.cs",
+              "RelativeDocumentMoniker": "ClassLib\\Core\\DataStructures.cs",
+              "ToolTip": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Core\\DataStructures.cs",
+              "RelativeToolTip": "ClassLib\\Core\\DataStructures.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAwwCUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-25T07:43:47.222Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "SVM.cs",
+              "DocumentMoniker": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Algorithms\\SVM.cs",
+              "RelativeDocumentMoniker": "ClassLib\\Algorithms\\SVM.cs",
+              "ToolTip": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Algorithms\\SVM.cs",
+              "RelativeToolTip": "ClassLib\\Algorithms\\SVM.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAuwFsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T09:34:37.264Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "STOL.cs",
+              "DocumentMoniker": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Algorithms\\STOL.cs",
+              "RelativeDocumentMoniker": "ClassLib\\Algorithms\\STOL.cs",
+              "ToolTip": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Algorithms\\STOL.cs",
+              "RelativeToolTip": "ClassLib\\Algorithms\\STOL.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAADwv2cAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T09:34:30.755Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 18,
-              "Title": "Form1.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\MyForm\\Form1.Designer.cs",
-              "RelativeDocumentMoniker": "MyForm\\Form1.Designer.cs",
-              "ToolTip": "C:\\Users\\grish\\Desktop\\\u0443\u0447\u0435\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432 \u0410\u043B\u0435\u043A\u0441\u0430\u043D\u0434\u0440 \u0410\u043D\u0430\u0442\u043E\u043B\u044C\u0435\u0432\u0438\u0447\\MalkovPractic\\MalkovPractic\\MyForm\\Form1.Designer.cs",
-              "RelativeToolTip": "MyForm\\Form1.Designer.cs",
-              "ViewState": "AgIAAJsAAAAAAAAAAAAAALIAAAAAAAAAAAAAAA==",
+              "Title": "NadarayaWatson.cs",
+              "DocumentMoniker": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Algorithms\\NadarayaWatson.cs",
+              "RelativeDocumentMoniker": "ClassLib\\Algorithms\\NadarayaWatson.cs",
+              "ToolTip": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\ClassLib\\Algorithms\\NadarayaWatson.cs",
+              "RelativeToolTip": "ClassLib\\Algorithms\\NadarayaWatson.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAmwD8AAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-12T09:07:27.976Z"
+              "WhenOpened": "2025-11-12T09:34:26.589Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\MyForm\\Program.cs",
+              "RelativeDocumentMoniker": "MyForm\\Program.cs",
+              "ToolTip": "C:\\Users\\grish\\OneDrive\\\u0420\u0430\u0431\u043E\u0447\u0438\u0439 \u0441\u0442\u043E\u043B\\\u0443\u0447\u0431\u0430\\7 \u0441\u0435\u043C\u0435\u0441\u0442\u0440\\\u041C\u0430\u043B\u044C\u043A\u043E\u0432\\MalkovPractic\\MalkovPractic\\MyForm\\Program.cs",
+              "RelativeToolTip": "MyForm\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-12T10:13:20.124Z"
             }
           ]
         }

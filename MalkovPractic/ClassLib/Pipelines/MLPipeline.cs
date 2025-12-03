@@ -12,8 +12,10 @@ namespace Algorithms.Pipelines
     {
         public DatasetConfig Config { get; set; }
         public BaseAlgorithm Algorithm { get; private set; }
-        public Dataset Data { get; private set; }
+        public Dataset TrainingData { get; private set; }
+        public Dataset TestData { get; private set; }
         public PipelineResult Result { get; private set; }
+        public DefaultDataPreprocessor Preprocessor { get; private set; } // Добавили публичное свойство
 
         public Pipeline(DatasetConfig config)
         {
@@ -53,7 +55,6 @@ namespace Algorithms.Pipelines
                 double learningRate = parameters.ContainsKey("LearningRate") ? (double)parameters["LearningRate"] : 0.001;
                 int epochs = parameters.ContainsKey("Epochs") ? (int)parameters["Epochs"] : 1000;
 
-                // Добавляем параметры по умолчанию для SVM
                 double lambda = parameters.ContainsKey("Lambda") ? (double)parameters["Lambda"] : 0.01;
                 double c = parameters.ContainsKey("C") ? (double)parameters["C"] : 1.0;
 
@@ -77,30 +78,94 @@ namespace Algorithms.Pipelines
 
             // Загрузка данных
             var rawData = DataLoader.LoadCSV(csvFilePath, Config.HasHeader);
-            Console.WriteLine($"Загружено {rawData.Length} samples");
+            Console.WriteLine($"Загружено {rawData.Length} записей");
 
             // Получение названий колонок
             string[] columnNames = Config.HasHeader ?
                 DataLoader.GetColumnNames(csvFilePath) : null;
 
-            // Подготовка данных
-            var (features, labels) = DataLoader.PrepareData(rawData, Config.FeatureColumns, Config.LabelColumn);
-            Data = new Dataset(features, labels, columnNames, Config.ProblemType);
+            // Подготовка данных с препроцессором - сохраняем его
+            Preprocessor = new DefaultDataPreprocessor(); // Создаем и сохраняем
+            var (features, labels) = DataLoader.PrepareData(rawData, Config.FeatureColumns, Config.LabelColumn, Preprocessor);
 
-            // Обучение алгоритма
+            // Разделяем данные на обучающую (80%) и тестовую (20%) выборки
+            var (trainFeatures, testFeatures, trainLabels, testLabels) = SplitData(features, labels, 0.8);
+
+            // Сохраняем данные
+            TrainingData = new Dataset(trainFeatures, trainLabels, columnNames, Config.ProblemType);
+            TestData = new Dataset(testFeatures, testLabels, columnNames, Config.ProblemType);
+
+            Console.WriteLine($"Разделение: {trainFeatures.Length} обучающих, {testFeatures.Length} тестовых");
+
+            // Обучение алгоритма с нормализацией
             var stopwatch = Stopwatch.StartNew();
-            Algorithm.Train(Data.Features, Data.Labels);
+            Algorithm.Train(TrainingData.Features, TrainingData.Labels, normalize: true);
             stopwatch.Stop();
 
             // Сохранение результатов
             Result.TrainingTime = stopwatch.Elapsed.TotalSeconds;
             Result.Algorithm = Algorithm;
 
-            // Оценка на тренировочных данных (для демонстрации)
-            Evaluate(Data.Features, Data.Labels);
+            // Оценка на тестовых данных
+            Evaluate(TestData.Features, TestData.Labels);
 
             Console.WriteLine($"Обучение завершено за {Result.TrainingTime:F2} секунд");
-            Console.WriteLine($"Размер данных: {Data.Features.Length} samples, {Data.Features[0].Length} features");
+            Console.WriteLine($"Тестовая точность: {Result.Accuracy:P2}");
+        }
+
+        // Метод для получения маппинга категорий
+        public Dictionary<string, Dictionary<string, double>> GetCategoryMappings()
+        {
+            return Preprocessor?.GetCategoryMappings() ?? new Dictionary<string, Dictionary<string, double>>();
+        }
+
+        // Метод для получения маппинга конкретной колонки
+        public Dictionary<string, double> GetColumnMapping(int columnIndex)
+        {
+            return Preprocessor?.GetColumnMapping(columnIndex) ?? new Dictionary<string, double>();
+        }
+
+        // Метод для получения обратного маппинга
+        public Dictionary<double, string> GetReverseColumnMapping(int columnIndex)
+        {
+            return Preprocessor?.GetReverseColumnMapping(columnIndex) ?? new Dictionary<double, string>();
+        }
+
+        // Метод для получения имени категории
+        public string GetCategoryName(int columnIndex, double numericValue)
+        {
+            return Preprocessor?.GetCategoryName(columnIndex, numericValue) ?? $"Unknown (класс {Math.Round(numericValue)})";
+        }
+
+        // Простой метод для разделения данных
+        private (double[][], double[][], double[], double[]) SplitData(
+            double[][] features, double[] labels, double trainRatio)
+        {
+            int total = features.Length;
+            int trainCount = (int)(total * trainRatio);
+
+            var trainFeatures = new List<double[]>();
+            var testFeatures = new List<double[]>();
+            var trainLabels = new List<double>();
+            var testLabels = new List<double>();
+
+            // Берем первые N записей для обучения, остальные для теста
+            for (int i = 0; i < total; i++)
+            {
+                if (i < trainCount)
+                {
+                    trainFeatures.Add(features[i]);
+                    trainLabels.Add(labels[i]);
+                }
+                else
+                {
+                    testFeatures.Add(features[i]);
+                    testLabels.Add(labels[i]);
+                }
+            }
+
+            return (trainFeatures.ToArray(), testFeatures.ToArray(),
+                    trainLabels.ToArray(), testLabels.ToArray());
         }
 
         public double Predict(double[] features)
@@ -123,13 +188,13 @@ namespace Algorithms.Pipelines
             if (Config.ProblemType == ProblemType.Classification)
             {
                 Result.Accuracy = CalculateAccuracy(predictions, testLabels);
-                Console.WriteLine($"Accuracy: {Result.Accuracy:P2}");
+                Console.WriteLine($"Точность на тестовых данных: {Result.Accuracy:P2}");
             }
             else
             {
                 Result.RMSE = CalculateRMSE(predictions, testLabels);
                 Result.MAE = CalculateMAE(predictions, testLabels);
-                Console.WriteLine($"RMSE: {Result.RMSE:F2}, MAE: {Result.MAE:F2}");
+                Console.WriteLine($"RMSE на тестовых данных: {Result.RMSE:F2}, MAE: {Result.MAE:F2}");
             }
         }
 
@@ -138,14 +203,19 @@ namespace Algorithms.Pipelines
             int correct = 0;
             for (int i = 0; i < predictions.Length; i++)
             {
-                if (Math.Abs(predictions[i] - actual[i]) < 0.5) 
+                int predicted = (int)Math.Round(predictions[i]);
+                int actualValue = (int)Math.Round(actual[i]);
+
+                if (predicted == actualValue)
                     correct++;
             }
-            return (double)correct / predictions.Length;
+            return predictions.Length > 0 ? (double)correct / predictions.Length : 0;
         }
 
         private double CalculateRMSE(double[] predictions, double[] actual)
         {
+            if (predictions.Length == 0) return 0;
+
             double sum = 0;
             for (int i = 0; i < predictions.Length; i++)
             {
@@ -156,6 +226,8 @@ namespace Algorithms.Pipelines
 
         private double CalculateMAE(double[] predictions, double[] actual)
         {
+            if (predictions.Length == 0) return 0;
+
             double sum = 0;
             for (int i = 0; i < predictions.Length; i++)
             {

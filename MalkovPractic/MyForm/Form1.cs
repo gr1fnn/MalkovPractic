@@ -1,13 +1,14 @@
+п»їusing Algorithms.Algorithms;
+using Algorithms.Core;
+using Algorithms.Pipelines;
+using Algorithms.Preprocessing;
 using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using System.Collections.Generic;
-using System.Data;
-using Algorithms.Pipelines;
-using Algorithms.Core;
-using Algorithms.Preprocessing;
 
 namespace MyForm
 {
@@ -15,559 +16,521 @@ namespace MyForm
     {
         private Pipeline currentPipeline;
         private string currentFilePath;
-        private List<TextBox> inputFields = new List<TextBox>();
-
-        private string originalNumBandwidthLabelText;
-        private string originalNumLearningRateLabelText;
-        private string originalNumEpochsLabelText;
+        private List<Control> inputFields = new List<Control>();
+        private DefaultDataPreprocessor preprocessor;
+        private List<int> selectedFeatureIndices = new List<int>();
+        private string[] columnNames;
 
         public MainForm()
         {
             InitializeComponent();
-            ViewAllElements(false);
-            InitializeComboBoxes();
-            SaveOriginalLabels();
-            UpdateAlgorithmParametersVisibility();
+
+            problemTypeComboBox.Items.Add("РљР»Р°СЃСЃРёС„РёРєР°С†РёСЏ");
+            problemTypeComboBox.SelectedIndex = 0;
+
+            numKNN.Minimum = 1;
+            numKNN.Maximum = 60;
+            numKNN.Value = 3;
+
+            PredictButton.Enabled = false;
         }
 
-        private void SaveOriginalLabels()
+        private void UpdateFeatureSelectionControls(string[] columnNames)
         {
-            originalNumBandwidthLabelText = numBandwidthLabel.Text;
-            originalNumLearningRateLabelText = numLearningRateLabel.Text;
-            originalNumEpochsLabelText = numEpochsLabel.Text;
-        }
+            this.columnNames = columnNames;
 
-        private void InitializeComboBoxes()
-        {
-            TypeCombobox.Items.AddRange(new string[] { "Классификация" });
-            TypeCombobox.SelectedIndex = 0;
+            var selectedItemsKNN = new List<string>();
+            var selectedItemsWeightKNN = new List<string>();
+            var selectedItemsSTOL = new List<string>();
+            var selectedItemsSVM = new List<string>();
+            var selectedItemsNadaraya = new List<string>();
 
-            algorytmComboBox.Items.AddRange(new string[] { "KNN", "Взвешенный KNN", "Надарая-Ватсон", "SVM", "STOL" });
-            algorytmComboBox.SelectedIndex = 0;
-            algorytmComboBox.SelectedIndexChanged += AlgorytmComboBox_SelectedIndexChanged;
-
-            MetricCombobox.Items.AddRange(new string[] { "Евклидова", "Манхэттен", "Косинусная" });
-            MetricCombobox.SelectedIndex = 0;
-
-            TypeKermel.Items.AddRange(new string[] { "Гауссово", "Линейное", "Епанечникова" });
-            TypeKermel.SelectedIndex = 0;
-
-            numK.Value = 3;
-            numBandwidth.Value = 1.0m;
-            numLearningRate.Value = 0.001m;
-            numEpochs.Value = 1000;
-        }
-
-        private void AlgorytmComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty(currentFilePath))
+            for (int i = 0; i < featuresCheckedListBox.Items.Count; i++)
             {
-                UpdateAlgorithmParametersVisibility();
-            }
-        }
-
-        private void UpdateAlgorithmParametersVisibility()
-        {
-            string algorithm = algorytmComboBox.SelectedItem?.ToString() ?? "KNN";
-
-            RestoreOriginalLabels();
-            ResetParameterValues();
-
-            switch (algorithm)
-            {
-                case "KNN":
-                    ShowKNNParameters();
-                    break;
-                case "Взвешенный KNN":
-                    ShowKNNParameters();
-                    break;
-                case "Надарая-Ватсон":
-                    ShowNadarayaWatsonParameters();
-                    break;
-                case "SVM":
-                    ShowSVMParameters();
-                    break;
-                case "STOL":
-                    ShowSTOLParameters();
-                    break;
-            }
-        }
-
-        private void RestoreOriginalLabels()
-        {
-            numBandwidthLabel.Text = originalNumBandwidthLabelText;
-            numLearningRateLabel.Text = originalNumLearningRateLabelText;
-            numEpochsLabel.Text = originalNumEpochsLabelText;
-        }
-
-        private void ResetParameterValues()
-        {
-            numK.Minimum = 1;
-            numK.Maximum = 50;
-            numK.DecimalPlaces = 0;
-
-            numBandwidth.Minimum = 0;
-            numBandwidth.Maximum = 10;
-            numBandwidth.DecimalPlaces = 4;
-
-            numLearningRate.Minimum = 0.0001m;
-            numLearningRate.Maximum = 1;
-            numLearningRate.DecimalPlaces = 4;
-
-            numEpochs.Minimum = 100;
-            numEpochs.Maximum = 10000;
-            numEpochs.DecimalPlaces = 0;
-
-            numK.Value = 3;
-            numBandwidth.Value = 1.0m;
-            numLearningRate.Value = 0.001m;
-            numEpochs.Value = 1000;
-        }
-
-        private void ShowKNNParameters()
-        {
-            // Показываем только необходимые параметры для KNN
-            numKLabel.Visible = true;
-            numKLabel.Text = "Количество соседей";
-            numK.Visible = true;
-            MetricComboboxLabel.Visible = true;
-            MetricCombobox.Visible = true;
-
-            // Скрываем остальные
-            numBandwidthLabel.Visible = false;
-            numBandwidth.Visible = false;
-            numLearningRateLabel.Visible = false;
-            numLearningRate.Visible = false;
-            numEpochsLabel.Visible = false;
-            numEpochs.Visible = false;
-            TypeKermelLabel.Visible = false;
-            TypeKermel.Visible = false;
-        }
-
-        private void ShowNadarayaWatsonParameters()
-        {
-            // Показываем параметры для Надарая-Ватсон
-            TypeKermelLabel.Visible = true;
-            TypeKermel.Visible = true;
-            numBandwidthLabel.Visible = true;
-            numBandwidth.Visible = true;
-
-            // Скрываем остальные
-            numKLabel.Visible = false;
-            numK.Visible = false;
-            MetricComboboxLabel.Visible = false;
-            MetricCombobox.Visible = false;
-            numLearningRateLabel.Visible = false;
-            numLearningRate.Visible = false;
-            numEpochsLabel.Visible = false;
-            numEpochs.Visible = false;
-        }
-
-        private void ShowSVMParameters()
-        {
-            // Показываем все параметры SVM
-            numKLabel.Visible = true;
-            numKLabel.Text = "Параметр штрафа ";
-            numK.Visible = true;
-            numK.Minimum = 1;
-            numK.Maximum = 50;
-            numK.DecimalPlaces = 0;
-            numK.Value = 1;
-
-            numBandwidthLabel.Text = "Лямбда ";
-            numBandwidthLabel.Visible = true;
-            numBandwidth.Visible = true;
-            numBandwidth.Minimum = 0.01m;
-            numBandwidth.Maximum = 100;
-            numBandwidth.DecimalPlaces = 2;
-            numBandwidth.Value = 1.0m;
-
-            numLearningRateLabel.Text = "Скорость обучения:";
-            numLearningRateLabel.Visible = true;
-            numLearningRate.Visible = true;
-            numLearningRate.Minimum = 0.0001m;
-            numLearningRate.Maximum = 1;
-            numLearningRate.DecimalPlaces = 4;
-            numLearningRate.Value = 0.001m;
-
-            numEpochsLabel.Text = "Количество эпох:";
-            numEpochsLabel.Visible = true;
-            numEpochs.Visible = true;
-            numEpochs.Minimum = 100;
-            numEpochs.Maximum = 10000;
-            numEpochs.DecimalPlaces = 0;
-            numEpochs.Value = 1000;
-
-            // Скрываем ненужные
-            MetricComboboxLabel.Visible = false;
-            MetricCombobox.Visible = false;
-            TypeKermelLabel.Visible = false;
-            TypeKermel.Visible = false;
-        }
-
-        private void ShowSTOLParameters()
-        {
-            // Показываем параметры для STOL
-            numKLabel.Visible = true;
-            numK.Visible = true;
-            numK.Minimum = 1;
-            numK.Maximum = 50;
-            numK.DecimalPlaces = 0;
-            numK.Value = 3;
-
-            numBandwidthLabel.Text = "Порог уверенности:";
-            numBandwidthLabel.Visible = true;
-            numBandwidth.Visible = true;
-            numBandwidth.Minimum = 0;
-            numBandwidth.Maximum = 1;
-            numBandwidth.DecimalPlaces = 2;
-            numBandwidth.Value = 0.7m;
-
-            numLearningRateLabel.Text = "Макс. samples:";
-            numLearningRateLabel.Visible = true;
-            numLearningRate.Visible = true;
-            numLearningRate.Minimum = 100;
-            numLearningRate.Maximum = 10000;
-            numLearningRate.DecimalPlaces = 0;
-            numLearningRate.Value = 1000;
-
-            MetricComboboxLabel.Visible = true;
-            MetricCombobox.Visible = true;
-
-            numEpochsLabel.Visible = false;
-            numEpochs.Visible = false;
-            TypeKermelLabel.Visible = false;
-            TypeKermel.Visible = false;
-        }
-
-        private void chosefileButton_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.Title = "Выберите CSV файл для обучения";
-                openFileDialog.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 1;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                if (featuresCheckedListBox.GetItemChecked(i))
                 {
-                    try
-                    {
-                        currentFilePath = openFileDialog.FileName;
-
-                        var rawData = DataLoader.LoadCSV(currentFilePath, true);
-                        var columnNames = DataLoader.GetColumnNames(currentFilePath);
-
-                        dataGridView1.DataSource = ConvertToDataTable(rawData, columnNames);
-
-                        checkedListBox1.Items.Clear();
-                        foreach (string columnName in columnNames)
-                        {
-                            checkedListBox1.Items.Add(columnName, true);
-                        }
-
-                        ViewAllElements(true);
-                        UpdateAlgorithmParametersVisibility();
-
-                        UpdateStatus($"Файл загружен: {Path.GetFileName(currentFilePath)} | Строк: {rawData.Length}, Колонок: {columnNames.Length}");
-
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Ошибка при загрузке файла: {ex.Message}",
-                            "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    selectedItemsKNN.Add(featuresCheckedListBox.Items[i].ToString());
                 }
             }
+
+            // РЎРѕС…СЂР°РЅСЏРµРј С‚РµРєСѓС‰РёР№ РІС‹Р±РѕСЂ РґР»СЏ Weighted KNN РІРєР»Р°РґРєРё
+            for (int i = 0; i < featuresCheckedListBox1.Items.Count; i++)
+            {
+                if (featuresCheckedListBox1.GetItemChecked(i))
+                {
+                    selectedItemsWeightKNN.Add(featuresCheckedListBox1.Items[i].ToString());
+                }
+            }
+
+            for (int i = 0; i < featuresCheckedListBox2.Items.Count; i++)
+            {
+                if (featuresCheckedListBox2.GetItemChecked(i))
+                {
+                    selectedItemsSTOL.Add(featuresCheckedListBox2.Items[i].ToString());
+                }
+            }
+
+            for (int i = 0; i < featuresCheckedListBox3.Items.Count; i++)
+            {
+                if (featuresCheckedListBox3.GetItemChecked(i))
+                {
+                    selectedItemsSVM.Add(featuresCheckedListBox3.Items[i].ToString());
+                }
+            }
+
+            for (int i = 0; i < featuresCheckedListBox4.Items.Count; i++)
+            {
+                if (featuresCheckedListBox4.GetItemChecked(i))
+                {
+                    selectedItemsNadaraya.Add(featuresCheckedListBox4.Items[i].ToString());
+                }
+            }
+
+            featuresCheckedListBox.Items.Clear();
+            foreach (string columnName in columnNames)
+            {
+                featuresCheckedListBox.Items.Add(columnName, selectedItemsKNN.Contains(columnName));
+            }
+
+            targetComboBox.Items.Clear();
+            foreach (string columnName in columnNames)
+            {
+                targetComboBox.Items.Add(columnName);
+            }
+            if (targetComboBox.Items.Count > 0)
+                targetComboBox.SelectedIndex = 0;
+
+            featuresCheckedListBox1.Items.Clear();
+            foreach (string columnName in columnNames)
+            {
+                featuresCheckedListBox1.Items.Add(columnName, selectedItemsWeightKNN.Contains(columnName));
+            }
+
+            problemTypeComboBoxWeightKNN.Items.Clear();
+            foreach (string columnName in columnNames)
+            {
+                problemTypeComboBoxWeightKNN.Items.Add(columnName);
+            }
+            if (problemTypeComboBoxWeightKNN.Items.Count > 0)
+                problemTypeComboBoxWeightKNN.SelectedIndex = 0;
+
+            if (targetComboBoxWeightKNN.Items.Count == 0)
+            {
+                targetComboBoxWeightKNN.Items.Add("РљР»Р°СЃСЃРёС„РёРєР°С†РёСЏ");
+                targetComboBoxWeightKNN.SelectedIndex = 0;
+            }
+
+            featuresCheckedListBox2.Items.Clear();
+            foreach (string columnName in columnNames)
+            {
+                featuresCheckedListBox2.Items.Add(columnName, selectedItemsSTOL.Contains(columnName));
+            }
+
+            problemTypeComboBoxSTOL.Items.Clear();
+            foreach (string columnName in columnNames)
+            {
+                problemTypeComboBoxSTOL.Items.Add(columnName);
+            }
+            if (problemTypeComboBoxSTOL.Items.Count > 0)
+                problemTypeComboBoxSTOL.SelectedIndex = 0;
+
+            if (targetComboBoxSTOL.Items.Count == 0)
+            {
+                targetComboBoxSTOL.Items.Add("РљР»Р°СЃСЃРёС„РёРєР°С†РёСЏ");
+                targetComboBoxSTOL.SelectedIndex = 0;
+            }
+
+            featuresCheckedListBox3.Items.Clear();
+            foreach (string columnName in columnNames)
+            {
+                featuresCheckedListBox3.Items.Add(columnName, selectedItemsSVM.Contains(columnName));
+            }
+
+            problemTypeComboBoxSVM.Items.Clear();
+            foreach (string columnName in columnNames)
+            {
+                problemTypeComboBoxSVM.Items.Add(columnName);
+            }
+            if (problemTypeComboBoxSVM.Items.Count > 0)
+                problemTypeComboBoxSVM.SelectedIndex = 0;
+
+            if (targetComboBoxSVM.Items.Count == 0)
+            {
+                targetComboBoxSVM.Items.Add("РљР»Р°СЃСЃРёС„РёРєР°С†РёСЏ");
+                targetComboBoxSVM.SelectedIndex = 0;
+            }
+
+            featuresCheckedListBox4.Items.Clear();
+            foreach (string columnName in columnNames)
+            {
+                featuresCheckedListBox4.Items.Add(columnName, selectedItemsNadaraya.Contains(columnName));
+            }
+
+            problemTypeComboBoxNadaraya.Items.Clear();
+            foreach (string columnName in columnNames)
+            {
+                problemTypeComboBoxNadaraya.Items.Add(columnName);
+            }
+            if (problemTypeComboBoxNadaraya.Items.Count > 0)
+                problemTypeComboBoxNadaraya.SelectedIndex = 0;
+
+            if (targetComboBoxNadaraya.Items.Count == 0)
+            {
+                targetComboBoxNadaraya.Items.Add("РљР»Р°СЃСЃРёС„РёРєР°С†РёСЏ");
+                targetComboBoxNadaraya.SelectedIndex = 0;
+            }
         }
 
-        private void StudyModel_Click(object sender, EventArgs e)
+        private void TrainButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(currentFilePath))
             {
-                MessageBox.Show("Сначала выберите файл для обучения", "Ошибка",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (checkedListBox1.CheckedItems.Count == 0)
-            {
-                MessageBox.Show("Выберите хотя бы один признак", "Ошибка",
+                MessageBox.Show("РЎРЅР°С‡Р°Р»Р° РІС‹Р±РµСЂРёС‚Рµ С„Р°Р№Р» СЃ РґР°РЅРЅС‹РјРё", "РћС€РёР±РєР°",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             try
             {
-                StudyModelButton.Enabled = false;
+                progressBar1.Value = 0;
                 progressBar1.Style = ProgressBarStyle.Marquee;
-                progressBar1.Visible = true;
-                UpdateStatus("Обучение модели...");
+                UpdateStatus("РћР±СѓС‡РµРЅРёРµ РјРѕРґРµР»Рё...");
 
-                var config = CreateDatasetConfig();
-
-                var task = System.Threading.Tasks.Task.Run(() => TrainModel(config));
-                task.ContinueWith(t =>
+                // РџРѕР»СѓС‡Р°РµРј РІС‹Р±СЂР°РЅРЅС‹Рµ РїСЂРёР·РЅР°РєРё
+                selectedFeatureIndices.Clear();
+                for (int i = 0; i < featuresCheckedListBox.Items.Count; i++)
                 {
-                    this.Invoke(new Action(() =>
+                    if (featuresCheckedListBox.GetItemChecked(i) &&
+                        featuresCheckedListBox.Items[i].ToString() != targetComboBox.SelectedItem.ToString())
                     {
-                        if (t.IsFaulted)
-                        {
-                            UpdateStatus($"Ошибка обучения: {t.Exception?.Message}");
-                            MessageBox.Show($"Ошибка обучения: {t.Exception?.Message}",
-                                "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        else
-                        {
-                            UpdateStatus("Обучение завершено успешно!");
-                            CreateTestInputs();
-                        }
+                        selectedFeatureIndices.Add(i);
+                    }
+                }
 
-                        StudyModelButton.Enabled = true;
-                        progressBar1.Visible = false;
-                    }));
-                });
+                if (selectedFeatureIndices.Count == 0)
+                {
+                    MessageBox.Show("Р’С‹Р±РµСЂРёС‚Рµ С…РѕС‚СЏ Р±С‹ РѕРґРёРЅ РїСЂРёР·РЅР°Рє", "РћС€РёР±РєР°",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // РџРѕР»СѓС‡Р°РµРј РёРЅРґРµРєСЃ С†РµР»РµРІРѕР№ РїРµСЂРµРјРµРЅРЅРѕР№
+                int targetIndex = targetComboBox.SelectedIndex;
+                if (targetIndex < 0)
+                {
+                    MessageBox.Show("Р’С‹Р±РµСЂРёС‚Рµ С†РµР»РµРІСѓСЋ РїРµСЂРµРјРµРЅРЅСѓСЋ", "РћС€РёР±РєР°",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // РћРїСЂРµРґРµР»СЏРµРј С‚РёРї Р·Р°РґР°С‡Рё
+                var problemType = problemTypeComboBox.SelectedIndex == 0 ?
+                    ProblemType.Classification : ProblemType.Regression;
+
+                // РЎРѕР·РґР°РµРј РєРѕРЅС„РёРіСѓСЂР°С†РёСЋ РґР»СЏ Pipeline
+                var algorithmParams = new Dictionary<string, object>
+                {
+                    { "K", (int)numKNN.Value },
+                    { "DistanceMetric", DistanceMetric.Euclidean }
+                };
+
+                var datasetConfig = new DatasetConfig
+                {
+                    Name = Path.GetFileNameWithoutExtension(currentFilePath),
+                    HasHeader = true,
+                    FeatureColumns = selectedFeatureIndices.ToArray(),
+                    LabelColumn = targetIndex,
+                    ProblemType = problemType,
+                    AlgorithmType = typeof(KNN),
+                    AlgorithmParameters = algorithmParams
+                };
+
+                // РЎРѕР·РґР°РµРј Рё Р·Р°РїСѓСЃРєР°РµРј Pipeline
+                currentPipeline = new Pipeline(datasetConfig);
+                currentPipeline.LoadAndTrain(currentFilePath);
+
+                // РџРѕР»СѓС‡Р°РµРј РїСЂРµРїСЂРѕС†РµСЃСЃРѕСЂ РёР· Pipeline
+                preprocessor = currentPipeline.Preprocessor;
+
+                // РЎРѕР·РґР°РµРј РїРѕР»СЏ РґР»СЏ РІРІРѕРґР° РїСЂРёР·РЅР°РєРѕРІ
+                CreateInputFields(selectedFeatureIndices.Count);
+
+                // РџРѕРєР°Р·С‹РІР°РµРј СЂРµР·СѓР»СЊС‚Р°С‚С‹
+                ShowTrainingResults();
+
+                // РђРєС‚РёРІРёСЂСѓРµРј РєРЅРѕРїРєСѓ РїСЂРµРґСЃРєР°Р·Р°РЅРёСЏ
+                PredictButton.Enabled = true;
+
+                UpdateStatus($"РњРѕРґРµР»СЊ РѕР±СѓС‡РµРЅР°! РСЃРїРѕР»СЊР·РѕРІР°РЅРѕ РїСЂРёР·РЅР°РєРѕРІ: {selectedFeatureIndices.Count}, k = {numKNN.Value}");
+
             }
             catch (Exception ex)
             {
-                UpdateStatus($"Ошибка: {ex.Message}");
-                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка",
+                MessageBox.Show($"РћС€РёР±РєР° РїСЂРё РѕР±СѓС‡РµРЅРёРё РјРѕРґРµР»Рё: {ex.Message}", "РћС€РёР±РєР°",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
-                StudyModelButton.Enabled = true;
-                progressBar1.Visible = false;
+                UpdateStatus("РћС€РёР±РєР° РїСЂРё РѕР±СѓС‡РµРЅРёРё");
+            }
+            finally
+            {
+                progressBar1.Style = ProgressBarStyle.Continuous;
+                progressBar1.Value = 100;
             }
         }
 
-        private void TrainModel(DatasetConfig config)
+   
+
+        private void ShowTrainingResults()
         {
-            currentPipeline = new Pipeline(config);
-            currentPipeline.LoadAndTrain(currentFilePath);
-
-            this.Invoke(new Action(UpdateTrainingResults));
-        }
-
-        private DatasetConfig CreateDatasetConfig()
-        {
-            var config = new DatasetConfig
+            try
             {
-                Name = "UI Configuration",
-                HasHeader = true,
-                FeatureColumns = checkedListBox1.CheckedIndices.Cast<int>().ToArray(),
-                LabelColumn = checkedListBox1.Items.Count - 1,
-                ProblemType = TypeCombobox.SelectedIndex == 0 ? ProblemType.Classification : ProblemType.Regression
-            };
+                if (currentPipeline == null || currentPipeline.Result == null)
+                {
+                    ResultTextBox.Text = "РњРѕРґРµР»СЊ РЅРµ РѕР±СѓС‡РµРЅР°";
+                    return;
+                }
 
-            string algorithm = algorytmComboBox.SelectedItem?.ToString() ?? "KNN";
-            config.AlgorithmType = algorithm switch
-            {
-                "KNN" => typeof(Algorithms.Algorithms.KNN),
-                "Взвешенный KNN" => typeof(Algorithms.Algorithms.WeightedKNN),
-                "Надарая-Ватсон" => typeof(Algorithms.Algorithms.NadarayaWatson),
-                "SVM" => typeof(Algorithms.Algorithms.SVM),
-                "STOL" => typeof(Algorithms.Algorithms.STOL),
-                _ => typeof(Algorithms.Algorithms.KNN)
-            };
-
-            config.AlgorithmParameters = new Dictionary<string, object>();
-
-            if (algorithm.Contains("KNN"))
-            {
-                config.AlgorithmParameters["K"] = (int)numK.Value;
-                config.AlgorithmParameters["DistanceMetric"] = (DistanceMetric)MetricCombobox.SelectedIndex;
-            }
-            else if (algorithm == "Надарая-Ватсон")
-            {
-                config.AlgorithmParameters["Bandwidth"] = (double)numBandwidth.Value;
-                config.AlgorithmParameters["KernelType"] = (KernelType)TypeKermel.SelectedIndex;
-            }
-            else if (algorithm == "SVM")
-            {
-                config.AlgorithmParameters["LearningRate"] = (double)numLearningRate.Value;
-                config.AlgorithmParameters["Epochs"] = (int)numEpochs.Value;
-                config.AlgorithmParameters["Lambda"] = (double)numBandwidth.Value; // фиксированное значение
-                config.AlgorithmParameters["C"] = (double)numK.Value; // используем numBandwidth для параметра C
-            }
-            else if (algorithm == "STOL")
-            {
-                config.AlgorithmParameters["K"] = (int)numK.Value;
-                config.AlgorithmParameters["DistanceMetric"] = (DistanceMetric)MetricCombobox.SelectedIndex;
-                config.AlgorithmParameters["ConfidenceThreshold"] = (double)numBandwidth.Value;
-                config.AlgorithmParameters["MaxSamples"] = (int)numLearningRate.Value;
-            }
-
-            return config;
-        }
-
-        private void UpdateTrainingResults()
-        {
-            if (currentPipeline?.Result != null)
-            {
                 var result = currentPipeline.Result;
-                string resultsText = $"=== РЕЗУЛЬТАТЫ ОБУЧЕНИЯ ===\n";
-                resultsText += $"Время обучения: {result.TrainingTime:F2} сек\n";
-                resultsText += $"Тип задачи: {currentPipeline.Config.ProblemType}\n";
-                resultsText += $"Алгоритм: {currentPipeline.Config.AlgorithmType.Name}\n";
 
-                if (currentPipeline.Config.ProblemType == ProblemType.Classification)
-                {
-                    resultsText += $"Точность: {result.Accuracy:P2}\n";
-                }
-                else
-                {
-                    resultsText += $"RMSE: {result.RMSE:F2}\n";
-                    resultsText += $"MAE: {result.MAE:F2}\n";
-                }
+                ResultTextBox.Text =
+                    "=== Р Р•Р—РЈР›Р¬РўРђРўР« РћР‘РЈР§Р•РќРРЇ ===\n\n" +
+                    $"РђР»РіРѕСЂРёС‚Рј: KNN (k={numKNN.Value})\n" +
+                    $"РўРѕС‡РЅРѕСЃС‚СЊ: {result.Accuracy:P2}\n\n" +
+                    "=== Р’Р«Р‘Р РђРќРќР«Р• РџР РР—РќРђРљР ===\n" +
+                    string.Join("\n", selectedFeatureIndices.Select(i => $"вЂў {columnNames[i]}")) + "\n\n" +
+                    "=== Р¦Р•Р›Р•Р’РћР™ РџР РР—РќРђРљ ===\n" +
+                    $"вЂў {targetComboBox.SelectedItem}";
 
-                ResultTextBox.Text = resultsText;
+                ResultTextBox.Visible = true;
+
+            }
+            catch (Exception ex)
+            {
+                ResultTextBox.Text = $"РћС€РёР±РєР°: {ex.Message}";
             }
         }
 
-        // Остальные методы (CreateTestInputs, PredictButton_Click, UpdateStatus, ConvertToDataTable, ViewAllElements) 
-        // остаются без изменений, так как они уже корректно работают
-        private void CreateTestInputs()
+        private void CreateInputFields(int count)
         {
-            // Очищаем предыдущие поля
+            // РЈРґР°Р»СЏРµРј СЃС‚Р°СЂС‹Рµ РїРѕР»СЏ
             foreach (var field in inputFields)
             {
-                if (field.Parent != null)
-                {
-                    field.Parent.Controls.Remove(field);
-                }
+                if (TabKnn.Controls.Contains(field))
+                    TabKnn.Controls.Remove(field);
             }
             inputFields.Clear();
 
-            if (currentPipeline?.Data?.Features == null || currentPipeline.Data.Features.Length == 0)
-                return;
-
-            // Создаем поля для ввода тестовых данных
-            int featureCount = currentPipeline.Data.Features[0].Length;
-            int startY = ResultTextBox.Location.Y + ResultTextBox.Height + 20;
-            int currentY = startY;
-
-            // Создаем label для тестового раздела
-            var testLabel = new Label()
+            // РЈРґР°Р»СЏРµРј СЃС‚Р°СЂС‹Рµ Р»РµР№Р±Р»С‹
+            var labelsToRemove = TabKnn.Controls.OfType<Label>()
+                .Where(l => l.Text.StartsWith("РџСЂРёР·РЅР°Рє") || l.Name.StartsWith("inputLabel_"))
+                .ToList();
+            foreach (var label in labelsToRemove)
             {
-                Text = "ТЕСТОВОЕ ПРЕДСКАЗАНИЕ:",
-                Location = new Point(ResultTextBox.Location.X, currentY),
-                Size = new Size(200, 20),
-                Font = new Font(this.Font, FontStyle.Bold)
-            };
-            this.Controls.Add(testLabel);
-            currentY += 30;
-
-            for (int i = 0; i < featureCount; i++)
-            {
-                var label = new Label()
-                {
-                    Text = $"Признак {i + 1}:",
-                    Location = new Point(ResultTextBox.Location.X, currentY),
-                    Size = new Size(80, 20)
-                };
-
-                var textBox = new TextBox()
-                {
-                    Location = new Point(ResultTextBox.Location.X + 85, currentY),
-                    Size = new Size(100, 20),
-                    Text = "0"
-                };
-
-                this.Controls.Add(label);
-                this.Controls.Add(textBox);
-                inputFields.Add(textBox);
-
-                currentY += 30;
+                TabKnn.Controls.Remove(label);
             }
 
-            // Кнопка предсказания
-            var predictButton = new Button()
-            {
-                Text = "ПРЕДСКАЗАТЬ",
-                Location = new Point(ResultTextBox.Location.X, currentY),
-                Size = new Size(100, 30)
-            };
-            predictButton.Click += PredictButton_Click;
-            this.Controls.Add(predictButton);
+            if (count <= 0) return;
 
-            // Поле для результата
-            var resultLabel = new Label()
-            {
-                Text = "Результат:",
-                Location = new Point(ResultTextBox.Location.X + 110, currentY + 5),
-                Size = new Size(60, 20)
-            };
-            this.Controls.Add(resultLabel);
+            int startX = 12;
+            int startY = problemTypeComboBox.Bottom + 10;
 
-            var predictionResult = new TextBox()
+            // Р—Р°РіСЂСѓР¶Р°РµРј РґР°РЅРЅС‹Рµ РґР»СЏ Р°РЅР°Р»РёР·Р°
+            var rawData = DataLoader.LoadCSV(currentFilePath, true);
+
+            for (int i = 0; i < count; i++)
             {
-                Location = new Point(ResultTextBox.Location.X + 175, currentY),
-                Size = new Size(100, 25),
-                ReadOnly = true,
-                Font = new Font(this.Font, FontStyle.Bold),
-                BackColor = Color.LightYellow
-            };
-            this.Controls.Add(predictionResult);
+                // РџРѕР»СѓС‡Р°РµРј РёРјСЏ РїСЂРёР·РЅР°РєР° Рё РµРіРѕ РёРЅРґРµРєСЃ
+                int featureIndex = selectedFeatureIndices[i];
+                string featureName = columnNames[featureIndex];
+
+                // РСЃРїРѕР»СЊР·СѓРµРј РїСЂРµРїСЂРѕС†РµСЃСЃРѕСЂ РґР»СЏ РѕРїСЂРµРґРµР»РµРЅРёСЏ С‚РёРїР° РїСЂРёР·РЅР°РєР°
+                bool isNumeric = preprocessor.IsColumnNumeric(rawData, featureIndex);
+
+                // Label РґР»СЏ РїРѕР»СЏ РІРІРѕРґР°
+                var label = new Label
+                {
+                    Text = $"{featureName}:",
+                    Location = new Point(startX, startY + i * 30),
+                    Size = new Size(100, 20),
+                    Name = $"inputLabel_{i}",
+                    Font = new Font("Microsoft Sans Serif", 8.25f),
+                    Tag = isNumeric ? "numeric" : "text"
+                };
+                TabKnn.Controls.Add(label);
+                label.BringToFront();
+
+                Control inputControl;
+
+                if (isNumeric)
+                {
+                    // Р”Р»СЏ С‡РёСЃР»РѕРІС‹С… РїСЂРёР·РЅР°РєРѕРІ - TextBox
+                    var textBox = new TextBox
+                    {
+                        Location = new Point(startX + 105, startY + i * 30),
+                        Size = new Size(100, 20),
+                        Name = $"inputField_{i}",
+                        Font = new Font("Microsoft Sans Serif", 8.25f),
+                        Tag = featureIndex
+                    };
+                    inputControl = textBox;
+                }
+                else
+                {
+                    // Р”Р»СЏ РєР°С‚РµРіРѕСЂРёР°Р»СЊРЅС‹С… РїСЂРёР·РЅР°РєРѕРІ - ComboBox СЃ РґРѕСЃС‚СѓРїРЅС‹РјРё Р·РЅР°С‡РµРЅРёСЏРјРё
+                    var comboBox = new ComboBox
+                    {
+                        Location = new Point(startX + 105, startY + i * 30),
+                        Size = new Size(100, 20),
+                        Name = $"inputField_{i}",
+                        Font = new Font("Microsoft Sans Serif", 8.25f),
+                        DropDownStyle = ComboBoxStyle.DropDownList,
+                        Tag = featureIndex
+                    };
+
+                    // РџРѕР»СѓС‡Р°РµРј СѓРЅРёРєР°Р»СЊРЅС‹Рµ Р·РЅР°С‡РµРЅРёСЏ РёР· РјР°РїРїРёРЅРіР° РїСЂРµРїСЂРѕС†РµСЃСЃРѕСЂР°
+                    var mapping = preprocessor.GetColumnMapping(featureIndex);
+                    foreach (var kvp in mapping.OrderBy(kvp => kvp.Value))
+                    {
+                        comboBox.Items.Add(kvp.Key);
+                    }
+                    if (comboBox.Items.Count > 0)
+                        comboBox.SelectedIndex = 0;
+
+                    inputControl = comboBox;
+                }
+
+                TabKnn.Controls.Add(inputControl);
+                inputControl.BringToFront();
+                inputFields.Add(inputControl);
+            }
         }
 
         private void PredictButton_Click(object sender, EventArgs e)
         {
-            if (currentPipeline == null)
+            if (currentPipeline == null || preprocessor == null)
             {
-                MessageBox.Show("Сначала обучите модель", "Ошибка",
+                MessageBox.Show("РЎРЅР°С‡Р°Р»Р° РѕР±СѓС‡РёС‚Рµ РјРѕРґРµР»СЊ", "РћС€РёР±РєР°",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             try
             {
-                // Собираем значения из полей ввода
-                double[] features = new double[inputFields.Count];
+                // РџСЂРѕРІРµСЂСЏРµРј, РІСЃРµ Р»Рё РїРѕР»СЏ Р·Р°РїРѕР»РЅРµРЅС‹
+                bool allFieldsFilled = true;
+                int emptyFieldIndex = -1;
+
                 for (int i = 0; i < inputFields.Count; i++)
                 {
-                    if (!double.TryParse(inputFields[i].Text, out double value))
+                    var control = inputFields[i];
+                    if (control is TextBox textBox)
                     {
-                        MessageBox.Show($"Некорректное значение в поле 'Признак {i + 1}'", "Ошибка",
-                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
+                        if (string.IsNullOrWhiteSpace(textBox.Text))
+                        {
+                            allFieldsFilled = false;
+                            emptyFieldIndex = i;
+                            break;
+                        }
                     }
-                    features[i] = value;
+                    else if (control is ComboBox comboBox)
+                    {
+                        if (comboBox.SelectedItem == null)
+                        {
+                            allFieldsFilled = false;
+                            emptyFieldIndex = i;
+                            break;
+                        }
+                    }
                 }
 
-                // Делаем предсказание
+                if (!allFieldsFilled)
+                {
+                    string featureName = columnNames[selectedFeatureIndices[emptyFieldIndex]];
+                    MessageBox.Show($"Р’С‹Р±РµСЂРёС‚Рµ Р·РЅР°С‡РµРЅРёРµ РґР»СЏ РїСЂРёР·РЅР°РєР° '{featureName}'", "РћС€РёР±РєР°",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    inputFields[emptyFieldIndex].Focus();
+                    return;
+                }
+
+                // РЎРѕР±РёСЂР°РµРј Р·РЅР°С‡РµРЅРёСЏ РёР· РїРѕР»РµР№ РІРІРѕРґР°
+                double[] features = new double[inputFields.Count];
+                List<string> inputValues = new List<string>();
+
+                for (int i = 0; i < inputFields.Count; i++)
+                {
+                    var control = inputFields[i];
+                    int featureIndex = selectedFeatureIndices[i];
+                    string featureName = columnNames[featureIndex];
+
+                    if (control is TextBox textBox)
+                    {
+                        // Р§РёСЃР»РѕРІРѕР№ РїСЂРёР·РЅР°Рє
+                        if (!double.TryParse(textBox.Text, out double value))
+                        {
+                            MessageBox.Show($"РќРµРєРѕСЂСЂРµРєС‚РЅРѕРµ Р·РЅР°С‡РµРЅРёРµ РІ РїРѕР»Рµ '{featureName}'. Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ.", "РћС€РёР±РєР°",
+                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            textBox.Focus();
+                            textBox.SelectAll();
+                            return;
+                        }
+                        features[i] = value;
+                        inputValues.Add($"{featureName}: {value}");
+                    }
+                    else if (control is ComboBox comboBox)
+                    {
+                        // РљР°С‚РµРіРѕСЂРёР°Р»СЊРЅС‹Р№ РїСЂРёР·РЅР°Рє - РёСЃРїРѕР»СЊР·СѓРµРј СЃРѕС…СЂР°РЅРµРЅРЅРѕРµ РєРѕРґРёСЂРѕРІР°РЅРёРµ
+                        string textValue = comboBox.SelectedItem.ToString();
+
+                        // РџРѕР»СѓС‡Р°РµРј РєРѕРґРёСЂРѕРІР°РЅРёРµ РёР· РїСЂРµРїСЂРѕС†РµСЃСЃРѕСЂР°
+                        var mapping = preprocessor.GetColumnMapping(featureIndex);
+                        double numericValue = mapping.ContainsKey(textValue) ? mapping[textValue] : 0;
+
+                        features[i] = numericValue;
+                        inputValues.Add($"{featureName}: {textValue}");
+                    }
+                }
+
+                // Р”РµР»Р°РµРј РїСЂРµРґСЃРєР°Р·Р°РЅРёРµ
                 double prediction = currentPipeline.Predict(features);
 
-                // Находим поле результата и обновляем его
-                var resultTextBox = this.Controls.OfType<TextBox>()
-                    .FirstOrDefault(tb => tb.Location.X == ResultTextBox.Location.X + 175 && tb.ReadOnly);
-
-                if (resultTextBox != null)
+                // РџРѕР»СѓС‡Р°РµРј РЅР°Р·РІР°РЅРёРµ РєР»Р°СЃСЃР°
+                string predictionDisplay;
+                if (currentPipeline.Config.ProblemType == ProblemType.Classification)
                 {
-                    resultTextBox.Text = prediction.ToString("F4");
-
-                    // Подкрашиваем в зависимости от типа задачи
-                    if (currentPipeline.Config.ProblemType == ProblemType.Classification)
-                    {
-                        resultTextBox.BackColor = prediction == 1 ? Color.LightGreen : Color.LightCoral;
-                    }
-                    else
-                    {
-                        resultTextBox.BackColor = Color.LightBlue;
-                    }
+                    int targetIndex = targetComboBox.SelectedIndex;
+                    string predictedClass = currentPipeline.GetCategoryName(targetIndex, Math.Round(prediction));
+                    predictionDisplay = $"{predictedClass} )";
+                }
+                else
+                {
+                    predictionDisplay = prediction.ToString("F4");
                 }
 
-                UpdateStatus("Предсказание выполнено успешно");
+                // РћР±РЅРѕРІР»СЏРµРј СЂРµР·СѓР»СЊС‚Р°С‚
+                string resultText = ResultTextBox.Text;
+                resultText += $"\n\n=== РџР Р•Р”РЎРљРђР—РђРќРР• ===\n";
+                resultText += $"Р’С…РѕРґРЅС‹Рµ РґР°РЅРЅС‹Рµ:\n{string.Join("\n", inputValues)}\n";
+                resultText += $"Р РµР·СѓР»СЊС‚Р°С‚: {predictionDisplay}";
+
+                ResultTextBox.Text = resultText;
+                ResultTextBox.ScrollToCaret();
+
+                UpdateStatus("РџСЂРµРґСЃРєР°Р·Р°РЅРёРµ РІС‹РїРѕР»РЅРµРЅРѕ СѓСЃРїРµС€РЅРѕ");
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Ошибка предсказания: {ex.Message}", "Ошибка",
+                MessageBox.Show($"РћС€РёР±РєР° РїСЂРµРґСЃРєР°Р·Р°РЅРёСЏ: {ex.Message}", "РћС€РёР±РєР°",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
+                UpdateStatus("РћС€РёР±РєР° РїСЂРµРґСЃРєР°Р·Р°РЅРёСЏ");
             }
         }
 
         private void UpdateStatus(string message)
         {
-            if (progressBar1Label != null)
+            if (progressBar1Label != null && !progressBar1Label.IsDisposed)
             {
-                progressBar1Label.Text = message;
+                progressBar1Label.Text = $"РЎС‚Р°С‚СѓСЃ: {message}";
+                progressBar1Label.Refresh();
             }
         }
 
@@ -579,9 +542,10 @@ namespace MyForm
             {
                 table.Columns.Add(columnName);
             }
+
             for (int i = 0; i < data.Length; i++)
             {
-                if (i < data.Length)
+                if (i < data.Length && data[i].Length == columnNames.Length)
                 {
                     table.Rows.Add(data[i]);
                 }
@@ -590,64 +554,43 @@ namespace MyForm
             return table;
         }
 
-        private void ViewAllElements(bool visible)
+        private void chosefileButton_Click(object sender, EventArgs e)
         {
-            if (!visible)
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                dataGridView1.Visible = false;
-                ResultTextBox.Visible = false;
-                progressBar1.Visible = false;
-                checkedListBox1.Visible = false;
-                algorytmComboBox.Visible = false;
-                TypeCombobox.Visible = false;
-                TypeKermel.Visible = false;
-                MetricCombobox.Visible = false;
-                numK.Visible = false;
-                numEpochs.Visible = false;
-                numBandwidth.Visible = false;
-                numLearningRate.Visible = false;
-                TypeCombobxLabel.Visible = false;
-                algorytmComboBoxlabel.Visible = false;
-                MetricComboboxLabel.Visible = false;
-                numKLabel.Visible = false;
-                numBandwidthLabel.Visible = false;
-                numLearningRateLabel.Visible = false;
-                numEpochsLabel.Visible = false;
-                dataGridView1Label.Visible = false;
-                progressBar1Label.Visible = false;
-                TypeKermelLabel.Visible = false;
-                ResultTextBoxLabel.Visible = false;
-                checkedListBox1Label.Visible = false;
-                StudyModelButton.Visible = false;
-            }
-            else
-            {
-                dataGridView1.Visible = true;
-                ResultTextBox.Visible = true;
-                progressBar1.Visible = true;
-                checkedListBox1.Visible = true;
-                algorytmComboBox.Visible = true;
-                TypeCombobox.Visible = true;
-                TypeKermel.Visible = true;
-                MetricCombobox.Visible = true;
-                numK.Visible = true;
-                numEpochs.Visible = true;
-                numBandwidth.Visible = true;
-                numLearningRate.Visible = true;
-                TypeCombobxLabel.Visible = true;
-                algorytmComboBoxlabel.Visible = true;
-                MetricComboboxLabel.Visible = true;
-                numKLabel.Visible = true;
-                numBandwidthLabel.Visible = true;
-                numLearningRateLabel.Visible = true;
-                numEpochsLabel.Visible = true;
-                dataGridView1Label.Visible = true;
-                progressBar1Label.Visible = true;
-                TypeKermelLabel.Visible = true;
-                ResultTextBoxLabel.Visible = true;
-                checkedListBox1Label.Visible = true;
-                StudyModelButton.Visible = true;
+                openFileDialog.Title = "Р’С‹Р±РµСЂРёС‚Рµ CSV С„Р°Р№Р» РґР»СЏ РѕР±СѓС‡РµРЅРёСЏ";
+                openFileDialog.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
 
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        currentFilePath = openFileDialog.FileName;
+
+                        var rawData = DataLoader.LoadCSV(currentFilePath, true);
+                        columnNames = DataLoader.GetColumnNames(currentFilePath);
+
+                        dataGridView1.DataSource = ConvertToDataTable(rawData, columnNames);
+                        dataGridView2.DataSource = ConvertToDataTable(rawData, columnNames);
+                        dataGridView3.DataSource = ConvertToDataTable(rawData, columnNames);
+                        dataGridView4.DataSource = ConvertToDataTable(rawData, columnNames);
+                        dataGridView5.DataSource = ConvertToDataTable(rawData, columnNames);
+
+                        UpdateFeatureSelectionControls(columnNames);
+
+                        UpdateStatus($"Р¤Р°Р№Р» Р·Р°РіСЂСѓР¶РµРЅ: {Path.GetFileName(currentFilePath)} | РЎС‚СЂРѕРє: {rawData.Length}, РљРѕР»РѕРЅРѕРє: {columnNames.Length}");
+
+                        PredictButton.Enabled = false;
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"РћС€РёР±РєР° РїСЂРё Р·Р°РіСЂСѓР·РєРµ С„Р°Р№Р»Р°: {ex.Message}",
+                            "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
             }
         }
     }
