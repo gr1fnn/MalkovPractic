@@ -17,6 +17,6 @@
     public enum ProblemType
     {
         Classification,
-        Regression
+        Regression, Unknown
     }
 }

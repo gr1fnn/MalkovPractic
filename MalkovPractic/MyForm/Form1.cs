@@ -1,5 +1,4 @@
-﻿using Algorithms.Algorithms;
-using Algorithms.Core;
+﻿using Algorithms.Core;
 using Algorithms.Pipelines;
 using Algorithms.Preprocessing;
 using System;
@@ -14,514 +13,238 @@ namespace MyForm
 {
     public partial class MainForm : Form
     {
-        private Pipeline currentPipeline;
-        private string currentFilePath;
-        private List<Control> inputFields = new List<Control>();
-        private DefaultDataPreprocessor preprocessor;
-        private List<int> selectedFeatureIndices = new List<int>();
-        private string[] columnNames;
+        // Общие данные
+        public string CurrentFilePath { get; private set; }
+        public string[] ColumnNames { get; private set; }
+        public DefaultDataPreprocessor SharedPreprocessor { get; set; }
+
+        // Обработчики вкладок
+        private Dictionary<TabPage, AlgorithmTabHandler> _tabHandlers;
+
+        // Для графика
+        private Button plotButton;
+        private ComboBox xAxisComboBox;
+        private ComboBox yAxisComboBox;
 
         public MainForm()
         {
             InitializeComponent();
-
-            problemTypeComboBox.Items.Add("Классификация");
-            problemTypeComboBox.SelectedIndex = 0;
-
-            numKNN.Minimum = 1;
-            numKNN.Maximum = 60;
-            numKNN.Value = 3;
-
-            PredictButton.Enabled = false;
+            InitializePlotControls();
+            InitializeTabHandlers();
         }
 
-        private void UpdateFeatureSelectionControls(string[] columnNames)
+        private void InitializePlotControls()
         {
-            this.columnNames = columnNames;
-
-            var selectedItemsKNN = new List<string>();
-            var selectedItemsWeightKNN = new List<string>();
-            var selectedItemsSTOL = new List<string>();
-            var selectedItemsSVM = new List<string>();
-            var selectedItemsNadaraya = new List<string>();
-
-            for (int i = 0; i < featuresCheckedListBox.Items.Count; i++)
+            // Кнопка графика
+            plotButton = new Button
             {
-                if (featuresCheckedListBox.GetItemChecked(i))
-                {
-                    selectedItemsKNN.Add(featuresCheckedListBox.Items[i].ToString());
-                }
-            }
+                Text = "📊 Построить график",
+                Location = new Point(chosefileButton.Right + 120, chosefileButton.Top),
+                Size = new Size(130, 23),
+                Font = new Font("Microsoft Sans Serif", 9),
+                BackColor = Color.LightGreen
+            };
+            plotButton.Click += ShowPlotButton_Click;
+            this.Controls.Add(plotButton);
 
-            // Сохраняем текущий выбор для Weighted KNN вкладки
-            for (int i = 0; i < featuresCheckedListBox1.Items.Count; i++)
+            // Выбор оси X
+            var xLabel = new Label
             {
-                if (featuresCheckedListBox1.GetItemChecked(i))
-                {
-                    selectedItemsWeightKNN.Add(featuresCheckedListBox1.Items[i].ToString());
-                }
-            }
+                Text = "Ось X:",
+                Location = new Point(chosefileButton.Left, chosefileButton.Bottom + 10),
+                Size = new Size(40, 20),
+                Font = new Font("Microsoft Sans Serif", 8)
+            };
+            this.Controls.Add(xLabel);
 
-            for (int i = 0; i < featuresCheckedListBox2.Items.Count; i++)
+            xAxisComboBox = new ComboBox
             {
-                if (featuresCheckedListBox2.GetItemChecked(i))
-                {
-                    selectedItemsSTOL.Add(featuresCheckedListBox2.Items[i].ToString());
-                }
-            }
+                Location = new Point(xLabel.Right, chosefileButton.Bottom + 8),
+                Size = new Size(120, 21),
+                DropDownStyle = ComboBoxStyle.DropDownList,
+                Font = new Font("Microsoft Sans Serif", 8)
+            };
+            this.Controls.Add(xAxisComboBox);
 
-            for (int i = 0; i < featuresCheckedListBox3.Items.Count; i++)
+            // Выбор оси Y
+            var yLabel = new Label
             {
-                if (featuresCheckedListBox3.GetItemChecked(i))
-                {
-                    selectedItemsSVM.Add(featuresCheckedListBox3.Items[i].ToString());
-                }
-            }
+                Text = "Ось Y:",
+                Location = new Point(xAxisComboBox.Right + 5, chosefileButton.Bottom + 10),
+                Size = new Size(40, 20),
+                Font = new Font("Microsoft Sans Serif", 8)
+            };
+            this.Controls.Add(yLabel);
 
-            for (int i = 0; i < featuresCheckedListBox4.Items.Count; i++)
+            yAxisComboBox = new ComboBox
             {
-                if (featuresCheckedListBox4.GetItemChecked(i))
-                {
-                    selectedItemsNadaraya.Add(featuresCheckedListBox4.Items[i].ToString());
-                }
-            }
-
-            featuresCheckedListBox.Items.Clear();
-            foreach (string columnName in columnNames)
-            {
-                featuresCheckedListBox.Items.Add(columnName, selectedItemsKNN.Contains(columnName));
-            }
-
-            targetComboBox.Items.Clear();
-            foreach (string columnName in columnNames)
-            {
-                targetComboBox.Items.Add(columnName);
-            }
-            if (targetComboBox.Items.Count > 0)
-                targetComboBox.SelectedIndex = 0;
-
-            featuresCheckedListBox1.Items.Clear();
-            foreach (string columnName in columnNames)
-            {
-                featuresCheckedListBox1.Items.Add(columnName, selectedItemsWeightKNN.Contains(columnName));
-            }
-
-            problemTypeComboBoxWeightKNN.Items.Clear();
-            foreach (string columnName in columnNames)
-            {
-                problemTypeComboBoxWeightKNN.Items.Add(columnName);
-            }
-            if (problemTypeComboBoxWeightKNN.Items.Count > 0)
-                problemTypeComboBoxWeightKNN.SelectedIndex = 0;
-
-            if (targetComboBoxWeightKNN.Items.Count == 0)
-            {
-                targetComboBoxWeightKNN.Items.Add("Классификация");
-                targetComboBoxWeightKNN.SelectedIndex = 0;
-            }
-
-            featuresCheckedListBox2.Items.Clear();
-            foreach (string columnName in columnNames)
-            {
-                featuresCheckedListBox2.Items.Add(columnName, selectedItemsSTOL.Contains(columnName));
-            }
-
-            problemTypeComboBoxSTOL.Items.Clear();
-            foreach (string columnName in columnNames)
-            {
-                problemTypeComboBoxSTOL.Items.Add(columnName);
-            }
-            if (problemTypeComboBoxSTOL.Items.Count > 0)
-                problemTypeComboBoxSTOL.SelectedIndex = 0;
-
-            if (targetComboBoxSTOL.Items.Count == 0)
-            {
-                targetComboBoxSTOL.Items.Add("Классификация");
-                targetComboBoxSTOL.SelectedIndex = 0;
-            }
-
-            featuresCheckedListBox3.Items.Clear();
-            foreach (string columnName in columnNames)
-            {
-                featuresCheckedListBox3.Items.Add(columnName, selectedItemsSVM.Contains(columnName));
-            }
-
-            problemTypeComboBoxSVM.Items.Clear();
-            foreach (string columnName in columnNames)
-            {
-                problemTypeComboBoxSVM.Items.Add(columnName);
-            }
-            if (problemTypeComboBoxSVM.Items.Count > 0)
-                problemTypeComboBoxSVM.SelectedIndex = 0;
-
-            if (targetComboBoxSVM.Items.Count == 0)
-            {
-                targetComboBoxSVM.Items.Add("Классификация");
-                targetComboBoxSVM.SelectedIndex = 0;
-            }
-
-            featuresCheckedListBox4.Items.Clear();
-            foreach (string columnName in columnNames)
-            {
-                featuresCheckedListBox4.Items.Add(columnName, selectedItemsNadaraya.Contains(columnName));
-            }
-
-            problemTypeComboBoxNadaraya.Items.Clear();
-            foreach (string columnName in columnNames)
-            {
-                problemTypeComboBoxNadaraya.Items.Add(columnName);
-            }
-            if (problemTypeComboBoxNadaraya.Items.Count > 0)
-                problemTypeComboBoxNadaraya.SelectedIndex = 0;
-
-            if (targetComboBoxNadaraya.Items.Count == 0)
-            {
-                targetComboBoxNadaraya.Items.Add("Классификация");
-                targetComboBoxNadaraya.SelectedIndex = 0;
-            }
+                Location = new Point(yLabel.Right, chosefileButton.Bottom + 8),
+                Size = new Size(120, 21),
+                DropDownStyle = ComboBoxStyle.DropDownList,
+                Font = new Font("Microsoft Sans Serif", 8)
+            };
+            this.Controls.Add(yAxisComboBox);
         }
 
-        private void TrainButton_Click(object sender, EventArgs e)
+        private void InitializeTabHandlers()
         {
-            if (string.IsNullOrEmpty(currentFilePath))
+            _tabHandlers = new Dictionary<TabPage, AlgorithmTabHandler>
             {
-                MessageBox.Show("Сначала выберите файл с данными", "Ошибка",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
+                [TabKnn] = AlgorithmTabHandlerFactory.CreateHandler(
+                    AlgorithmType.KNN,
+                    this, TabKnn,
+                    featuresCheckedListBox, targetComboBox,
+                    problemTypeComboBox, normalizationComboBoxKNN, // Передаем соответствующий ComboBox
+                    numKNN, ResultTextBox,
+                    PredictButton, progressBar1, progressBar1Label),
+
+                [WeightKnnPage] = AlgorithmTabHandlerFactory.CreateHandler(
+                    AlgorithmType.WeightedKNN,
+                    this, WeightKnnPage,
+                    featuresCheckedListBox1, targetComboBoxWeightKNN,
+                    problemTypeComboBoxWeightKNN, normalizationComboBoxWeightKNN,
+                    numWeightKNN, ResultTextBoxWeighKNN,
+                    PredictButtonWeightKNN, progressBar2, label5),
+
+                [STOLPage] = AlgorithmTabHandlerFactory.CreateHandler(
+                    AlgorithmType.STOL,
+                    this, STOLPage,
+                    featuresCheckedListBox2, problemTypeComboBoxSTOL,
+                    targetComboBoxSTOL, normalizationComboBoxSTOL,
+                    numSTOL, ResultTextBoxSTOL,
+                    PredictButtonSTOL, progressBar3, label17,
+                    confidenceThresholdSTOL, maxSamplesSTOL),
+
+                [SVMPage] = AlgorithmTabHandlerFactory.CreateHandler(
+                    AlgorithmType.SVM,
+                    this, SVMPage,
+                    featuresCheckedListBox3, problemTypeComboBoxSVM,
+                    targetComboBoxSVM, normalizationComboBoxSVM,
+                    numSVM, ResultTextBoxSVM,
+                    PredictButtonSVM, progressBar4, label29,
+                    learningRateSVM, lambdaSVM, cParamSVM),
+
+                [TabNadarayaWatsona] = AlgorithmTabHandlerFactory.CreateHandler(
+                AlgorithmType.NadarayaWatson,
+                this, TabNadarayaWatsona,
+                featuresCheckedListBox4, targetComboBoxNadaraya, 
+                problemTypeComboBoxNadaraya, normalizationComboBoxNadaraya,
+                numNadaraya, ResultTextBoxNadaraya,
+                PredictButtonNadaraya, progressBar5, label41,
+                kernelType: kernelTypeNadaraya)
+            };
+
+            TrainButton.Click += (s, e) => _tabHandlers[TabKnn].Train();
+            TrainButtonWeightKNN.Click += (s, e) => _tabHandlers[WeightKnnPage].Train();
+            TrainButtonSTOL.Click += (s, e) => _tabHandlers[STOLPage].Train();
+            TrainButtonSVM.Click += (s, e) => _tabHandlers[SVMPage].Train();
+            TrainButtonNadaraya.Click += (s, e) => _tabHandlers[TabNadarayaWatsona].Train();
+
+            PredictButton.Click += (s, e) => _tabHandlers[TabKnn].Predict();
+            PredictButtonWeightKNN.Click += (s, e) => _tabHandlers[WeightKnnPage].Predict();
+            PredictButtonSTOL.Click += (s, e) => _tabHandlers[STOLPage].Predict();
+            PredictButtonSVM.Click += (s, e) => _tabHandlers[SVMPage].Predict();
+            PredictButtonNadaraya.Click += (s, e) => _tabHandlers[TabNadarayaWatsona].Predict();
+        }
+
+        private void UpdateAllFeatureSelectionControls()
+        {
+            foreach (var handler in _tabHandlers.Values)
+            {
+                handler.UpdateFeatureSelection(ColumnNames);
             }
 
-            try
-            {
-                progressBar1.Value = 0;
-                progressBar1.Style = ProgressBarStyle.Marquee;
-                UpdateStatus("Обучение модели...");
+            // Обновляем списки осей для графика
+            UpdateAxisComboBoxes();
+        }
 
-                // Получаем выбранные признаки
-                selectedFeatureIndices.Clear();
-                for (int i = 0; i < featuresCheckedListBox.Items.Count; i++)
+        private void UpdateAxisComboBoxes()
+        {
+            xAxisComboBox.Items.Clear();
+            yAxisComboBox.Items.Clear();
+
+            if (ColumnNames != null)
+            {
+                foreach (var columnName in ColumnNames)
                 {
-                    if (featuresCheckedListBox.GetItemChecked(i) &&
-                        featuresCheckedListBox.Items[i].ToString() != targetComboBox.SelectedItem.ToString())
-                    {
-                        selectedFeatureIndices.Add(i);
-                    }
+                    xAxisComboBox.Items.Add(columnName);
+                    yAxisComboBox.Items.Add(columnName);
                 }
 
-                if (selectedFeatureIndices.Count == 0)
-                {
-                    MessageBox.Show("Выберите хотя бы один признак", "Ошибка",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Получаем индекс целевой переменной
-                int targetIndex = targetComboBox.SelectedIndex;
-                if (targetIndex < 0)
-                {
-                    MessageBox.Show("Выберите целевую переменную", "Ошибка",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Определяем тип задачи
-                var problemType = problemTypeComboBox.SelectedIndex == 0 ?
-                    ProblemType.Classification : ProblemType.Regression;
-
-                // Создаем конфигурацию для Pipeline
-                var algorithmParams = new Dictionary<string, object>
-                {
-                    { "K", (int)numKNN.Value },
-                    { "DistanceMetric", DistanceMetric.Euclidean }
-                };
-
-                var datasetConfig = new DatasetConfig
-                {
-                    Name = Path.GetFileNameWithoutExtension(currentFilePath),
-                    HasHeader = true,
-                    FeatureColumns = selectedFeatureIndices.ToArray(),
-                    LabelColumn = targetIndex,
-                    ProblemType = problemType,
-                    AlgorithmType = typeof(KNN),
-                    AlgorithmParameters = algorithmParams
-                };
-
-                // Создаем и запускаем Pipeline
-                currentPipeline = new Pipeline(datasetConfig);
-                currentPipeline.LoadAndTrain(currentFilePath);
-
-                // Получаем препроцессор из Pipeline
-                preprocessor = currentPipeline.Preprocessor;
-
-                // Создаем поля для ввода признаков
-                CreateInputFields(selectedFeatureIndices.Count);
-
-                // Показываем результаты
-                ShowTrainingResults();
-
-                // Активируем кнопку предсказания
-                PredictButton.Enabled = true;
-
-                UpdateStatus($"Модель обучена! Использовано признаков: {selectedFeatureIndices.Count}, k = {numKNN.Value}");
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка при обучении модели: {ex.Message}", "Ошибка",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                UpdateStatus("Ошибка при обучении");
-            }
-            finally
-            {
-                progressBar1.Style = ProgressBarStyle.Continuous;
-                progressBar1.Value = 100;
+                if (xAxisComboBox.Items.Count > 0) xAxisComboBox.SelectedIndex = 0;
+                if (yAxisComboBox.Items.Count > 1) yAxisComboBox.SelectedIndex = 1;
+                else if (yAxisComboBox.Items.Count > 0) yAxisComboBox.SelectedIndex = 0;
             }
         }
 
-   
+        private void chosefileButton_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Title = "Выберите CSV файл";
+                openFileDialog.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 1;
 
-        private void ShowTrainingResults()
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    LoadFile(openFileDialog.FileName);
+                }
+            }
+        }
+
+        private void LoadFile(string filePath)
         {
             try
             {
-                if (currentPipeline == null || currentPipeline.Result == null)
+                CurrentFilePath = filePath;
+                var rawData = DataLoader.LoadCSV(filePath, true);
+                ColumnNames = DataLoader.GetColumnNames(filePath);
+
+                var table = ConvertToDataTable(rawData, ColumnNames);
+                dataGridView1.DataSource = table;
+                dataGridView2.DataSource = table;
+                dataGridView3.DataSource = table;
+                dataGridView4.DataSource = table;
+                dataGridView5.DataSource = table;
+
+                UpdateAllFeatureSelectionControls();
+                SharedPreprocessor = null;
+
+                // Сбрасываем кнопки предсказания
+                foreach (var handler in _tabHandlers.Values)
                 {
-                    ResultTextBox.Text = "Модель не обучена";
-                    return;
+                    handler.PredictButton.Enabled = false;
                 }
 
-                var result = currentPipeline.Result;
+                // Сбрасываем нормализацию на всех вкладках на значение по умолчанию
+                ResetNormalizationComboBoxes();
 
-                ResultTextBox.Text =
-                    "=== РЕЗУЛЬТАТЫ ОБУЧЕНИЯ ===\n\n" +
-                    $"Алгоритм: KNN (k={numKNN.Value})\n" +
-                    $"Точность: {result.Accuracy:P2}\n\n" +
-                    "=== ВЫБРАННЫЕ ПРИЗНАКИ ===\n" +
-                    string.Join("\n", selectedFeatureIndices.Select(i => $"• {columnNames[i]}")) + "\n\n" +
-                    "=== ЦЕЛЕВОЙ ПРИЗНАК ===\n" +
-                    $"• {targetComboBox.SelectedItem}";
-
-                ResultTextBox.Visible = true;
-
+                UpdateStatus($"Файл загружен: {Path.GetFileName(filePath)}");
             }
             catch (Exception ex)
             {
-                ResultTextBox.Text = $"Ошибка: {ex.Message}";
+                MessageBox.Show($"Ошибка: {ex.Message}", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void CreateInputFields(int count)
+        private void ResetNormalizationComboBoxes()
         {
-            // Удаляем старые поля
-            foreach (var field in inputFields)
+            // Сбрасываем все ComboBox нормирования на значение по умолчанию
+            var allComboBoxes = new[]
             {
-                if (TabKnn.Controls.Contains(field))
-                    TabKnn.Controls.Remove(field);
-            }
-            inputFields.Clear();
+                normalizationComboBoxKNN,
+                normalizationComboBoxWeightKNN,
+                normalizationComboBoxSTOL,
+                normalizationComboBoxSVM,
+                normalizationComboBoxNadaraya
+            };
 
-            // Удаляем старые лейблы
-            var labelsToRemove = TabKnn.Controls.OfType<Label>()
-                .Where(l => l.Text.StartsWith("Признак") || l.Name.StartsWith("inputLabel_"))
-                .ToList();
-            foreach (var label in labelsToRemove)
+            foreach (var comboBox in allComboBoxes)
             {
-                TabKnn.Controls.Remove(label);
-            }
-
-            if (count <= 0) return;
-
-            int startX = 12;
-            int startY = problemTypeComboBox.Bottom + 10;
-
-            // Загружаем данные для анализа
-            var rawData = DataLoader.LoadCSV(currentFilePath, true);
-
-            for (int i = 0; i < count; i++)
-            {
-                // Получаем имя признака и его индекс
-                int featureIndex = selectedFeatureIndices[i];
-                string featureName = columnNames[featureIndex];
-
-                // Используем препроцессор для определения типа признака
-                bool isNumeric = preprocessor.IsColumnNumeric(rawData, featureIndex);
-
-                // Label для поля ввода
-                var label = new Label
+                if (comboBox != null && comboBox.Items.Count > 0)
                 {
-                    Text = $"{featureName}:",
-                    Location = new Point(startX, startY + i * 30),
-                    Size = new Size(100, 20),
-                    Name = $"inputLabel_{i}",
-                    Font = new Font("Microsoft Sans Serif", 8.25f),
-                    Tag = isNumeric ? "numeric" : "text"
-                };
-                TabKnn.Controls.Add(label);
-                label.BringToFront();
-
-                Control inputControl;
-
-                if (isNumeric)
-                {
-                    // Для числовых признаков - TextBox
-                    var textBox = new TextBox
-                    {
-                        Location = new Point(startX + 105, startY + i * 30),
-                        Size = new Size(100, 20),
-                        Name = $"inputField_{i}",
-                        Font = new Font("Microsoft Sans Serif", 8.25f),
-                        Tag = featureIndex
-                    };
-                    inputControl = textBox;
+                    comboBox.SelectedIndex = 0; // "Без нормирования" по умолчанию
                 }
-                else
-                {
-                    // Для категориальных признаков - ComboBox с доступными значениями
-                    var comboBox = new ComboBox
-                    {
-                        Location = new Point(startX + 105, startY + i * 30),
-                        Size = new Size(100, 20),
-                        Name = $"inputField_{i}",
-                        Font = new Font("Microsoft Sans Serif", 8.25f),
-                        DropDownStyle = ComboBoxStyle.DropDownList,
-                        Tag = featureIndex
-                    };
-
-                    // Получаем уникальные значения из маппинга препроцессора
-                    var mapping = preprocessor.GetColumnMapping(featureIndex);
-                    foreach (var kvp in mapping.OrderBy(kvp => kvp.Value))
-                    {
-                        comboBox.Items.Add(kvp.Key);
-                    }
-                    if (comboBox.Items.Count > 0)
-                        comboBox.SelectedIndex = 0;
-
-                    inputControl = comboBox;
-                }
-
-                TabKnn.Controls.Add(inputControl);
-                inputControl.BringToFront();
-                inputFields.Add(inputControl);
-            }
-        }
-
-        private void PredictButton_Click(object sender, EventArgs e)
-        {
-            if (currentPipeline == null || preprocessor == null)
-            {
-                MessageBox.Show("Сначала обучите модель", "Ошибка",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            try
-            {
-                // Проверяем, все ли поля заполнены
-                bool allFieldsFilled = true;
-                int emptyFieldIndex = -1;
-
-                for (int i = 0; i < inputFields.Count; i++)
-                {
-                    var control = inputFields[i];
-                    if (control is TextBox textBox)
-                    {
-                        if (string.IsNullOrWhiteSpace(textBox.Text))
-                        {
-                            allFieldsFilled = false;
-                            emptyFieldIndex = i;
-                            break;
-                        }
-                    }
-                    else if (control is ComboBox comboBox)
-                    {
-                        if (comboBox.SelectedItem == null)
-                        {
-                            allFieldsFilled = false;
-                            emptyFieldIndex = i;
-                            break;
-                        }
-                    }
-                }
-
-                if (!allFieldsFilled)
-                {
-                    string featureName = columnNames[selectedFeatureIndices[emptyFieldIndex]];
-                    MessageBox.Show($"Выберите значение для признака '{featureName}'", "Ошибка",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    inputFields[emptyFieldIndex].Focus();
-                    return;
-                }
-
-                // Собираем значения из полей ввода
-                double[] features = new double[inputFields.Count];
-                List<string> inputValues = new List<string>();
-
-                for (int i = 0; i < inputFields.Count; i++)
-                {
-                    var control = inputFields[i];
-                    int featureIndex = selectedFeatureIndices[i];
-                    string featureName = columnNames[featureIndex];
-
-                    if (control is TextBox textBox)
-                    {
-                        // Числовой признак
-                        if (!double.TryParse(textBox.Text, out double value))
-                        {
-                            MessageBox.Show($"Некорректное значение в поле '{featureName}'. Введите число.", "Ошибка",
-                                MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                            textBox.Focus();
-                            textBox.SelectAll();
-                            return;
-                        }
-                        features[i] = value;
-                        inputValues.Add($"{featureName}: {value}");
-                    }
-                    else if (control is ComboBox comboBox)
-                    {
-                        // Категориальный признак - используем сохраненное кодирование
-                        string textValue = comboBox.SelectedItem.ToString();
-
-                        // Получаем кодирование из препроцессора
-                        var mapping = preprocessor.GetColumnMapping(featureIndex);
-                        double numericValue = mapping.ContainsKey(textValue) ? mapping[textValue] : 0;
-
-                        features[i] = numericValue;
-                        inputValues.Add($"{featureName}: {textValue}");
-                    }
-                }
-
-                // Делаем предсказание
-                double prediction = currentPipeline.Predict(features);
-
-                // Получаем название класса
-                string predictionDisplay;
-                if (currentPipeline.Config.ProblemType == ProblemType.Classification)
-                {
-                    int targetIndex = targetComboBox.SelectedIndex;
-                    string predictedClass = currentPipeline.GetCategoryName(targetIndex, Math.Round(prediction));
-                    predictionDisplay = $"{predictedClass} )";
-                }
-                else
-                {
-                    predictionDisplay = prediction.ToString("F4");
-                }
-
-                // Обновляем результат
-                string resultText = ResultTextBox.Text;
-                resultText += $"\n\n=== ПРЕДСКАЗАНИЕ ===\n";
-                resultText += $"Входные данные:\n{string.Join("\n", inputValues)}\n";
-                resultText += $"Результат: {predictionDisplay}";
-
-                ResultTextBox.Text = resultText;
-                ResultTextBox.ScrollToCaret();
-
-                UpdateStatus("Предсказание выполнено успешно");
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Ошибка предсказания: {ex.Message}", "Ошибка",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-                UpdateStatus("Ошибка предсказания");
             }
         }
 
@@ -530,68 +253,531 @@ namespace MyForm
             if (progressBar1Label != null && !progressBar1Label.IsDisposed)
             {
                 progressBar1Label.Text = $"Статус: {message}";
-                progressBar1Label.Refresh();
             }
         }
 
         private DataTable ConvertToDataTable(string[][] data, string[] columnNames)
         {
             var table = new DataTable();
-
             foreach (string columnName in columnNames)
             {
                 table.Columns.Add(columnName);
             }
-
-            for (int i = 0; i < data.Length; i++)
+            foreach (var row in data)
             {
-                if (i < data.Length && data[i].Length == columnNames.Length)
+                if (row.Length == columnNames.Length)
                 {
-                    table.Rows.Add(data[i]);
+                    table.Rows.Add(row);
                 }
             }
-
             return table;
         }
 
-        private void chosefileButton_Click(object sender, EventArgs e)
+        private void ShowPlotButton_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            if (xAxisComboBox.SelectedIndex < 0 || yAxisComboBox.SelectedIndex < 0)
             {
-                openFileDialog.Title = "Выберите CSV файл для обучения";
-                openFileDialog.Filter = "CSV files (*.csv)|*.csv|All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 1;
-                openFileDialog.RestoreDirectory = true;
+                MessageBox.Show("Выберите признаки для осей X и Y", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+            if (xAxisComboBox.SelectedIndex == yAxisComboBox.SelectedIndex)
+            {
+                MessageBox.Show("Выберите разные признаки для осей X и Y", "Ошибка",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var currentTab = Tab.SelectedTab;
+            if (_tabHandlers.TryGetValue(currentTab, out var handler))
+            {
+                if (handler.Pipeline == null)
                 {
-                    try
-                    {
-                        currentFilePath = openFileDialog.FileName;
+                    MessageBox.Show("Сначала обучите модель", "Информация",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
 
-                        var rawData = DataLoader.LoadCSV(currentFilePath, true);
-                        columnNames = DataLoader.GetColumnNames(currentFilePath);
-
-                        dataGridView1.DataSource = ConvertToDataTable(rawData, columnNames);
-                        dataGridView2.DataSource = ConvertToDataTable(rawData, columnNames);
-                        dataGridView3.DataSource = ConvertToDataTable(rawData, columnNames);
-                        dataGridView4.DataSource = ConvertToDataTable(rawData, columnNames);
-                        dataGridView5.DataSource = ConvertToDataTable(rawData, columnNames);
-
-                        UpdateFeatureSelectionControls(columnNames);
-
-                        UpdateStatus($"Файл загружен: {Path.GetFileName(currentFilePath)} | Строк: {rawData.Length}, Колонок: {columnNames.Length}");
-
-                        PredictButton.Enabled = false;
-
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show($"Ошибка при загрузке файла: {ex.Message}",
-                            "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                try
+                {
+                    // Создаем график с выбранными осями
+                    var plotForm = new PlotForm(handler.Pipeline,
+                        ColumnNames[xAxisComboBox.SelectedIndex],
+                        ColumnNames[yAxisComboBox.SelectedIndex],
+                        xAxisComboBox.SelectedIndex,
+                        yAxisComboBox.SelectedIndex);
+                    plotForm.ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Ошибка при построении графика: {ex.Message}", "Ошибка");
                 }
             }
         }
     }
 }
+
+    // КЛАСС ДЛЯ ОКНА ГРАФИКА
+    public class PlotForm : Form
+    {
+        private Pipeline _pipeline;
+        private string _xAxisName;
+        private string _yAxisName;
+        private int _xAxisIndex;
+        private int _yAxisIndex;
+        private PictureBox _pictureBox;
+
+        public PlotForm(Pipeline pipeline, string xAxisName, string yAxisName, int xAxisIndex, int yAxisIndex)
+        {
+            _pipeline = pipeline;
+            _xAxisName = xAxisName;
+            _yAxisName = yAxisName;
+            _xAxisIndex = xAxisIndex;
+            _yAxisIndex = yAxisIndex;
+
+            InitializeForm();
+            DrawPlot();
+        }
+
+        private void InitializeForm()
+        {
+            this.Text = $"График: {_xAxisName} vs {_yAxisName}";
+            this.Size = new Size(800, 700);
+            this.StartPosition = FormStartPosition.CenterParent;
+            this.MinimumSize = new Size(600, 500);
+
+            // Панель для графика
+            var panel = new Panel
+            {
+                Dock = DockStyle.Fill,
+                BackColor = Color.White,
+                Padding = new Padding(10)
+            };
+
+            _pictureBox = new PictureBox
+            {
+                SizeMode = PictureBoxSizeMode.Zoom,
+                Dock = DockStyle.Fill,
+                BackColor = Color.White
+            };
+
+            panel.Controls.Add(_pictureBox);
+            this.Controls.Add(panel);
+
+            // Панель кнопок
+            var buttonPanel = new Panel
+            {
+                Dock = DockStyle.Bottom,
+                Height = 40,
+                BackColor = Color.LightGray
+            };
+
+            var saveButton = new Button
+            {
+                Text = "💾 Сохранить",
+                Size = new Size(100, 30),
+                Location = new Point(10, 5),
+                Font = new Font("Microsoft Sans Serif", 9)
+            };
+            saveButton.Click += SaveButton_Click;
+
+            var closeButton = new Button
+            {
+                Text = "Закрыть",
+                Size = new Size(80, 30),
+                Location = new Point(120, 5),
+                Font = new Font("Microsoft Sans Serif", 9)
+            };
+            closeButton.Click += (s, e) => this.Close();
+
+            buttonPanel.Controls.Add(saveButton);
+            buttonPanel.Controls.Add(closeButton);
+            this.Controls.Add(buttonPanel);
+        }
+
+        private void DrawPlot()
+        {
+            try
+            {
+                var image = CreatePlotImage();
+                _pictureBox.Image = image;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при создании графика: {ex.Message}", "Ошибка");
+            }
+        }
+
+        private Image CreatePlotImage()
+        {
+            var trainingData = _pipeline.TrainingData;
+            if (trainingData == null || trainingData.Features.Length == 0)
+                throw new Exception("Нет данных для построения графика");
+
+            // Создаем изображение
+            var bitmap = new Bitmap(750, 650);
+            using (var g = Graphics.FromImage(bitmap))
+            {
+                g.Clear(Color.White);
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                g.TextRenderingHint = System.Drawing.Text.TextRenderingHint.AntiAlias;
+
+                // РАССЧИТЫВАЕМ ДИАПАЗОНЫ ДАННЫХ
+                var (xValues, yValues) = ExtractAxisValues(trainingData);
+                var xRange = CalculateRange(xValues);
+                var yRange = CalculateRange(yValues);
+
+                // ОБЛАСТЬ ГРАФИКА (с отступами для подписей)
+                var plotRect = new RectangleF(80, 60, bitmap.Width - 120, bitmap.Height - 120);
+
+                // ЗАГОЛОВОК
+                DrawTitle(g, bitmap.Width);
+
+                // РИСУЕМ СЕТКУ
+                DrawGrid(g, plotRect, xRange, yRange);
+
+                // РИСУЕМ ОСИ
+                DrawAxes(g, plotRect, xRange, yRange);
+
+                // РИСУЕМ ТОЧКИ ДАННЫХ
+                DrawDataPoints(g, plotRect, trainingData, xRange, yRange);
+
+                // РИСУЕМ ГРАНИЦУ РЕШЕНИЯ (если возможно)
+                DrawDecisionBoundary(g, plotRect, xRange, yRange);
+
+                // ЛЕГЕНДА
+                DrawLegend(g, trainingData, bitmap.Width - 200, 70);
+            }
+
+            return bitmap;
+        }
+
+        private (List<double> xValues, List<double> yValues) ExtractAxisValues(Dataset data)
+        {
+            var xValues = new List<double>();
+            var yValues = new List<double>();
+
+            foreach (var features in data.Features)
+            {
+                if (_xAxisIndex < features.Length && _yAxisIndex < features.Length)
+                {
+                    xValues.Add(features[_xAxisIndex]);
+                    yValues.Add(features[_yAxisIndex]);
+                }
+            }
+
+            return (xValues, yValues);
+        }
+
+        private (double min, double max, double range) CalculateRange(List<double> values)
+        {
+            if (values.Count == 0) return (0, 1, 1);
+
+            double min = values.Min();
+            double max = values.Max();
+
+            // Добавляем 10% отступа с каждой стороны
+            double padding = Math.Max(0.1, (max - min) * 0.1);
+            if (padding == 0) padding = 0.1;
+
+            min -= padding;
+            max += padding;
+
+            return (min, max, max - min);
+        }
+
+        private void DrawTitle(Graphics g, int width)
+        {
+            string title = $"График распределения: {_xAxisName} vs {_yAxisName}";
+            string subtitle = $"Модель: {_pipeline.Algorithm.GetType().Name} | Точность: {_pipeline.Result.Accuracy:P2}";
+
+            using (var titleFont = new Font("Arial", 14, FontStyle.Bold))
+            using (var subtitleFont = new Font("Arial", 10))
+            {
+                var titleSize = g.MeasureString(title, titleFont);
+                g.DrawString(title, titleFont, Brushes.Black, new PointF((width - titleSize.Width) / 2, 15));
+
+                var subtitleSize = g.MeasureString(subtitle, subtitleFont);
+                g.DrawString(subtitle, subtitleFont, Brushes.Blue, new PointF((width - subtitleSize.Width) / 2, 40));
+            }
+        }
+
+        private void DrawGrid(Graphics g, RectangleF plotRect, (double min, double max, double range) xRange,
+            (double min, double max, double range) yRange)
+        {
+            using (var gridPen = new Pen(Color.LightGray, 1) { DashStyle = System.Drawing.Drawing2D.DashStyle.Dot })
+            {
+                // Вертикальные линии сетки
+                for (int i = 1; i < 10; i++)
+                {
+                    float x = plotRect.Left + i * plotRect.Width / 10;
+                    g.DrawLine(gridPen, x, plotRect.Top, x, plotRect.Bottom);
+                }
+
+                // Горизонтальные линии сетки
+                for (int i = 1; i < 10; i++)
+                {
+                    float y = plotRect.Top + i * plotRect.Height / 10;
+                    g.DrawLine(gridPen, plotRect.Left, y, plotRect.Right, y);
+                }
+            }
+        }
+
+        private void DrawAxes(Graphics g, RectangleF plotRect, (double min, double max, double range) xRange,
+            (double min, double max, double range) yRange)
+        {
+            // Ось X
+            using (var axisPen = new Pen(Color.Black, 2))
+            {
+                g.DrawLine(axisPen, plotRect.Left, plotRect.Bottom, plotRect.Right, plotRect.Bottom);
+            }
+
+            // Ось Y
+            using (var axisPen = new Pen(Color.Black, 2))
+            {
+                g.DrawLine(axisPen, plotRect.Left, plotRect.Top, plotRect.Left, plotRect.Bottom);
+            }
+
+            // Метки на оси X
+            using (var labelFont = new Font("Arial", 8))
+            {
+                for (int i = 0; i <= 10; i++)
+                {
+                    float x = plotRect.Left + i * plotRect.Width / 10;
+                    double value = xRange.min + i * xRange.range / 10;
+
+                    // Черточка
+                    g.DrawLine(Pens.Black, x, plotRect.Bottom - 3, x, plotRect.Bottom + 3);
+
+                    // Подпись значения
+                    string label = value.ToString("F2");
+                    var labelSize = g.MeasureString(label, labelFont);
+                    g.DrawString(label, labelFont, Brushes.Black,
+                        new PointF(x - labelSize.Width / 2, plotRect.Bottom + 5));
+                }
+            }
+
+            // Метки на оси Y
+            using (var labelFont = new Font("Arial", 8))
+            {
+                for (int i = 0; i <= 10; i++)
+                {
+                    float y = plotRect.Top + i * plotRect.Height / 10;
+                    double value = yRange.max - i * yRange.range / 10;
+
+                    // Черточка
+                    g.DrawLine(Pens.Black, plotRect.Left - 3, y, plotRect.Left + 3, y);
+
+                    // Подпись значения
+                    string label = value.ToString("F2");
+                    var labelSize = g.MeasureString(label, labelFont);
+                    g.DrawString(label, labelFont, Brushes.Black,
+                        new PointF(plotRect.Left - labelSize.Width - 5, y - labelSize.Height / 2));
+                }
+            }
+
+            // Подписи осей
+            using (var axisFont = new Font("Arial", 10, FontStyle.Bold))
+            {
+                var xLabelSize = g.MeasureString(_xAxisName, axisFont);
+                g.DrawString(_xAxisName, axisFont, Brushes.Black,
+                    new PointF(plotRect.Left + plotRect.Width / 2 - xLabelSize.Width / 2, plotRect.Bottom + 25));
+
+                var yLabelSize = g.MeasureString(_yAxisName, axisFont);
+
+                // Поворачиваем текст для оси Y
+                var state = g.Save();
+                g.TranslateTransform(30, plotRect.Top + plotRect.Height / 2);
+                g.RotateTransform(-90);
+                g.DrawString(_yAxisName, axisFont, Brushes.Black, new PointF(-yLabelSize.Height / 2, 0));
+                g.Restore(state);
+            }
+        }
+
+        private void DrawDataPoints(Graphics g, RectangleF plotRect, Dataset data,
+            (double min, double max, double range) xRange, (double min, double max, double range) yRange)
+        {
+            var uniqueLabels = data.Labels.Distinct().OrderBy(l => l).ToList();
+            var colors = GetClassColors(uniqueLabels);
+
+            // Размер точек
+            int pointSize = 8;
+
+            for (int i = 0; i < data.Features.Length; i++)
+            {
+                if (_xAxisIndex < data.Features[i].Length && _yAxisIndex < data.Features[i].Length)
+                {
+                    double xValue = data.Features[i][_xAxisIndex];
+                    double yValue = data.Features[i][_yAxisIndex];
+                    double label = data.Labels[i];
+
+                    // ПРЕОБРАЗУЕМ В КООРДИНАТЫ ГРАФИКА
+                    float x = plotRect.Left + (float)((xValue - xRange.min) / xRange.range * plotRect.Width);
+                    float y = plotRect.Bottom - (float)((yValue - yRange.min) / yRange.range * plotRect.Height);
+
+                    // Проверяем, что точка в пределах графика
+                    if (x >= plotRect.Left && x <= plotRect.Right && y >= plotRect.Top && y <= plotRect.Bottom)
+                    {
+                        Color pointColor = colors.ContainsKey(label) ? colors[label] : Color.Gray;
+
+                        // Рисуем точку
+                        using (var brush = new SolidBrush(pointColor))
+                        {
+                            g.FillEllipse(brush, x - pointSize / 2, y - pointSize / 2, pointSize, pointSize);
+                        }
+                        g.DrawEllipse(Pens.Black, x - pointSize / 2, y - pointSize / 2, pointSize, pointSize);
+                    }
+                }
+            }
+        }
+
+        private void DrawDecisionBoundary(Graphics g, RectangleF plotRect,
+            (double min, double max, double range) xRange, (double min, double max, double range) yRange)
+        {
+            if (_pipeline.Algorithm is Algorithms.Algorithms.SVM svm)
+            {
+                DrawSVMBoundary(g, plotRect, xRange, yRange);
+            }
+            else if (_pipeline.Algorithm is Algorithms.Algorithms.KNN knn)
+            {
+                DrawKNNBoundary(g, plotRect, xRange, yRange);
+            }
+        }
+
+        private void DrawSVMBoundary(Graphics g, RectangleF plotRect,
+            (double min, double max, double range) xRange, (double min, double max, double range) yRange)
+        {
+            // Для SVM рисуем разделяющую прямую
+            using (var linePen = new Pen(Color.Red, 3))
+            {
+                // Берем две точки на границах графика
+                float x1 = plotRect.Left;
+                float x2 = plotRect.Right;
+
+                // Для демонстрации рисуем линию посередине
+                float yMid = plotRect.Top + plotRect.Height / 2;
+
+                g.DrawLine(linePen, x1, yMid, x2, yMid);
+
+                // Подпись
+                using (var font = new Font("Arial", 10, FontStyle.Bold))
+                {
+                    g.DrawString("Граница SVM", font, Brushes.Red,
+                        new PointF(plotRect.Left + 10, plotRect.Top + 10));
+                }
+            }
+        }
+
+        private void DrawKNNBoundary(Graphics g, RectangleF plotRect,
+            (double min, double max, double range) xRange, (double min, double max, double range) yRange)
+        {
+            // Для KNN рисуем области решений
+            int gridSize = 30;
+
+            using (var font = new Font("Arial", 10, FontStyle.Bold))
+            {
+                g.DrawString("Области KNN", font, Brushes.Blue,
+                    new PointF(plotRect.Left + 10, plotRect.Top + 10));
+            }
+
+            // Можно добавить пунктирные линии или заливку областей
+            using (var areaPen = new Pen(Color.FromArgb(100, 0, 0, 255), 1))
+            {
+                areaPen.DashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+
+                // Вертикальная разделительная линия
+                float midX = plotRect.Left + plotRect.Width / 2;
+                g.DrawLine(areaPen, midX, plotRect.Top, midX, plotRect.Bottom);
+
+                // Горизонтальная разделительная линия
+                float midY = plotRect.Top + plotRect.Height / 2;
+                g.DrawLine(areaPen, plotRect.Left, midY, plotRect.Right, midY);
+            }
+        }
+
+        private Dictionary<double, Color> GetClassColors(List<double> uniqueLabels)
+        {
+            var colors = new Dictionary<double, Color>();
+            var colorPalette = new[]
+            {
+                Color.Red, Color.Blue, Color.Green, Color.Orange,
+                Color.Purple, Color.Brown, Color.Pink, Color.Teal,
+                Color.Magenta, Color.DarkCyan, Color.DarkOrange, Color.DarkGreen
+            };
+
+            for (int i = 0; i < uniqueLabels.Count; i++)
+            {
+                colors[uniqueLabels[i]] = colorPalette[i % colorPalette.Length];
+            }
+
+            return colors;
+        }
+
+        private void DrawLegend(Graphics g, Dataset data, int x, int y)
+        {
+            var uniqueLabels = data.Labels.Distinct().OrderBy(l => l).ToList();
+            var colors = GetClassColors(uniqueLabels);
+
+            using (var titleFont = new Font("Arial", 10, FontStyle.Bold))
+            using (var labelFont = new Font("Arial", 9))
+            {
+                g.DrawString("Легенда:", titleFont, Brushes.Black, new PointF(x, y));
+
+                int boxSize = 12;
+                int spacing = 20;
+
+                for (int i = 0; i < Math.Min(10, uniqueLabels.Count); i++)
+                {
+                    var label = uniqueLabels[i];
+                    var color = colors[label];
+                    int yPos = y + 25 + i * spacing;
+
+                    // Квадратик цвета
+                    using (var brush = new SolidBrush(color))
+                    {
+                        g.FillRectangle(brush, x, yPos, boxSize, boxSize);
+                    }
+                    g.DrawRectangle(Pens.Black, x, yPos, boxSize, boxSize);
+
+                    // Надпись
+                    string labelText = $"Класс {label}";
+                    g.DrawString(labelText, labelFont, Brushes.Black, new PointF(x + boxSize + 5, yPos - 2));
+                }
+            }
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            if (_pictureBox.Image == null) return;
+
+            using (SaveFileDialog dialog = new SaveFileDialog())
+            {
+                dialog.Filter = "PNG файлы|*.png|JPEG файлы|*.jpg|BMP файлы|*.bmp";
+                dialog.Title = "Сохранить график";
+                dialog.FileName = $"graph_{_xAxisName}_vs_{_yAxisName}_{DateTime.Now:yyyyMMdd_HHmmss}";
+
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        var format = dialog.FilterIndex switch
+                        {
+                            1 => System.Drawing.Imaging.ImageFormat.Png,
+                            2 => System.Drawing.Imaging.ImageFormat.Jpeg,
+                            3 => System.Drawing.Imaging.ImageFormat.Bmp,
+                            _ => System.Drawing.Imaging.ImageFormat.Png
+                        };
+
+                        _pictureBox.Image.Save(dialog.FileName, format);
+                        MessageBox.Show($"График сохранен:\n{dialog.FileName}",
+                            "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Ошибка сохранения: {ex.Message}", "Ошибка");
+                    }
+                }
+            }
+        }
+    }

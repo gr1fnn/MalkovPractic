@@ -9,7 +9,7 @@ namespace Algorithms.Preprocessing
     public class DefaultDataPreprocessor : IDataPreprocessor
     {
         private readonly Dictionary<string, Dictionary<string, double>> _categoryMappings;
-        private readonly Dictionary<string, List<string>> _uniqueValues; // Для хранения уникальных значений
+        private readonly Dictionary<string, List<string>> _uniqueValues; 
 
         public DefaultDataPreprocessor()
         {
@@ -22,7 +22,6 @@ namespace Algorithms.Preprocessing
             if (rawData == null || rawData.Length == 0)
                 return new double[0][];
 
-            // Сначала собираем уникальные значения для каждого столбца
             CollectUniqueValues(rawData, featureColumns);
 
             var features = new List<double[]>();
@@ -55,7 +54,6 @@ namespace Algorithms.Preprocessing
             if (rawData == null || rawData.Length == 0)
                 return new double[0];
 
-            // Собираем уникальные значения для целевой переменной
             CollectUniqueValuesForColumn(rawData, labelColumn);
 
             var labels = new List<double>();
@@ -109,16 +107,13 @@ namespace Algorithms.Preprocessing
             return result;
         }
 
-        // Делаем метод публичным для использования в форме
         public double ConvertToNumeric(string value, int columnIndex)
         {
-            // Пытаемся преобразовать как число
             if (double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out double numericValue))
             {
                 return numericValue;
             }
 
-            // Преобразуем категориальные значения
             string columnKey = $"col_{columnIndex}";
             if (!_categoryMappings.ContainsKey(columnKey))
             {
@@ -127,14 +122,12 @@ namespace Algorithms.Preprocessing
 
             if (!_categoryMappings[columnKey].ContainsKey(value))
             {
-                // Для новых значений, которых не было в обучающих данных
                 _categoryMappings[columnKey][value] = _categoryMappings[columnKey].Count;
             }
 
             return _categoryMappings[columnKey][value];
         }
 
-        // Новый метод для определения типа столбца
         public bool IsColumnNumeric(string[][] rawData, int columnIndex)
         {
             if (rawData == null || rawData.Length == 0)
@@ -289,5 +282,74 @@ namespace Algorithms.Preprocessing
             }
             return result;
         }
+
+        public double[][] PreprocessFeaturesWithOneHot(string[][] rawData, int[] featureColumns)
+        {
+            if (rawData == null || rawData.Length == 0)
+                return new double[0][];
+
+            // Собираем все уникальные значения для категориальных признаков
+            var categoricalValues = new Dictionary<int, List<string>>();
+            var numericColumns = new List<int>();
+
+            foreach (int col in featureColumns)
+            {
+                if (IsColumnNumeric(rawData, col))
+                {
+                    numericColumns.Add(col);
+                }
+                else
+                {
+                    categoricalValues[col] = GetUniqueValuesForColumn(rawData, col);
+                }
+            }
+
+            var features = new List<double[]>();
+
+            foreach (var row in rawData)
+            {
+                var featureRow = new List<double>();
+
+                // Числовые признаки
+                foreach (int col in numericColumns)
+                {
+                    if (col < row.Length && double.TryParse(row[col], out double value))
+                    {
+                        featureRow.Add(value);
+                    }
+                    else
+                    {
+                        featureRow.Add(0);
+                    }
+                }
+
+                // Категориальные признаки (One-Hot Encoding)
+                foreach (var kvp in categoricalValues)
+                {
+                    int col = kvp.Key;
+                    if (col < row.Length)
+                    {
+                        string value = row[col];
+                        foreach (var category in kvp.Value)
+                        {
+                            featureRow.Add(category == value ? 1.0 : 0.0);
+                        }
+                    }
+                    else
+                    {
+                        // Заполняем нулями
+                        foreach (var _ in kvp.Value)
+                        {
+                            featureRow.Add(0);
+                        }
+                    }
+                }
+
+                features.Add(featureRow.ToArray());
+            }
+
+            return features.ToArray();
+        }
     }
+
 }

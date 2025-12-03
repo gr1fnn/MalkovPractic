@@ -10,11 +10,21 @@ namespace Algorithms.Core
         protected double[] TrainingLabels { get; set; }
         protected bool IsTrained { get; set; }
         protected DataScaler Scaler { get; set; }
-        public ProblemType ProblemType { get; protected set; }
+
+        // Храним информацию о классах
+        protected double[] UniqueLabels { get; private set; }
+        protected int NumClasses { get; private set; }
+        protected int[] ClassCounts { get; private set; }
+
+        // Для большинства алгоритмов мы будем использовать целые метки классов
+        protected int[] IntTrainingLabels { get; private set; }
 
         public virtual void Train(double[][] features, double[] labels, bool normalize = true)
         {
             ValidateData(features, labels);
+
+            // Преобразуем метки в целые числа для классификации
+            PrepareLabels(labels);
 
             if (normalize)
             {
@@ -29,8 +39,8 @@ namespace Algorithms.Core
             TrainingLabels = labels;
             IsTrained = true;
 
-            // Автоматическое определение типа задачи
-            ProblemType = DetermineProblemType(labels);
+            // Логируем информацию о данных
+            LogTrainingInfo();
         }
 
         public virtual double Predict(double[] features)
@@ -53,16 +63,74 @@ namespace Algorithms.Core
                 throw new ArgumentException("Labels cannot be null or empty");
 
             if (features.Length != labels.Length)
-                throw new ArgumentException("Features and labels must have same length");
+                throw new ArgumentException($"Features ({features.Length}) and labels ({labels.Length}) must have same length");
+
+            // Проверяем, что есть хотя бы 2 класса
+            var uniqueLabels = labels.Distinct().ToArray();
+            if (uniqueLabels.Length < 2)
+                throw new ArgumentException($"Need at least 2 classes for classification. Found: {uniqueLabels.Length}");
         }
 
-        protected virtual ProblemType DetermineProblemType(double[] labels)
+        protected virtual void PrepareLabels(double[] labels)
         {
-            // Если все метки - целые числа, считаем это классификацией
-            bool allInteger = labels.All(label => Math.Abs(label - Math.Round(label)) < 0.0001);
-            return allInteger ? ProblemType.Classification : ProblemType.Regression;
+            // Получаем уникальные метки и сортируем их
+            UniqueLabels = labels.Distinct().OrderBy(x => x).ToArray();
+            NumClasses = UniqueLabels.Length;
+
+            // Создаем маппинг метка -> индекс класса
+            var labelToIndex = new System.Collections.Generic.Dictionary<double, int>();
+            for (int i = 0; i < NumClasses; i++)
+            {
+                labelToIndex[UniqueLabels[i]] = i;
+            }
+
+            // Преобразуем метки в целые индексы
+            IntTrainingLabels = new int[labels.Length];
+            ClassCounts = new int[NumClasses];
+
+            for (int i = 0; i < labels.Length; i++)
+            {
+                int classIndex = labelToIndex[labels[i]];
+                IntTrainingLabels[i] = classIndex;
+                ClassCounts[classIndex]++;
+            }
         }
 
+        protected virtual void LogTrainingInfo()
+        {
+            Console.WriteLine($"=== ИНФОРМАЦИЯ О КЛАССИФИКАЦИИ ===");
+            Console.WriteLine($"Количество образцов: {TrainingFeatures.Length}");
+            Console.WriteLine($"Количество признаков: {TrainingFeatures[0].Length}");
+            Console.WriteLine($"Количество классов: {NumClasses}");
+            Console.WriteLine($"Уникальные метки: [{string.Join(", ", UniqueLabels.Select(x => x.ToString("F0")))}]");
+
+            Console.WriteLine("Распределение классов:");
+            for (int i = 0; i < NumClasses; i++)
+            {
+                Console.WriteLine($"  Класс {UniqueLabels[i]}: {ClassCounts[i]} записей ({(double)ClassCounts[i] / TrainingFeatures.Length:P1})");
+            }
+        }
+
+        // Вспомогательный метод для преобразования индекса класса в оригинальную метку
+        protected double GetOriginalLabel(int classIndex)
+        {
+            if (classIndex >= 0 && classIndex < UniqueLabels.Length)
+                return UniqueLabels[classIndex];
+            return 0;
+        }
+
+        // Вспомогательный метод для получения индекса класса по оригинальной метке
+        protected int GetClassIndex(double label)
+        {
+            for (int i = 0; i < UniqueLabels.Length; i++)
+            {
+                if (Math.Abs(UniqueLabels[i] - label) < 0.0001)
+                    return i;
+            }
+            return -1;
+        }
+
+        // Методы расстояний остаются без изменений
         protected double CalculateEuclideanDistance(double[] a, double[] b)
         {
             if (a.Length != b.Length)
@@ -117,13 +185,11 @@ namespace Algorithms.Core
         public virtual void SaveModel(string filePath)
         {
             Console.WriteLine($"Saving model to {filePath}");
-            // Реализация сохранения модели
         }
 
         public virtual void LoadModel(string filePath)
         {
             Console.WriteLine($"Loading model from {filePath}");
-            // Реализация загрузки модели
         }
     }
 }

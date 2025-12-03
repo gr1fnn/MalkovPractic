@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             TabKnn = new TabPage();
+            ShowPlotButton = new Button();
             PredictButton = new Button();
             problemTypeComboBox = new ComboBox();
             targetComboBox = new ComboBox();
@@ -46,8 +47,8 @@
             Tab = new TabControl();
             WeightKnnPage = new TabPage();
             PredictButtonWeightKNN = new Button();
-            problemTypeComboBoxWeightKNN = new ComboBox();
             targetComboBoxWeightKNN = new ComboBox();
+            problemTypeComboBoxWeightKNN = new ComboBox();
             featuresCheckedListBox1 = new CheckedListBox();
             numWeightKNN = new NumericUpDown();
             label3 = new Label();
@@ -59,6 +60,11 @@
             dataGridView2 = new DataGridView();
             TrainButtonWeightKNN = new Button();
             STOLPage = new TabPage();
+            label11 = new Label();
+            label10 = new Label();
+            label9 = new Label();
+            confidenceThresholdSTOL = new NumericUpDown();
+            maxSamplesSTOL = new NumericUpDown();
             PredictButtonSTOL = new Button();
             problemTypeComboBoxSTOL = new ComboBox();
             targetComboBoxSTOL = new ComboBox();
@@ -73,6 +79,13 @@
             dataGridView3 = new DataGridView();
             TrainButtonSTOL = new Button();
             SVMPage = new TabPage();
+            label18 = new Label();
+            label12 = new Label();
+            label13 = new Label();
+            label15 = new Label();
+            lambdaSVM = new NumericUpDown();
+            learningRateSVM = new NumericUpDown();
+            cParamSVM = new NumericUpDown();
             PredictButtonSVM = new Button();
             problemTypeComboBoxSVM = new ComboBox();
             targetComboBoxSVM = new ComboBox();
@@ -87,6 +100,9 @@
             dataGridView4 = new DataGridView();
             TrainButtonSVM = new Button();
             TabNadarayaWatsona = new TabPage();
+            label20 = new Label();
+            kernelTypeNadaraya = new ComboBox();
+            label19 = new Label();
             PredictButtonNadaraya = new Button();
             problemTypeComboBoxNadaraya = new ComboBox();
             targetComboBoxNadaraya = new ComboBox();
@@ -100,6 +116,16 @@
             progressBar5 = new ProgressBar();
             dataGridView5 = new DataGridView();
             TrainButtonNadaraya = new Button();
+            normalizationComboBoxKNN = new ComboBox();
+            label21 = new Label();
+            label22 = new Label();
+            normalizationComboBoxWeightKNN = new ComboBox();
+            label23 = new Label();
+            normalizationComboBoxSTOL = new ComboBox();
+            label24 = new Label();
+            normalizationComboBoxSVM = new ComboBox();
+            label25 = new Label();
+            normalizationComboBoxNadaraya = new ComboBox();
             TabKnn.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numKNN).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -108,9 +134,14 @@
             ((System.ComponentModel.ISupportInitialize)numWeightKNN).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             STOLPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)confidenceThresholdSTOL).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)maxSamplesSTOL).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numSTOL).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
             SVMPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)lambdaSVM).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)learningRateSVM).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)cParamSVM).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numSVM).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView4).BeginInit();
             TabNadarayaWatsona.SuspendLayout();
@@ -120,6 +151,9 @@
             // 
             // TabKnn
             // 
+            TabKnn.Controls.Add(label21);
+            TabKnn.Controls.Add(normalizationComboBoxKNN);
+            TabKnn.Controls.Add(ShowPlotButton);
             TabKnn.Controls.Add(PredictButton);
             TabKnn.Controls.Add(problemTypeComboBox);
             TabKnn.Controls.Add(targetComboBox);
@@ -142,6 +176,18 @@
             TabKnn.Text = "КНН";
             TabKnn.UseVisualStyleBackColor = true;
             // 
+            // ShowPlotButton
+            // 
+            ShowPlotButton.BackColor = Color.LightGray;
+            ShowPlotButton.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            ShowPlotButton.Location = new Point(241, 690);
+            ShowPlotButton.Name = "ShowPlotButton";
+            ShowPlotButton.Size = new Size(202, 60);
+            ShowPlotButton.TabIndex = 31;
+            ShowPlotButton.Text = "Построить график";
+            ShowPlotButton.UseVisualStyleBackColor = false;
+            ShowPlotButton.Click += ShowPlotButton_Click;
+            // 
             // PredictButton
             // 
             PredictButton.BackColor = Color.LightGray;
@@ -152,12 +198,11 @@
             PredictButton.TabIndex = 30;
             PredictButton.Text = "Предсказать";
             PredictButton.UseVisualStyleBackColor = false;
-            PredictButton.Click += PredictButton_Click;
             // 
             // problemTypeComboBox
             // 
             problemTypeComboBox.FormattingEnabled = true;
-            problemTypeComboBox.Location = new Point(12, 321);
+            problemTypeComboBox.Location = new Point(12, 359);
             problemTypeComboBox.Name = "problemTypeComboBox";
             problemTypeComboBox.Size = new Size(202, 23);
             problemTypeComboBox.TabIndex = 29;
@@ -165,7 +210,7 @@
             // targetComboBox
             // 
             targetComboBox.FormattingEnabled = true;
-            targetComboBox.Location = new Point(12, 290);
+            targetComboBox.Location = new Point(12, 328);
             targetComboBox.Name = "targetComboBox";
             targetComboBox.Size = new Size(202, 23);
             targetComboBox.TabIndex = 28;
@@ -173,14 +218,14 @@
             // featuresCheckedListBox
             // 
             featuresCheckedListBox.FormattingEnabled = true;
-            featuresCheckedListBox.Location = new Point(12, 136);
+            featuresCheckedListBox.Location = new Point(12, 174);
             featuresCheckedListBox.Name = "featuresCheckedListBox";
             featuresCheckedListBox.Size = new Size(202, 148);
             featuresCheckedListBox.TabIndex = 27;
             // 
             // numKNN
             // 
-            numKNN.Location = new Point(12, 106);
+            numKNN.Location = new Point(12, 144);
             numKNN.Name = "numKNN";
             numKNN.Size = new Size(202, 23);
             numKNN.TabIndex = 26;
@@ -190,7 +235,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label1.Location = new Point(12, 78);
+            label1.Location = new Point(12, 116);
             label1.Name = "label1";
             label1.Size = new Size(208, 25);
             label1.TabIndex = 25;
@@ -213,7 +258,7 @@
             ResultTextBox.Multiline = true;
             ResultTextBox.Name = "ResultTextBox";
             ResultTextBox.ReadOnly = true;
-            ResultTextBox.Size = new Size(1046, 349);
+            ResultTextBox.Size = new Size(1046, 268);
             ResultTextBox.TabIndex = 23;
             // 
             // progressBar1Label
@@ -262,7 +307,6 @@
             TrainButton.TabIndex = 16;
             TrainButton.Text = "Обучить модель";
             TrainButton.UseVisualStyleBackColor = false;
-            TrainButton.Click += TrainButton_Click;
             // 
             // chosefileButton
             // 
@@ -291,9 +335,11 @@
             // 
             // WeightKnnPage
             // 
+            WeightKnnPage.Controls.Add(label22);
+            WeightKnnPage.Controls.Add(normalizationComboBoxWeightKNN);
             WeightKnnPage.Controls.Add(PredictButtonWeightKNN);
-            WeightKnnPage.Controls.Add(problemTypeComboBoxWeightKNN);
             WeightKnnPage.Controls.Add(targetComboBoxWeightKNN);
+            WeightKnnPage.Controls.Add(problemTypeComboBoxWeightKNN);
             WeightKnnPage.Controls.Add(featuresCheckedListBox1);
             WeightKnnPage.Controls.Add(numWeightKNN);
             WeightKnnPage.Controls.Add(label3);
@@ -324,33 +370,33 @@
             PredictButtonWeightKNN.Text = "Предсказать";
             PredictButtonWeightKNN.UseVisualStyleBackColor = false;
             // 
-            // problemTypeComboBoxWeightKNN
-            // 
-            problemTypeComboBoxWeightKNN.FormattingEnabled = true;
-            problemTypeComboBoxWeightKNN.Location = new Point(18, 263);
-            problemTypeComboBoxWeightKNN.Name = "problemTypeComboBoxWeightKNN";
-            problemTypeComboBoxWeightKNN.Size = new Size(202, 23);
-            problemTypeComboBoxWeightKNN.TabIndex = 56;
-            // 
             // targetComboBoxWeightKNN
             // 
             targetComboBoxWeightKNN.FormattingEnabled = true;
-            targetComboBoxWeightKNN.Location = new Point(18, 234);
+            targetComboBoxWeightKNN.Location = new Point(20, 280);
             targetComboBoxWeightKNN.Name = "targetComboBoxWeightKNN";
             targetComboBoxWeightKNN.Size = new Size(202, 23);
-            targetComboBoxWeightKNN.TabIndex = 55;
+            targetComboBoxWeightKNN.TabIndex = 56;
+            // 
+            // problemTypeComboBoxWeightKNN
+            // 
+            problemTypeComboBoxWeightKNN.FormattingEnabled = true;
+            problemTypeComboBoxWeightKNN.Location = new Point(20, 309);
+            problemTypeComboBoxWeightKNN.Name = "problemTypeComboBoxWeightKNN";
+            problemTypeComboBoxWeightKNN.Size = new Size(202, 23);
+            problemTypeComboBoxWeightKNN.TabIndex = 55;
             // 
             // featuresCheckedListBox1
             // 
             featuresCheckedListBox1.FormattingEnabled = true;
-            featuresCheckedListBox1.Location = new Point(18, 80);
+            featuresCheckedListBox1.Location = new Point(20, 126);
             featuresCheckedListBox1.Name = "featuresCheckedListBox1";
             featuresCheckedListBox1.Size = new Size(202, 148);
             featuresCheckedListBox1.TabIndex = 54;
             // 
             // numWeightKNN
             // 
-            numWeightKNN.Location = new Point(18, 51);
+            numWeightKNN.Location = new Point(20, 97);
             numWeightKNN.Name = "numWeightKNN";
             numWeightKNN.Size = new Size(202, 23);
             numWeightKNN.TabIndex = 53;
@@ -360,7 +406,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label3.Location = new Point(32, 23);
+            label3.Location = new Point(34, 69);
             label3.Name = "label3";
             label3.Size = new Size(164, 25);
             label3.TabIndex = 51;
@@ -435,6 +481,13 @@
             // 
             // STOLPage
             // 
+            STOLPage.Controls.Add(label23);
+            STOLPage.Controls.Add(normalizationComboBoxSTOL);
+            STOLPage.Controls.Add(label11);
+            STOLPage.Controls.Add(label10);
+            STOLPage.Controls.Add(label9);
+            STOLPage.Controls.Add(confidenceThresholdSTOL);
+            STOLPage.Controls.Add(maxSamplesSTOL);
             STOLPage.Controls.Add(PredictButtonSTOL);
             STOLPage.Controls.Add(problemTypeComboBoxSTOL);
             STOLPage.Controls.Add(targetComboBoxSTOL);
@@ -457,11 +510,64 @@
             STOLPage.Text = "STOL";
             STOLPage.UseVisualStyleBackColor = true;
             // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.BackColor = Color.Transparent;
+            label11.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label11.Location = new Point(47, 190);
+            label11.Name = "label11";
+            label11.Size = new Size(146, 20);
+            label11.TabIndex = 66;
+            label11.Text = "Порог уверенности";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.BackColor = Color.Transparent;
+            label10.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label10.Location = new Point(47, 137);
+            label10.Name = "label10";
+            label10.Size = new Size(162, 20);
+            label10.TabIndex = 65;
+            label10.Text = "Количество образцов";
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.BackColor = Color.Transparent;
+            label9.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label9.Location = new Point(81, 86);
+            label9.Name = "label9";
+            label9.Size = new Size(78, 20);
+            label9.TabIndex = 64;
+            label9.Text = "к-соседей";
+            // 
+            // confidenceThresholdSTOL
+            // 
+            confidenceThresholdSTOL.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            confidenceThresholdSTOL.Location = new Point(20, 213);
+            confidenceThresholdSTOL.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
+            confidenceThresholdSTOL.Name = "confidenceThresholdSTOL";
+            confidenceThresholdSTOL.Size = new Size(202, 23);
+            confidenceThresholdSTOL.TabIndex = 63;
+            confidenceThresholdSTOL.Value = new decimal(new int[] { 5, 0, 0, 65536 });
+            // 
+            // maxSamplesSTOL
+            // 
+            maxSamplesSTOL.Location = new Point(20, 160);
+            maxSamplesSTOL.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
+            maxSamplesSTOL.Minimum = new decimal(new int[] { 100, 0, 0, 0 });
+            maxSamplesSTOL.Name = "maxSamplesSTOL";
+            maxSamplesSTOL.Size = new Size(202, 23);
+            maxSamplesSTOL.TabIndex = 62;
+            maxSamplesSTOL.Value = new decimal(new int[] { 100, 0, 0, 0 });
+            // 
             // PredictButtonSTOL
             // 
             PredictButtonSTOL.BackColor = Color.LightGray;
             PredictButtonSTOL.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            PredictButtonSTOL.Location = new Point(14, 686);
+            PredictButtonSTOL.Location = new Point(20, 743);
             PredictButtonSTOL.Name = "PredictButtonSTOL";
             PredictButtonSTOL.Size = new Size(202, 60);
             PredictButtonSTOL.TabIndex = 61;
@@ -471,7 +577,7 @@
             // problemTypeComboBoxSTOL
             // 
             problemTypeComboBoxSTOL.FormattingEnabled = true;
-            problemTypeComboBoxSTOL.Location = new Point(20, 265);
+            problemTypeComboBoxSTOL.Location = new Point(20, 410);
             problemTypeComboBoxSTOL.Name = "problemTypeComboBoxSTOL";
             problemTypeComboBoxSTOL.Size = new Size(202, 23);
             problemTypeComboBoxSTOL.TabIndex = 60;
@@ -479,7 +585,7 @@
             // targetComboBoxSTOL
             // 
             targetComboBoxSTOL.FormattingEnabled = true;
-            targetComboBoxSTOL.Location = new Point(20, 236);
+            targetComboBoxSTOL.Location = new Point(20, 439);
             targetComboBoxSTOL.Name = "targetComboBoxSTOL";
             targetComboBoxSTOL.Size = new Size(202, 23);
             targetComboBoxSTOL.TabIndex = 59;
@@ -487,14 +593,14 @@
             // featuresCheckedListBox2
             // 
             featuresCheckedListBox2.FormattingEnabled = true;
-            featuresCheckedListBox2.Location = new Point(20, 82);
+            featuresCheckedListBox2.Location = new Point(20, 256);
             featuresCheckedListBox2.Name = "featuresCheckedListBox2";
             featuresCheckedListBox2.Size = new Size(202, 148);
             featuresCheckedListBox2.TabIndex = 58;
             // 
             // numSTOL
             // 
-            numSTOL.Location = new Point(20, 53);
+            numSTOL.Location = new Point(20, 109);
             numSTOL.Name = "numSTOL";
             numSTOL.Size = new Size(202, 23);
             numSTOL.TabIndex = 57;
@@ -504,7 +610,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label8.Location = new Point(47, 23);
+            label8.Location = new Point(47, 12);
             label8.Name = "label8";
             label8.Size = new Size(142, 25);
             label8.TabIndex = 54;
@@ -570,7 +676,7 @@
             // 
             TrainButtonSTOL.BackColor = Color.LightGray;
             TrainButtonSTOL.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            TrainButtonSTOL.Location = new Point(14, 620);
+            TrainButtonSTOL.Location = new Point(20, 677);
             TrainButtonSTOL.Name = "TrainButtonSTOL";
             TrainButtonSTOL.Size = new Size(202, 60);
             TrainButtonSTOL.TabIndex = 42;
@@ -579,6 +685,15 @@
             // 
             // SVMPage
             // 
+            SVMPage.Controls.Add(label24);
+            SVMPage.Controls.Add(normalizationComboBoxSVM);
+            SVMPage.Controls.Add(label18);
+            SVMPage.Controls.Add(label12);
+            SVMPage.Controls.Add(label13);
+            SVMPage.Controls.Add(label15);
+            SVMPage.Controls.Add(lambdaSVM);
+            SVMPage.Controls.Add(learningRateSVM);
+            SVMPage.Controls.Add(cParamSVM);
             SVMPage.Controls.Add(PredictButtonSVM);
             SVMPage.Controls.Add(problemTypeComboBoxSVM);
             SVMPage.Controls.Add(targetComboBoxSVM);
@@ -601,11 +716,83 @@
             SVMPage.Text = "SVM";
             SVMPage.UseVisualStyleBackColor = true;
             // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.BackColor = Color.Transparent;
+            label18.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label18.Location = new Point(70, 274);
+            label18.Name = "label18";
+            label18.Size = new Size(92, 20);
+            label18.TabIndex = 73;
+            label18.Text = "Параметр С";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.BackColor = Color.Transparent;
+            label12.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label12.Location = new Point(27, 224);
+            label12.Name = "label12";
+            label12.Size = new Size(189, 20);
+            label12.TabIndex = 72;
+            label12.Text = "Параметр регуляризации";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.BackColor = Color.Transparent;
+            label13.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label13.Location = new Point(41, 171);
+            label13.Name = "label13";
+            label13.Size = new Size(144, 20);
+            label13.TabIndex = 71;
+            label13.Text = "Скорость обучения";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.BackColor = Color.Transparent;
+            label15.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label15.Location = new Point(58, 116);
+            label15.Name = "label15";
+            label15.Size = new Size(126, 20);
+            label15.TabIndex = 70;
+            label15.Text = "Количество эпох";
+            // 
+            // lambdaSVM
+            // 
+            lambdaSVM.Increment = new decimal(new int[] { 1, 0, 0, 131072 });
+            lambdaSVM.Location = new Point(14, 247);
+            lambdaSVM.Maximum = new decimal(new int[] { 1, 0, 0, 0 });
+            lambdaSVM.Name = "lambdaSVM";
+            lambdaSVM.Size = new Size(202, 23);
+            lambdaSVM.TabIndex = 69;
+            lambdaSVM.Value = new decimal(new int[] { 5, 0, 0, 65536 });
+            // 
+            // learningRateSVM
+            // 
+            learningRateSVM.Location = new Point(14, 194);
+            learningRateSVM.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
+            learningRateSVM.Minimum = new decimal(new int[] { 100, 0, 0, 0 });
+            learningRateSVM.Name = "learningRateSVM";
+            learningRateSVM.Size = new Size(202, 23);
+            learningRateSVM.TabIndex = 68;
+            learningRateSVM.Value = new decimal(new int[] { 100, 0, 0, 0 });
+            // 
+            // cParamSVM
+            // 
+            cParamSVM.Location = new Point(14, 297);
+            cParamSVM.Name = "cParamSVM";
+            cParamSVM.Size = new Size(202, 23);
+            cParamSVM.TabIndex = 67;
+            cParamSVM.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
             // PredictButtonSVM
             // 
             PredictButtonSVM.BackColor = Color.LightGray;
             PredictButtonSVM.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            PredictButtonSVM.Location = new Point(14, 686);
+            PredictButtonSVM.Location = new Point(14, 743);
             PredictButtonSVM.Name = "PredictButtonSVM";
             PredictButtonSVM.Size = new Size(202, 60);
             PredictButtonSVM.TabIndex = 61;
@@ -615,7 +802,7 @@
             // problemTypeComboBoxSVM
             // 
             problemTypeComboBoxSVM.FormattingEnabled = true;
-            problemTypeComboBoxSVM.Location = new Point(23, 263);
+            problemTypeComboBoxSVM.Location = new Point(14, 480);
             problemTypeComboBoxSVM.Name = "problemTypeComboBoxSVM";
             problemTypeComboBoxSVM.Size = new Size(202, 23);
             problemTypeComboBoxSVM.TabIndex = 60;
@@ -623,7 +810,7 @@
             // targetComboBoxSVM
             // 
             targetComboBoxSVM.FormattingEnabled = true;
-            targetComboBoxSVM.Location = new Point(23, 234);
+            targetComboBoxSVM.Location = new Point(14, 509);
             targetComboBoxSVM.Name = "targetComboBoxSVM";
             targetComboBoxSVM.Size = new Size(202, 23);
             targetComboBoxSVM.TabIndex = 59;
@@ -631,14 +818,14 @@
             // featuresCheckedListBox3
             // 
             featuresCheckedListBox3.FormattingEnabled = true;
-            featuresCheckedListBox3.Location = new Point(23, 80);
+            featuresCheckedListBox3.Location = new Point(14, 326);
             featuresCheckedListBox3.Name = "featuresCheckedListBox3";
             featuresCheckedListBox3.Size = new Size(202, 148);
             featuresCheckedListBox3.TabIndex = 58;
             // 
             // numSVM
             // 
-            numSVM.Location = new Point(23, 51);
+            numSVM.Location = new Point(14, 139);
             numSVM.Name = "numSVM";
             numSVM.Size = new Size(202, 23);
             numSVM.TabIndex = 57;
@@ -714,7 +901,7 @@
             // 
             TrainButtonSVM.BackColor = Color.LightGray;
             TrainButtonSVM.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            TrainButtonSVM.Location = new Point(14, 620);
+            TrainButtonSVM.Location = new Point(14, 677);
             TrainButtonSVM.Name = "TrainButtonSVM";
             TrainButtonSVM.Size = new Size(202, 60);
             TrainButtonSVM.TabIndex = 42;
@@ -723,6 +910,11 @@
             // 
             // TabNadarayaWatsona
             // 
+            TabNadarayaWatsona.Controls.Add(label25);
+            TabNadarayaWatsona.Controls.Add(normalizationComboBoxNadaraya);
+            TabNadarayaWatsona.Controls.Add(label20);
+            TabNadarayaWatsona.Controls.Add(kernelTypeNadaraya);
+            TabNadarayaWatsona.Controls.Add(label19);
             TabNadarayaWatsona.Controls.Add(PredictButtonNadaraya);
             TabNadarayaWatsona.Controls.Add(problemTypeComboBoxNadaraya);
             TabNadarayaWatsona.Controls.Add(targetComboBoxNadaraya);
@@ -745,6 +937,36 @@
             TabNadarayaWatsona.Text = "Nadaraya-Watson";
             TabNadarayaWatsona.UseVisualStyleBackColor = true;
             // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.BackColor = Color.Transparent;
+            label20.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label20.Location = new Point(75, 167);
+            label20.Name = "label20";
+            label20.Size = new Size(72, 20);
+            label20.TabIndex = 73;
+            label20.Text = "Тип ядра";
+            // 
+            // kernelTypeNadaraya
+            // 
+            kernelTypeNadaraya.FormattingEnabled = true;
+            kernelTypeNadaraya.Location = new Point(13, 190);
+            kernelTypeNadaraya.Name = "kernelTypeNadaraya";
+            kernelTypeNadaraya.Size = new Size(202, 23);
+            kernelTypeNadaraya.TabIndex = 72;
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.BackColor = Color.Transparent;
+            label19.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label19.Location = new Point(41, 113);
+            label19.Name = "label19";
+            label19.Size = new Size(156, 20);
+            label19.TabIndex = 71;
+            label19.Text = "Полоса пропускания";
+            // 
             // PredictButtonNadaraya
             // 
             PredictButtonNadaraya.BackColor = Color.LightGray;
@@ -759,7 +981,7 @@
             // problemTypeComboBoxNadaraya
             // 
             problemTypeComboBoxNadaraya.FormattingEnabled = true;
-            problemTypeComboBoxNadaraya.Location = new Point(14, 269);
+            problemTypeComboBoxNadaraya.Location = new Point(13, 373);
             problemTypeComboBoxNadaraya.Name = "problemTypeComboBoxNadaraya";
             problemTypeComboBoxNadaraya.Size = new Size(202, 23);
             problemTypeComboBoxNadaraya.TabIndex = 60;
@@ -767,7 +989,7 @@
             // targetComboBoxNadaraya
             // 
             targetComboBoxNadaraya.FormattingEnabled = true;
-            targetComboBoxNadaraya.Location = new Point(14, 240);
+            targetComboBoxNadaraya.Location = new Point(13, 402);
             targetComboBoxNadaraya.Name = "targetComboBoxNadaraya";
             targetComboBoxNadaraya.Size = new Size(202, 23);
             targetComboBoxNadaraya.TabIndex = 59;
@@ -775,14 +997,14 @@
             // featuresCheckedListBox4
             // 
             featuresCheckedListBox4.FormattingEnabled = true;
-            featuresCheckedListBox4.Location = new Point(14, 86);
+            featuresCheckedListBox4.Location = new Point(13, 219);
             featuresCheckedListBox4.Name = "featuresCheckedListBox4";
             featuresCheckedListBox4.Size = new Size(202, 148);
             featuresCheckedListBox4.TabIndex = 58;
             // 
             // numNadaraya
             // 
-            numNadaraya.Location = new Point(14, 57);
+            numNadaraya.Location = new Point(13, 136);
             numNadaraya.Name = "numNadaraya";
             numNadaraya.Size = new Size(202, 23);
             numNadaraya.TabIndex = 57;
@@ -865,6 +1087,101 @@
             TrainButtonNadaraya.Text = "Обучить модель";
             TrainButtonNadaraya.UseVisualStyleBackColor = false;
             // 
+            // normalizationComboBoxKNN
+            // 
+            normalizationComboBoxKNN.FormattingEnabled = true;
+            normalizationComboBoxKNN.Location = new Point(12, 90);
+            normalizationComboBoxKNN.Name = "normalizationComboBoxKNN";
+            normalizationComboBoxKNN.Size = new Size(202, 23);
+            normalizationComboBoxKNN.TabIndex = 32;
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.BackColor = Color.Transparent;
+            label21.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label21.Location = new Point(37, 67);
+            label21.Name = "label21";
+            label21.Size = new Size(146, 20);
+            label21.TabIndex = 65;
+            label21.Text = "Тип нормирования";
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.BackColor = Color.Transparent;
+            label22.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label22.Location = new Point(45, 20);
+            label22.Name = "label22";
+            label22.Size = new Size(146, 20);
+            label22.TabIndex = 67;
+            label22.Text = "Тип нормирования";
+            // 
+            // normalizationComboBoxWeightKNN
+            // 
+            normalizationComboBoxWeightKNN.FormattingEnabled = true;
+            normalizationComboBoxWeightKNN.Location = new Point(20, 43);
+            normalizationComboBoxWeightKNN.Name = "normalizationComboBoxWeightKNN";
+            normalizationComboBoxWeightKNN.Size = new Size(202, 23);
+            normalizationComboBoxWeightKNN.TabIndex = 66;
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.BackColor = Color.Transparent;
+            label23.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label23.Location = new Point(45, 37);
+            label23.Name = "label23";
+            label23.Size = new Size(146, 20);
+            label23.TabIndex = 68;
+            label23.Text = "Тип нормирования";
+            // 
+            // normalizationComboBoxSTOL
+            // 
+            normalizationComboBoxSTOL.FormattingEnabled = true;
+            normalizationComboBoxSTOL.Location = new Point(20, 60);
+            normalizationComboBoxSTOL.Name = "normalizationComboBoxSTOL";
+            normalizationComboBoxSTOL.Size = new Size(202, 23);
+            normalizationComboBoxSTOL.TabIndex = 67;
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.BackColor = Color.Transparent;
+            label24.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label24.Location = new Point(39, 67);
+            label24.Name = "label24";
+            label24.Size = new Size(146, 20);
+            label24.TabIndex = 75;
+            label24.Text = "Тип нормирования";
+            // 
+            // normalizationComboBoxSVM
+            // 
+            normalizationComboBoxSVM.FormattingEnabled = true;
+            normalizationComboBoxSVM.Location = new Point(14, 90);
+            normalizationComboBoxSVM.Name = "normalizationComboBoxSVM";
+            normalizationComboBoxSVM.Size = new Size(202, 23);
+            normalizationComboBoxSVM.TabIndex = 74;
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.BackColor = Color.Transparent;
+            label25.Font = new Font("Segoe UI", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            label25.Location = new Point(39, 64);
+            label25.Name = "label25";
+            label25.Size = new Size(146, 20);
+            label25.TabIndex = 75;
+            label25.Text = "Тип нормирования";
+            // 
+            // normalizationComboBoxNadaraya
+            // 
+            normalizationComboBoxNadaraya.FormattingEnabled = true;
+            normalizationComboBoxNadaraya.Location = new Point(14, 87);
+            normalizationComboBoxNadaraya.Name = "normalizationComboBoxNadaraya";
+            normalizationComboBoxNadaraya.Size = new Size(202, 23);
+            normalizationComboBoxNadaraya.TabIndex = 74;
+            // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -885,10 +1202,15 @@
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             STOLPage.ResumeLayout(false);
             STOLPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)confidenceThresholdSTOL).EndInit();
+            ((System.ComponentModel.ISupportInitialize)maxSamplesSTOL).EndInit();
             ((System.ComponentModel.ISupportInitialize)numSTOL).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
             SVMPage.ResumeLayout(false);
             SVMPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)lambdaSVM).EndInit();
+            ((System.ComponentModel.ISupportInitialize)learningRateSVM).EndInit();
+            ((System.ComponentModel.ISupportInitialize)cParamSVM).EndInit();
             ((System.ComponentModel.ISupportInitialize)numSVM).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView4).EndInit();
             TabNadarayaWatsona.ResumeLayout(false);
@@ -952,8 +1274,8 @@
         private ComboBox targetComboBox;
         private CheckedListBox featuresCheckedListBox;
         private Button PredictButton;
-        private ComboBox problemTypeComboBoxWeightKNN;
         private ComboBox targetComboBoxWeightKNN;
+        private ComboBox problemTypeComboBoxWeightKNN;
         private CheckedListBox featuresCheckedListBox1;
         private NumericUpDown numWeightKNN;
         private Button PredictButtonWeightKNN;
@@ -972,5 +1294,31 @@
         private ComboBox targetComboBoxNadaraya;
         private CheckedListBox featuresCheckedListBox4;
         private NumericUpDown numNadaraya;
+        private Label label9;
+        private NumericUpDown confidenceThresholdSTOL;
+        private NumericUpDown maxSamplesSTOL;
+        private Label label11;
+        private Label label10;
+        private Label label12;
+        private Label label13;
+        private Label label15;
+        private NumericUpDown lambdaSVM;
+        private NumericUpDown learningRateSVM;
+        private NumericUpDown cParamSVM;
+        private Label label18;
+        private ComboBox kernelTypeNadaraya;
+        private Label label19;
+        private Label label20;
+        private Button ShowPlotButton;
+        private Label label21;
+        private ComboBox normalizationComboBoxKNN;
+        private Label label22;
+        private ComboBox normalizationComboBoxWeightKNN;
+        private Label label23;
+        private ComboBox normalizationComboBoxSTOL;
+        private Label label24;
+        private ComboBox normalizationComboBoxSVM;
+        private Label label25;
+        private ComboBox normalizationComboBoxNadaraya;
     }
 }

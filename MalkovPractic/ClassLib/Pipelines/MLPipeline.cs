@@ -15,7 +15,8 @@ namespace Algorithms.Pipelines
         public Dataset TrainingData { get; private set; }
         public Dataset TestData { get; private set; }
         public PipelineResult Result { get; private set; }
-        public DefaultDataPreprocessor Preprocessor { get; private set; } // Добавили публичное свойство
+        public DefaultDataPreprocessor Preprocessor { get; private set; }
+        public NormalizationType NormalizationType { get; set; } = NormalizationType.ZScore;
 
         public Pipeline(DatasetConfig config)
         {
@@ -76,6 +77,17 @@ namespace Algorithms.Pipelines
         {
             Console.WriteLine($"=== Запуск пайплайна для {Config.Name} ===");
 
+            string normTypeText = NormalizationType switch
+            {
+                NormalizationType.None => "Без нормирования",
+                NormalizationType.ZScore => "Z-Score (статистическое)",
+                NormalizationType.MinMax => "Min-Max (линейное)",
+                NormalizationType.LogScale => "Логарифмическое",
+                _ => "Неизвестно"
+            };
+
+            Console.WriteLine($"Тип нормирования: {normTypeText}");
+
             // Загрузка данных
             var rawData = DataLoader.LoadCSV(csvFilePath, Config.HasHeader);
             Console.WriteLine($"Загружено {rawData.Length} записей");
@@ -85,7 +97,7 @@ namespace Algorithms.Pipelines
                 DataLoader.GetColumnNames(csvFilePath) : null;
 
             // Подготовка данных с препроцессором - сохраняем его
-            Preprocessor = new DefaultDataPreprocessor(); // Создаем и сохраняем
+            Preprocessor = new DefaultDataPreprocessor();
             var (features, labels) = DataLoader.PrepareData(rawData, Config.FeatureColumns, Config.LabelColumn, Preprocessor);
 
             // Разделяем данные на обучающую (80%) и тестовую (20%) выборки
@@ -97,20 +109,51 @@ namespace Algorithms.Pipelines
 
             Console.WriteLine($"Разделение: {trainFeatures.Length} обучающих, {testFeatures.Length} тестовых");
 
-            // Обучение алгоритма с нормализацией
+            // Обучение алгоритма с выбранной нормализацией
             var stopwatch = Stopwatch.StartNew();
-            Algorithm.Train(TrainingData.Features, TrainingData.Labels, normalize: true);
+
+            if (NormalizationType == NormalizationType.None)
+            {
+                // Без нормирования - используем исходные данные
+                Algorithm.Train(TrainingData.Features, TrainingData.Labels, normalize: false);
+                Evaluate(TestData.Features, TestData.Labels);
+            }
+            else
+            {
+                // С нормированием - создаем скалер
+                DataScaler scaler = new DataScaler(NormalizationType);
+
+                // Нормализуем обучающие данные
+                var normalizedTrainFeatures = scaler.FitTransform(TrainingData.Features);
+
+                // Обучаем алгоритм на нормализованных данных
+                Algorithm.Train(normalizedTrainFeatures, TrainingData.Labels, normalize: false);
+
+                // Оценка на тестовых данных (также нормализованных)
+                var normalizedTestFeatures = scaler.Transform(TestData.Features);
+                Evaluate(normalizedTestFeatures, TestData.Labels);
+
+                // Показываем информацию о нормализации
+                if (trainFeatures.Length > 0 && trainFeatures[0].Length > 0)
+                {
+                    Console.WriteLine("\n=== ИНФОРМАЦИЯ О НОРМАЛИЗАЦИИ ===");
+                    string effect = scaler.PrintNormalizationEffect(trainFeatures, 0, 3);
+                    Console.WriteLine(effect);
+                }
+            }
+
             stopwatch.Stop();
 
             // Сохранение результатов
             Result.TrainingTime = stopwatch.Elapsed.TotalSeconds;
             Result.Algorithm = Algorithm;
 
-            // Оценка на тестовых данных
-            Evaluate(TestData.Features, TestData.Labels);
-
             Console.WriteLine($"Обучение завершено за {Result.TrainingTime:F2} секунд");
             Console.WriteLine($"Тестовая точность: {Result.Accuracy:P2}");
+        }
+        public void SetNormalizationType(NormalizationType type)
+        {
+            NormalizationType = type;
         }
 
         // Метод для получения маппинга категорий
@@ -181,6 +224,35 @@ namespace Algorithms.Pipelines
             return features.Select(f => Predict(f)).ToArray();
         }
 
+        private double CalculateAccuracy(double[] predictions, double[] actual)
+        {
+            if (predictions.Length == 0) return 0;
+
+            int correct = 0;
+
+            if (Config.ProblemType == ProblemType.Classification)
+            {
+                // Для классификации сравниваем с допуском
+                for (int i = 0; i < predictions.Length; i++)
+                {
+                    // Используем Math.Round для получения целого класса
+                    double predictedClass = Math.Round(predictions[i]);
+                    double actualClass = Math.Round(actual[i]);
+
+                    // Сравниваем с небольшим допуском
+                    if (Math.Abs(predictedClass - actualClass) < 0.001)
+                        correct++;
+                }
+            }
+            else
+            {
+                // Для регрессии точность не рассчитываем
+                return 0;
+            }
+
+            return (double)correct / predictions.Length;
+        }
+
         public void Evaluate(double[][] testFeatures, double[] testLabels)
         {
             var predictions = Predict(testFeatures);
@@ -188,28 +260,65 @@ namespace Algorithms.Pipelines
             if (Config.ProblemType == ProblemType.Classification)
             {
                 Result.Accuracy = CalculateAccuracy(predictions, testLabels);
-                Console.WriteLine($"Точность на тестовых данных: {Result.Accuracy:P2}");
+
+                Console.WriteLine("\n=== ДЕТАЛЬНАЯ ОЦЕНКА ===");
+                Console.WriteLine($"Точность: {Result.Accuracy:P2} ({GetCorrectCount(predictions, testLabels)}/{predictions.Length})");
+
+                if (predictions.Length > 0)
+                {
+                    PrintConfusionMatrix(predictions, testLabels);
+                }
             }
             else
             {
                 Result.RMSE = CalculateRMSE(predictions, testLabels);
                 Result.MAE = CalculateMAE(predictions, testLabels);
-                Console.WriteLine($"RMSE на тестовых данных: {Result.RMSE:F2}, MAE: {Result.MAE:F2}");
+                Console.WriteLine($"RMSE: {Result.RMSE:F4}, MAE: {Result.MAE:F4}");
             }
         }
 
-        private double CalculateAccuracy(double[] predictions, double[] actual)
+        private int GetCorrectCount(double[] predictions, double[] actual)
         {
             int correct = 0;
             for (int i = 0; i < predictions.Length; i++)
             {
-                int predicted = (int)Math.Round(predictions[i]);
-                int actualValue = (int)Math.Round(actual[i]);
-
-                if (predicted == actualValue)
+                if (Math.Abs(Math.Round(predictions[i]) - Math.Round(actual[i])) < 0.001)
                     correct++;
             }
-            return predictions.Length > 0 ? (double)correct / predictions.Length : 0;
+            return correct;
+        }
+
+        private void PrintConfusionMatrix(double[] predictions, double[] actual)
+        {
+            var uniqueLabels = actual.Distinct().OrderBy(x => x).ToList();
+
+            Console.WriteLine("\nМатрица ошибок:");
+            Console.Write("      ");
+            foreach (var predLabel in uniqueLabels)
+            {
+                Console.Write($"{predLabel,7:F0} ");
+            }
+            Console.WriteLine(" (Предсказано)");
+            Console.WriteLine("      " + new string('-', uniqueLabels.Count * 8));
+
+            foreach (var trueLabel in uniqueLabels)
+            {
+                Console.Write($"{trueLabel,4:F0} |");
+                foreach (var predLabel in uniqueLabels)
+                {
+                    int count = 0;
+                    for (int i = 0; i < predictions.Length; i++)
+                    {
+                        if (Math.Abs(actual[i] - trueLabel) < 0.001 &&
+                            Math.Abs(Math.Round(predictions[i]) - predLabel) < 0.001)
+                        {
+                            count++;
+                        }
+                    }
+                    Console.Write($"{count,7} ");
+                }
+                Console.WriteLine($"| (Истинный: {trueLabel:F0})");
+            }
         }
 
         private double CalculateRMSE(double[] predictions, double[] actual)
